@@ -1,5 +1,5 @@
-// Copyright 2026 Raritan Inc. All rights reserved.
 // SPDX-License-Identifier: BSD-3-Clause
+// Copyright 2026 Raritan Inc. All rights reserved.
 
 package powerqualitysensor
 

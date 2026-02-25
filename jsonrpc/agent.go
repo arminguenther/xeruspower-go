@@ -195,9 +195,12 @@ func (a *Agent) callMore(call0 methodCall) {
 	}()
 	requests := make([]bulk.BulkRequestRequest, len(calls))
 	for i, call := range calls {
-		requests[i] = bulk.BulkRequestRequest{Rid: call.rid, Json: call.request}
+		requests[i] = bulk.BulkRequestRequest{
+			Rid: call.rid, Json: call.request,
+		}
 	}
-	responses, errBulk := bulk.NewBulkRequest("/bulk", a).PerformBulk(ctx, requests)
+	responses, errBulk := bulk.NewBulkRequest("/bulk", a).
+		PerformBulk(ctx, requests)
 	makeRet := func(i int) (ret callReturnValues) {
 		if errBulk != nil {
 			ret.err = errBulk
