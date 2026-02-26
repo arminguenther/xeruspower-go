@@ -21,7 +21,7 @@ func ExampleCodeFor() {
 }
 
 func ExampleAgent() {
-	agent := NewAgent{"https", "10.0.42.2", "admin", "raritan"}
+	agent := NewAgent("https", "10.0.42.2", "admin", "raritan")
 	_ = pdu.NewPdu("/model/pdu/0", agent)
 }
 
