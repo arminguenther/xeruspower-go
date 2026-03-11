@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: BSD-3-Clause
+// Copyright 2026 Raritan Inc. All rights reserved.
+
+package analogmodem
+
+import (
+	"context"
+
+	"github.com/arminguenther/xeruspower-go/idl"
+	"github.com/arminguenther/xeruspower-go/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
+)
+
+func init() {
+	object.Register(NewAnalogModem)
+}
+
+type _AnalogModem struct {
+	idl.Object
+}
+
+// NewAnalogModem returns a new AnalogModem interface for the object at given RID.
+func NewAnalogModem(rid string, caller idl.Caller) AnalogModem {
+	return &_AnalogModem{idl.NewObject(rid, caller)}
+}
+
+func (a *_AnalogModem) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "serial.AnalogModem",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (a *_AnalogModem) GetSettings(ctx context.Context) (Settings, error) {
+	var ret Settings
+	val, err := a.Caller().Call(ctx, a.RID(), "getSettings", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], a.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (a *_AnalogModem) SetSettings(ctx context.Context, in0 Settings) (int32, error) {
+	var ret int32
+	val, err := a.Caller().Call(ctx, a.RID(), "setSettings", map[string]any{
+		"settings": in0.Encode(),
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
