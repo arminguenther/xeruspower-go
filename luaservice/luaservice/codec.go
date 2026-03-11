@@ -4,8 +4,8 @@
 package luaservice
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
 )
 
 func (s *ScriptState) Encode() map[string]any {

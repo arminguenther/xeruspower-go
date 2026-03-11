@@ -4,18 +4,18 @@
 package pdu
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40411/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40413/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40413/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40413/sensors/statesensor"
 )
 
 func (m *MetaData) Encode() map[string]any {

@@ -9,7 +9,7 @@ package inlets
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
 )
 
 // The inlets interface

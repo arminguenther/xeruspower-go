@@ -11,9 +11,9 @@ package rolemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/usermgmt/role"
+	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/usermgmt/role"
 )
 
 // Base type of all account event

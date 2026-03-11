@@ -4,13 +4,13 @@
 package dooraccesscontrol
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40411/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40413/peripheral/peripheraldeviceslot"
 )
 
 func (a *AbsoluteTimeCondition) Encode() map[string]any {

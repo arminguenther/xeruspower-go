@@ -4,8 +4,8 @@
 package inlets
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
 )
 
 func (i *Info) Encode() map[string]any {

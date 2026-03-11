@@ -6,12 +6,12 @@ package shelfpowersupply
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/pole"
 )
 
 func init() {

@@ -4,12 +4,12 @@
 package webcammanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40411/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40413/webcam/webcam"
 )
 
 func (w *_WebcamEvent) Decode(value map[string]any, caller idl.Caller) error {

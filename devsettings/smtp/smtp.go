@@ -11,7 +11,7 @@ package smtp
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
 )
 
 const ERR_INVALID_PARAMS int32 = 1 // Invalid parameters

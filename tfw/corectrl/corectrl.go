@@ -11,8 +11,8 @@ package corectrl
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/tfw/scannerctrl"
+	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40413/tfw/scannerctrl"
 )
 
 // Core control interface

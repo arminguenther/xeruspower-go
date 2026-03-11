@@ -12,14 +12,14 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/transferswitchbypassstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/transferswitchbypassstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40413/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40413/sensors/statesensor"
 )
 
 const (
