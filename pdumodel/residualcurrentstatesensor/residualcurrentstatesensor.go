@@ -11,7 +11,7 @@ package residualcurrentstatesensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40413/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40510/sensors/statesensor"
 )
 
 // Possible sensor state values

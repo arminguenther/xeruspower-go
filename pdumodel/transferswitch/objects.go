@@ -6,12 +6,12 @@ package transferswitch
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40413/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40510/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40510/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40510/pdumodel/waveform"
 )
 
 func init() {

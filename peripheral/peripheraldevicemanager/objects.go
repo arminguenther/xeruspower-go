@@ -6,15 +6,15 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/gatewaysensormanager"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40413/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40510/portsmodel/portfuse"
 )
 
 func init() {

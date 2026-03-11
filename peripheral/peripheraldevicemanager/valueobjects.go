@@ -4,13 +4,13 @@
 package peripheraldevicemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40413/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40510/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40510/peripheral/poselement"
 )
 
 func init() {

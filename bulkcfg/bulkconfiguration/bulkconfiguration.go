@@ -12,8 +12,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
 )
 
 // Error codes

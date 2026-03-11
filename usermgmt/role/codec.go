@@ -4,8 +4,8 @@
 package role
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding"
 )
 
 func (p *Privilege) Encode() map[string]any {

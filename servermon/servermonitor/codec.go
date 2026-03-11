@@ -4,12 +4,12 @@
 package servermonitor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40413/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40510/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/valobj"
 )
 
 func (s *ServerPowerSettings) Encode() map[string]any {

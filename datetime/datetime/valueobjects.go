@@ -6,9 +6,9 @@ package datetime
 import (
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40413/idl"
-	"github.com/arminguenther/xeruspower-go/v40413/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40413/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40510/idl"
+	"github.com/arminguenther/xeruspower-go/v40510/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40510/internal/encoding/valobj"
 )
 
 func init() {
