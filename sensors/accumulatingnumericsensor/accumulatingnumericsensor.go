@@ -12,8 +12,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40410/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
 )
 
 // A sensor which accumulates numeric readings (e.g. energy counter)

@@ -12,8 +12,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40410/assetmgrmodel/assetstrip"
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/assetmgrmodel/assetstrip"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
 )
 
 // Error codes

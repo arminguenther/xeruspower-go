@@ -10,10 +10,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40410/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40410/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40411/peripheral/peripheraldeviceslot"
 )
 
 const (

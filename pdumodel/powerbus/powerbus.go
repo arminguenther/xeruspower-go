@@ -11,9 +11,9 @@ package powerbus
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
 )
 
 // Power bus interface

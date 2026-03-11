@@ -12,17 +12,17 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40410/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40410/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/statesensor"
 )
 
 // Outlet statistics

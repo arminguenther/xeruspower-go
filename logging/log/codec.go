@@ -4,8 +4,8 @@
 package log
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
 )
 
 func (l *Info) Encode() map[string]any {

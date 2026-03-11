@@ -6,11 +6,11 @@ package powermetercontroller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/panel"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/panel"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/powermeter"
 )
 
 func init() {

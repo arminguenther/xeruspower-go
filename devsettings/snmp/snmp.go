@@ -11,8 +11,8 @@ package snmp
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
 )
 
 const ERR_INVALID_PARAMS int32 = 1 // Invalid parameters

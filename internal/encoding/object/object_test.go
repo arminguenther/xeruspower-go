@@ -7,11 +7,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40410/jsonrpc"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/pdu"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40411/jsonrpc"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/pdu"
 )
 
 func TestAs(t *testing.T) {

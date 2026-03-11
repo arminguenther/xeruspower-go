@@ -11,8 +11,8 @@ package unit
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40410/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
 )
 
 const ERR_INVALID_PARAM int32 = 1 // Invalid parameters

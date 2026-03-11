@@ -7,9 +7,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40410/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
 )
 
 func init() {

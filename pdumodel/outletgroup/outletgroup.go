@@ -9,12 +9,12 @@ package outletgroup
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40410/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40410/idl"
-	"github.com/arminguenther/xeruspower-go/v40410/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40410/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/accumulatingnumericsensor"
-	"github.com/arminguenther/xeruspower-go/v40410/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/accumulatingnumericsensor"
+	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
 )
 
 const ERR_INVALID_ARGUMENT int32 = 1
