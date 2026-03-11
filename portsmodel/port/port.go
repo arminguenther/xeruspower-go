@@ -11,10 +11,10 @@ package port
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/peripheral/poselement"
-	"github.com/arminguenther/xeruspower-go/v40411/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40412/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40412/portsmodel/portfuse"
 )
 
 // Error codes

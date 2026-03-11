@@ -4,10 +4,10 @@
 package voltagemonitoringsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	event_ "github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40412/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	event_ "github.com/arminguenther/xeruspower-go/v40412/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding/valobj"
 )
 
 func init() {

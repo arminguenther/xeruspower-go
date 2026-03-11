@@ -11,10 +11,10 @@ package cardreadermanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/smartcard/cardreader"
+	"github.com/arminguenther/xeruspower-go/v40412/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40412/smartcard/cardreader"
 )
 
 // Card Reader Manager Interface

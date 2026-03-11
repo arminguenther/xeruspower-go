@@ -9,7 +9,7 @@ package cascade
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
 )
 
 // Cascade interface

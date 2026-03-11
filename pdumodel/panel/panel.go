@@ -11,9 +11,9 @@ package panel
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/circuit"
-	"github.com/arminguenther/xeruspower-go/v40411/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40412/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40412/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40412/pdumodel/powermeter"
 )
 
 // PMC panel.

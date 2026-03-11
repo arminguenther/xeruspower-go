@@ -11,11 +11,11 @@ package peripheraldeviceslot
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/peripheral/poselement"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40412/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40412/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40412/sensors/sensor"
 )
 
 // peripheral device identification

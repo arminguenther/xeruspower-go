@@ -6,9 +6,9 @@ package typebresidualcurrentnumericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40412/sensors/numericsensor"
 )
 
 func init() {

@@ -4,11 +4,11 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40411/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40412/peripheral/modbuscfg"
 )
 
 func (s *_SensorClass) Encode() map[string]any {

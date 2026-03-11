@@ -6,10 +6,10 @@ package corectrl
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40411/idl"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40411/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40411/tfw/scannerctrl"
+	"github.com/arminguenther/xeruspower-go/v40412/idl"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40412/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40412/tfw/scannerctrl"
 )
 
 func init() {
