@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"testing"
 
-	bulk "github.com/arminguenther/xeruspower-go/v40040/bulkrpc/bulkrequest"
+	bulk "github.com/arminguenther/xeruspower-go/v40100/bulkrpc/bulkrequest"
 )
 
 func TestCallResults(t *testing.T) {

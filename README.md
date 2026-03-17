@@ -2,5 +2,5 @@
 
 This module provides Go bindings for the JSON-RPC API of Legrand, Raritan and Server Technology Xerus™ power products.
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/arminguenther/xeruspower-go/v40040.svg)](https://pkg.go.dev/github.com/arminguenther/xeruspower-go/v40040)
-[![Raritan Docs](https://img.shields.io/badge/API-documentation-informational)](https://help.raritan.com/json-rpc/4.0.40)
+[![Go Reference](https://pkg.go.dev/badge/github.com/arminguenther/xeruspower-go/v40100.svg)](https://pkg.go.dev/github.com/arminguenther/xeruspower-go/v40100)
+[![Raritan Docs](https://img.shields.io/badge/API-documentation-informational)](https://help.raritan.com/json-rpc/4.1.0)

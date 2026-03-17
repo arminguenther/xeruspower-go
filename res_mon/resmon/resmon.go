@@ -11,7 +11,7 @@ package resmon
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
 )
 
 // ResMon Entry
@@ -31,7 +31,7 @@ const (
 	FS_FREE_SPACE                        // free filesystem space
 	FS_FREE_INODES                       // free filesystem inodes
 	PROC_CPU_USAGE                       // process cpu usage
-	PROC_VM_SIZE                         // process virtual mem size
+	PROC_VM_SIZE                         // process virtual r/w mem size (formerly full vm size)
 	PROC_FREE_FILE_DESC                  // process free file descriptors
 	PROC_LIFE_TIME                       // process life time
 	PROC_COUNT                           // process count

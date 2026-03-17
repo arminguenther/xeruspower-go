@@ -6,9 +6,9 @@ package alertedsensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewAlertedSensorManager(rid string, caller idl.Caller) AlertedSensorManager
 func (a *_AlertedSensorManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.AlertedSensorManager",
-		Major: 1, Submajor: 0, Minor: 3,
+		Major: 1, Submajor: 0, Minor: 4,
 	}
 }
 

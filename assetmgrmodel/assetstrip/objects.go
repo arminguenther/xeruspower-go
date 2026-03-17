@@ -6,9 +6,9 @@ package assetstrip
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewAssetStrip(rid string, caller idl.Caller) AssetStrip {
 func (a *_AssetStrip) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "assetmgrmodel.AssetStrip",
-		Major: 2, Submajor: 0, Minor: 5,
+		Major: 2, Submajor: 0, Minor: 6,
 	}
 }
 

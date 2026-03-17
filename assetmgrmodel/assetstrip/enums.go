@@ -8,11 +8,6 @@ func (s State) IsKnown() bool {
 	return s >= DISCONNECTED && s <= AVAILABLE
 }
 
-// IsKnown reports whether the StripType is a known value.
-func (s StripType) IsKnown() bool {
-	return s >= SIMPLE && s <= COMPOSITE
-}
-
 // IsKnown reports whether the TagType is a known value.
 func (t TagType) IsKnown() bool {
 	return t >= SINGLE && t <= NONE
@@ -28,4 +23,4 @@ func (f FirmwareUpdateState) IsKnown() bool {
 	return f >= UPDATE_STARTED && f <= UPDATE_FAILED
 }
 
-//go:generate stringer -output=enum_strings.go -type=TagType,CascadeState,State,FirmwareUpdateState,StripType
+//go:generate stringer -output=enum_strings.go -type=TagType,CascadeState,State,FirmwareUpdateState

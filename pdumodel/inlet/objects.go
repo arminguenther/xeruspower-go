@@ -6,11 +6,11 @@ package inlet
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func NewInlet(rid string, caller idl.Caller) Inlet {
 func (i *_Inlet) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Inlet",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 3, Submajor: 0, Minor: 2,
 	}
 }
 

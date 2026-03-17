@@ -4,11 +4,11 @@
 package peripheraldeviceslot
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
 )
 
 func init() {
@@ -28,7 +28,7 @@ type _Device struct {
 func (d *_Device) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.Device",
-		Major: 7, Submajor: 0, Minor: 0,
+		Major: 7, Submajor: 0, Minor: 1,
 	}
 }
 
@@ -58,7 +58,7 @@ type _DeviceSlotDeviceChangedEvent struct {
 
 func (d *_DeviceSlotDeviceChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_5_0_0.DeviceChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_1.DeviceChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -81,7 +81,7 @@ type _DeviceSlotSettingsChangedEvent struct {
 
 func (s *_DeviceSlotSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_5_0_0.SettingsChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_1.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

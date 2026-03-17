@@ -11,16 +11,16 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/gatewaysensormanager"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40040/portsmodel/portfuse"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
 )
 
 const (

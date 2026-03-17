@@ -4,10 +4,10 @@
 package rolemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/usermgmt/role"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/usermgmt/role"
 )
 
 func init() {

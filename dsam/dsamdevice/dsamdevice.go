@@ -9,8 +9,8 @@ package dsamdevice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/dsam/dsamport"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/dsam/dsamport"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
 )
 
 // Success code

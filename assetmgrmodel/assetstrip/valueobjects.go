@@ -4,11 +4,11 @@
 package assetstrip
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/assetmgrmodel/assetstripconfig"
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/assetmgrmodel/assetstripconfig"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func init() {
@@ -32,7 +32,7 @@ type _StripInfoChangedEvent struct {
 
 func (s *_StripInfoChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.StripInfoChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.StripInfoChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -56,7 +56,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.StateChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -83,7 +83,7 @@ type _RackUnitChangedEvent struct {
 
 func (r *_RackUnitChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.RackUnitChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.RackUnitChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -106,7 +106,7 @@ type _TagEvent struct {
 
 func (t *_TagEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.TagEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.TagEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -127,7 +127,7 @@ type _TagAddedEvent struct {
 
 func (t *_TagAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.TagAddedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.TagAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -140,7 +140,7 @@ type _TagRemovedEvent struct {
 
 func (t *_TagRemovedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.TagRemovedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.TagRemovedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -154,7 +154,7 @@ type _FirmwareUpdateStateChangedEvent struct {
 
 func (f *_FirmwareUpdateStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.FirmwareUpdateStateChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.FirmwareUpdateStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -172,7 +172,7 @@ type _BladeOverflowChangedEvent struct {
 
 func (b *_BladeOverflowChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.BladeOverflowChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.BladeOverflowChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -191,7 +191,7 @@ type _OrientationChangedEvent struct {
 
 func (o *_OrientationChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.OrientationChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.OrientationChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -214,7 +214,7 @@ type _CompositionChangedEvent struct {
 
 func (c *_CompositionChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "assetmgrmodel.AssetStrip_2_0_5.CompositionChangedEvent",
+		Name:  "assetmgrmodel.AssetStrip_2_0_6.CompositionChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

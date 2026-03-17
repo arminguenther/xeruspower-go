@@ -4,10 +4,10 @@
 package alarmmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func (a *Alert) Encode() map[string]any {

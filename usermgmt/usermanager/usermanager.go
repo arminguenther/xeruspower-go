@@ -11,9 +11,9 @@ package usermanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/usermgmt/user"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/usermgmt/user"
 )
 
 // Account information
@@ -59,12 +59,8 @@ type PasswordChanged interface {
 
 // This event is emitted if the settings of an account
 // as defined in usermgmt.UserInfo have changed
-// (Note: we may add an indication what in the structure
-// has changed or even split the event, if handling is difficult)
 type AccountChanged interface {
 	AccountEvent
-	OldSettings() user.Info
-	NewSettings() user.Info
 	isAccountChanged()
 }
 

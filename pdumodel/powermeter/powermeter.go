@@ -11,12 +11,12 @@ package powermeter
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
 )
 
 const (

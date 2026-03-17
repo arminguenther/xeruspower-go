@@ -6,15 +6,15 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/gatewaysensormanager"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40040/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/portfuse"
 )
 
 func init() {
@@ -33,7 +33,7 @@ func NewDeviceManager(rid string, caller idl.Caller) DeviceManager {
 func (d *_DeviceManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DeviceManager",
-		Major: 5, Submajor: 1, Minor: 3,
+		Major: 5, Submajor: 2, Minor: 4,
 	}
 }
 

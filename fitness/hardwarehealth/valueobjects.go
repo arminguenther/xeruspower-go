@@ -4,9 +4,9 @@
 package hardwarehealth
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _FailureStatusChangedEvent struct {
 
 func (f *_FailureStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "fitness.HardwareHealth_1_0_2.FailureStatusChangedEvent",
+		Name:  "fitness.HardwareHealth_1_0_3.FailureStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

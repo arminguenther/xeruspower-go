@@ -6,9 +6,9 @@ package displaycontrol
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewDisplayControl(rid string, caller idl.Caller) DisplayControl {
 func (d *_DisplayControl) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "display.DisplayControl",
-		Major: 1, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 0,
 	}
 }
 
@@ -62,9 +62,9 @@ func (d *_DisplayControl) GetAvailableDefaultViews(ctx context.Context) ([]Defau
 	return ret, nil
 }
 
-func (d *_DisplayControl) GetDefaultView(ctx context.Context) (string, error) {
-	var ret string
-	val, err := d.Caller().Call(ctx, d.RID(), "getDefaultView", nil)
+func (d *_DisplayControl) GetSettings(ctx context.Context) (Settings, error) {
+	var ret Settings
+	val, err := d.Caller().Call(ctx, d.RID(), "getSettings", nil)
 	if err != nil {
 		return ret, err
 	}
@@ -76,17 +76,17 @@ func (d *_DisplayControl) GetDefaultView(ctx context.Context) (string, error) {
 	if err != nil {
 		return ret, err
 	}
-	ret, err = encoding.Is[string](res["_ret_"])
+	err = ret.Decode(res["_ret_"], d.Caller())
 	if err != nil {
 		return ret, err
 	}
 	return ret, nil
 }
 
-func (d *_DisplayControl) SetDefaultView(ctx context.Context, in0 string) (int32, error) {
+func (d *_DisplayControl) SetSettings(ctx context.Context, in0 Settings) (int32, error) {
 	var ret int32
-	val, err := d.Caller().Call(ctx, d.RID(), "setDefaultView", map[string]any{
-		"id": in0,
+	val, err := d.Caller().Call(ctx, d.RID(), "setSettings", map[string]any{
+		"settings": in0.Encode(),
 	})
 	if err != nil {
 		return ret, err

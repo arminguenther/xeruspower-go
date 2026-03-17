@@ -4,10 +4,10 @@
 package usermanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func (a *Account) Encode() map[string]any {
@@ -105,22 +105,6 @@ func (p *_PasswordChanged) Decode(value map[string]any, caller idl.Caller) error
 func (a *_AccountChanged) Decode(value map[string]any, caller idl.Caller) error {
 	a.AccountEvent = valobj.For[AccountEvent]()
 	err := a.AccountEvent.Decode(value, caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("oldSettings", value)
-	if err != nil {
-		return err
-	}
-	err = a.oldSettings.Decode(value["oldSettings"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("newSettings", value)
-	if err != nil {
-		return err
-	}
-	err = a.newSettings.Decode(value["newSettings"], caller)
 	if err != nil {
 		return err
 	}

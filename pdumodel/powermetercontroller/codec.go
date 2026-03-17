@@ -4,12 +4,12 @@
 package powermetercontroller
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/powermeter"
 )
 
 func (s *ScanResult) Encode() map[string]any {

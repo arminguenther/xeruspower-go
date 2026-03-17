@@ -10,8 +10,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
 )
 
 // hardware failure types
@@ -21,6 +21,7 @@ const (
 	FAILURE_TYPE_SUB_CTRL_NOT_REACHABLE          int32 = 3
 	FAILURE_TYPE_SUB_CTRL_MALFUNCTION            int32 = 4
 	FAILURE_TYPE_OUTLET_POWER_STATE_INCONSISTENT int32 = 5
+	FAILURE_TYPE_SUB_CTRL_INCOMPATIBLE           int32 = 6
 )
 
 type HardwareHealth interface {

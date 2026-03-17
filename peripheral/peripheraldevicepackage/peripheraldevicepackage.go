@@ -12,8 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
 )
 
 // Peripheral device package information
@@ -26,6 +27,7 @@ type PackageInfo struct {
 		Model               string // like 'DPX-CC2' or 'DX-D2C6'
 		MinDowngradeVersion int32  // minimum downgrade version (or -1)
 		Revision            string // hardware revision
+		Address             string // ROM code for 1-wire devices
 	} // Device package hardware specific information
 	FwInfo struct /*FirmwareInfo*/ {
 		CompileDate time.Time // Date of firmware compilation (Deprecated: always returns 0)
@@ -34,7 +36,8 @@ type PackageInfo struct {
 			MinorNumber       int32 // depreceated, was minor firmware version
 			BootloaderVersion int32 // device bootloader version
 		} // Firmware version (0.0 if not applicable)
-		UpdateDate time.Time // Date of device firmware update (Deprecated: always returns 0)
+		UpdateDate   time.Time // Date of device firmware update (Deprecated: always returns 0)
+		FirmwareName string    // firmware file name
 	} // Device package firmware specific information
 }
 
@@ -73,4 +76,43 @@ type DoorHandleControllerPackage interface {
 	SetHandleType(ctx context.Context, channel int32, handleType string) (int32, error)
 
 	SetExternalDeviceType(ctx context.Context, channel int32, type_ string) (int32, error)
+}
+
+// Event: A handle was opened without being electronically unlocked
+type DoorHandleControllerPackageMechanicallyUnlockedEvent interface {
+	event.Event
+	PackageInfo() PackageInfo // package info
+	Channel() int32           // channel number (zero-based)
+	DoorStateName() string    // name of the door state sensor (if assigned)
+	DoorHandleName() string   // name of the door handle sensor (if assigned)
+	DoorLockName() string     // name of the door lock actuator (if assigned)
+	isDoorHandleControllerPackageMechanicallyUnlockedEvent()
+}
+
+// Event: A door was opened without unlocking the door handle
+type DoorHandleControllerPackageDoorForcedOpenEvent interface {
+	event.Event
+	PackageInfo() PackageInfo // package info
+	Channel() int32           // channel number (zero-based)
+	DoorStateName() string    // name of the door state sensor (if assigned)
+	DoorHandleName() string   // name of the door handle sensor (if assigned)
+	DoorLockName() string     // name of the door lock actuator (if assigned)
+	isDoorHandleControllerPackageDoorForcedOpenEvent()
+}
+
+type BatteryPoweredDevicePackage interface {
+	Package
+
+	// This method outputs the given voltage value or zero if no value is available.
+	//
+	//	@return 0 or the voltage value in V
+	GetBatteryVoltage(ctx context.Context) (float64, error)
+}
+
+// Event: the voltage of this device changed
+type BatteryPoweredDevicePackageVoltageChangedEvent interface {
+	event.Event
+	OldVoltage() float64 // old voltage
+	NewVoltage() float64 // new voltage
+	isBatteryPoweredDevicePackageVoltageChangedEvent()
 }

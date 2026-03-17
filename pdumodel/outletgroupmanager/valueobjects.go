@@ -4,10 +4,10 @@
 package outletgroupmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/outletgroup"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outletgroup"
 )
 
 func init() {
@@ -25,7 +25,7 @@ type _GroupCreatedEvent struct {
 
 func (g *_GroupCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroupManager_1_1_7.GroupCreatedEvent",
+		Name:  "pdumodel.OutletGroupManager_1_1_8.GroupCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -57,7 +57,7 @@ type _GroupDeletedEvent struct {
 
 func (g *_GroupDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroupManager_1_1_7.GroupDeletedEvent",
+		Name:  "pdumodel.OutletGroupManager_1_1_8.GroupDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

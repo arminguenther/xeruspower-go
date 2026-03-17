@@ -4,11 +4,11 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/modbuscfg"
 )
 
 func (s *_SensorClass) Encode() map[string]any {
@@ -289,6 +289,120 @@ func (r *_RemoteModbusTCPDevice) Decode(value map[string]any, caller idl.Caller)
 	return nil
 }
 
+func (r *_RemoteSnmpDevice) Encode() map[string]any {
+	ret := r.RemoteDevice.Encode()
+	ret["host"] = r.host
+	return ret
+}
+
+func (r *_RemoteSnmpDevice) Decode(value map[string]any, caller idl.Caller) error {
+	r.RemoteDevice = valobj.For[RemoteDevice]()
+	err := r.RemoteDevice.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("host", value)
+	if err != nil {
+		return err
+	}
+	r.host, err = encoding.Is[string](value["host"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *_RemoteSnmpV1V2Device) Encode() map[string]any {
+	ret := r.RemoteSnmpDevice.Encode()
+	ret["community"] = r.community
+	return ret
+}
+
+func (r *_RemoteSnmpV1V2Device) Decode(value map[string]any, caller idl.Caller) error {
+	r.RemoteSnmpDevice = valobj.For[RemoteSnmpDevice]()
+	err := r.RemoteSnmpDevice.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("community", value)
+	if err != nil {
+		return err
+	}
+	r.community, err = encoding.Is[string](value["community"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *_RemoteSnmpV3Device) Encode() map[string]any {
+	ret := r.RemoteSnmpDevice.Encode()
+	ret["user"] = r.user
+	ret["level"] = r.level
+	ret["authProtocol"] = r.authProtocol
+	ret["authPassphrase"] = r.authPassphrase
+	ret["privacyProtocol"] = r.privacyProtocol
+	ret["privacyPassphrase"] = r.privacyPassphrase
+	return ret
+}
+
+func (r *_RemoteSnmpV3Device) Decode(value map[string]any, caller idl.Caller) error {
+	r.RemoteSnmpDevice = valobj.For[RemoteSnmpDevice]()
+	err := r.RemoteSnmpDevice.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("user", value)
+	if err != nil {
+		return err
+	}
+	r.user, err = encoding.Is[string](value["user"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("level", value)
+	if err != nil {
+		return err
+	}
+	r.level, err = encoding.AsEnum[SnmpSecurityLevel](value["level"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("authProtocol", value)
+	if err != nil {
+		return err
+	}
+	r.authProtocol, err = encoding.AsEnum[SnmpAuthProtocol](value["authProtocol"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("authPassphrase", value)
+	if err != nil {
+		return err
+	}
+	r.authPassphrase, err = encoding.Is[string](value["authPassphrase"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("privacyProtocol", value)
+	if err != nil {
+		return err
+	}
+	r.privacyProtocol, err = encoding.AsEnum[SnmpPrivProtocol](value["privacyProtocol"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("privacyPassphrase", value)
+	if err != nil {
+		return err
+	}
+	r.privacyPassphrase, err = encoding.Is[string](value["privacyPassphrase"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (i *_InterpretationRule) Encode() map[string]any {
 	ret := i.ValueObject.Encode()
 	ret["interpretation"] = i.interpretation
@@ -509,6 +623,39 @@ func (i *_InterpretationRuleRangeRAW) Decode(value map[string]any, caller idl.Ca
 	i.mask, err = encoding.AsInt64(value["mask"])
 	if err != nil {
 		return err
+	}
+	return nil
+}
+
+func (i *_InterpretationRuleEnum) Encode() map[string]any {
+	ret := i.InterpretationRuleInvertable.Encode()
+	ret["enumValues"] = encoding.NonNilSlice(i.enumValues)
+	return ret
+}
+
+func (i *_InterpretationRuleEnum) Decode(value map[string]any, caller idl.Caller) error {
+	i.InterpretationRuleInvertable = valobj.For[InterpretationRuleInvertable]()
+	err := i.InterpretationRuleInvertable.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("enumValues", value)
+	if err != nil {
+		return err
+	}
+	var s0 []any
+	s0, err = encoding.Is[[]any](value["enumValues"])
+	if err != nil {
+		return err
+	}
+	i.enumValues = make([]int64, 0, len(s0))
+	for _, a0 := range s0 {
+		var e0 int64
+		e0, err = encoding.AsInt64(a0)
+		if err != nil {
+			return err
+		}
+		i.enumValues = append(i.enumValues, e0)
 	}
 	return nil
 }
@@ -836,6 +983,29 @@ func (m *_ModbusSensor) Decode(value map[string]any, caller idl.Caller) error {
 		return err
 	}
 	m.regAddr, err = encoding.AsInt32(value["regAddr"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *_SnmpSensor) Encode() map[string]any {
+	ret := s.Sensor.Encode()
+	ret["oid"] = s.oid
+	return ret
+}
+
+func (s *_SnmpSensor) Decode(value map[string]any, caller idl.Caller) error {
+	s.Sensor = valobj.For[Sensor]()
+	err := s.Sensor.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oid", value)
+	if err != nil {
+		return err
+	}
+	s.oid, err = encoding.Is[string](value["oid"])
 	if err != nil {
 		return err
 	}

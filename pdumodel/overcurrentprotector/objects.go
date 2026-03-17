@@ -6,12 +6,12 @@ package overcurrentprotector
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func NewOverCurrentProtector(rid string, caller idl.Caller) OverCurrentProtector
 func (o *_OverCurrentProtector) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OverCurrentProtector",
-		Major: 4, Submajor: 0, Minor: 1,
+		Major: 4, Submajor: 0, Minor: 2,
 	}
 }
 

@@ -6,12 +6,12 @@ package overcurrentprotectortripsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func NewOverCurrentProtectorTripSensor(rid string, caller idl.Caller) OverCurren
 func (o *_OverCurrentProtectorTripSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OverCurrentProtectorTripSensor",
-		Major: 1, Submajor: 1, Minor: 11,
+		Major: 1, Submajor: 1, Minor: 12,
 	}
 }
 

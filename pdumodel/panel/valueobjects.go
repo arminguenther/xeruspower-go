@@ -4,10 +4,10 @@
 package panel
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	circuit_ "github.com/arminguenther/xeruspower-go/v40040/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	circuit_ "github.com/arminguenther/xeruspower-go/v40100/pdumodel/circuit"
 )
 
 func init() {
@@ -24,7 +24,7 @@ type _SettingsChangedEvent struct {
 
 func (p *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_1.PanelSettingsChangedEvent",
+		Name:  "pdumodel.Panel_2_0_2.PanelSettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -48,7 +48,7 @@ type _CircuitCreatedEvent struct {
 
 func (c *_CircuitCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_1.CircuitCreatedEvent",
+		Name:  "pdumodel.Panel_2_0_2.CircuitCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -75,7 +75,7 @@ type _CircuitDeletedEvent struct {
 
 func (c *_CircuitDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_1.CircuitDeletedEvent",
+		Name:  "pdumodel.Panel_2_0_2.CircuitDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

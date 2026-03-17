@@ -6,11 +6,11 @@ package panel
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/circuit"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/powermeter"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func NewPanel(rid string, caller idl.Caller) Panel {
 func (p *_Panel) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Panel",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 

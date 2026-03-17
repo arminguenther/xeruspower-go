@@ -11,11 +11,11 @@ package gatewaysensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/modbuscfg"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
 )
 
 const (
@@ -146,6 +146,59 @@ type RemoteModbusTCPDevice interface {
 	isRemoteModbusTCPDevice()
 }
 
+type RemoteSnmpDevice interface {
+	RemoteDevice
+	Host() string // host
+	isRemoteSnmpDevice()
+}
+
+type RemoteSnmpV1V2Device interface {
+	RemoteSnmpDevice
+	Community() string // community string for v1/v2c
+	isRemoteSnmpV1V2Device()
+}
+
+type SnmpSecurityLevel int
+
+const (
+	NO_AUTH_NO_PRIV SnmpSecurityLevel = iota // no authentication, no privacy
+	AUTH_NO_PRIV                             // authentication, no privacy
+	AUTH_PRIV                                // authentication, privacy
+)
+
+type SnmpAuthProtocol int
+
+const (
+	MD5    SnmpAuthProtocol = iota // MD5
+	SHA1                           // SHA-1
+	SHA224                         // SHA-224
+	SHA256                         // SHA-256
+	SHA384                         // SHA-384
+	SHA512                         // SHA-512
+)
+
+type SnmpPrivProtocol int
+
+const (
+	DES         SnmpPrivProtocol = iota // DES
+	AES128                              // AES-128
+	AES192                              // AES-192
+	AES256                              // AES-256
+	AES192_3DES                         // AES-192 with key extension (3DES)
+	AES256_3DES                         // AES-256 with key extension (3DES)
+)
+
+type RemoteSnmpV3Device interface {
+	RemoteSnmpDevice
+	User() string                      // security user name
+	Level() SnmpSecurityLevel          // security level (noAuthNoPriv|authNoPriv|authPriv)
+	AuthProtocol() SnmpAuthProtocol    // authentication protocol (MD5|SHA|SHA-224|SHA-256|SHA-384|SHA-512)
+	AuthPassphrase() string            // authentication protocol passphrase
+	PrivacyProtocol() SnmpPrivProtocol // privacy protocol (DES|AES|AES-192|AES-256)
+	PrivacyPassphrase() string         // privacy protocol pass phrase
+	isRemoteSnmpV3Device()
+}
+
 // Specification of value encoding
 //
 // Before an instance of Sensor can be created,
@@ -257,6 +310,13 @@ type InterpretationRuleRangeRAW interface {
 	isInterpretationRuleRangeRAW()
 }
 
+// InterpretationRuleEnum is applied to a reading and maps the values to the given Interpretation
+type InterpretationRuleEnum interface {
+	InterpretationRuleInvertable
+	EnumValues() []int64 // values to map
+	isInterpretationRuleEnum()
+}
+
 // InterpretationRuleIEEE* are applied after value is wapped, masked and interpreted as float / double
 type InterpretationRuleIEEE754INF interface {
 	InterpretationRuleInvertable
@@ -364,6 +424,12 @@ type ModbusSensor interface {
 	Function() modbuscfg.ModbusFunction // Modbus function to be used
 	RegAddr() int32                     // Modbus server register address
 	isModbusSensor()
+}
+
+type SnmpSensor interface {
+	Sensor
+	Oid() string // sensor oid
+	isSnmpSensor()
 }
 
 type ConfigurationPackage struct {

@@ -4,15 +4,15 @@
 package outletgroup
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/accumulatingnumericsensor"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/accumulatingnumericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
 )
 
 func (s *Sensors) Encode() map[string]any {

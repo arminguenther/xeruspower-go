@@ -4,9 +4,9 @@
 package switch_
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func init() {
@@ -20,7 +20,7 @@ type _Event struct {
 
 func (s *_Event) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Switch_2_0_7.SwitchEvent",
+		Name:  "sensors.Switch_2_0_8.SwitchEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

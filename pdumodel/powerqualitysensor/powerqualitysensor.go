@@ -8,7 +8,7 @@
 // PDU Model
 package powerqualitysensor
 
-import "github.com/arminguenther/xeruspower-go/v40040/sensors/statesensor"
+import "github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
 
 const (
 	STATE_NORMAL   int32 = 0 // Power quality is normal

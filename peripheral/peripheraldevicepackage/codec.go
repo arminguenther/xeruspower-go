@@ -4,9 +4,11 @@
 package peripheraldevicepackage
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
 )
 
 func (p *PackageInfo) Encode() map[string]any {
@@ -17,14 +19,15 @@ func (p *PackageInfo) Encode() map[string]any {
 		s1 = append(s1, e1.Encode())
 	}
 	j0["position"] = s1
-	j2 := make(map[string]any, 5)
+	j2 := make(map[string]any, 6)
 	j2["serial"] = p.HwInfo.Serial
 	j2["packageClass"] = p.HwInfo.PackageClass
 	j2["model"] = p.HwInfo.Model
 	j2["minDowngradeVersion"] = p.HwInfo.MinDowngradeVersion
 	j2["revision"] = p.HwInfo.Revision
+	j2["address"] = p.HwInfo.Address
 	j0["hwInfo"] = j2
-	j3 := make(map[string]any, 3)
+	j3 := make(map[string]any, 4)
 	j3["compileDate"] = p.FwInfo.CompileDate.Unix()
 	j4 := make(map[string]any, 3)
 	j4["majorNumber"] = p.FwInfo.Version.MajorNumber
@@ -32,6 +35,7 @@ func (p *PackageInfo) Encode() map[string]any {
 	j4["bootloaderVersion"] = p.FwInfo.Version.BootloaderVersion
 	j3["version"] = j4
 	j3["updateDate"] = p.FwInfo.UpdateDate.Unix()
+	j3["firmwareName"] = p.FwInfo.FirmwareName
 	j0["fwInfo"] = j3
 	return j0
 }
@@ -115,6 +119,14 @@ func (p *PackageInfo) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
+	err = encoding.In("address", j2)
+	if err != nil {
+		return err
+	}
+	p.HwInfo.Address, err = encoding.Is[string](j2["address"])
+	if err != nil {
+		return err
+	}
 	err = encoding.In("fwInfo", j0)
 	if err != nil {
 		return err
@@ -168,6 +180,137 @@ func (p *PackageInfo) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	p.FwInfo.UpdateDate, err = encoding.AsTime(j3["updateDate"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("firmwareName", j3)
+	if err != nil {
+		return err
+	}
+	p.FwInfo.FirmwareName, err = encoding.Is[string](j3["firmwareName"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *_DoorHandleControllerPackageMechanicallyUnlockedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	m.Event = valobj.For[event.Event]()
+	err := m.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("packageInfo", value)
+	if err != nil {
+		return err
+	}
+	err = m.packageInfo.Decode(value["packageInfo"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("channel", value)
+	if err != nil {
+		return err
+	}
+	m.channel, err = encoding.AsInt32(value["channel"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorStateName", value)
+	if err != nil {
+		return err
+	}
+	m.doorStateName, err = encoding.Is[string](value["doorStateName"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorHandleName", value)
+	if err != nil {
+		return err
+	}
+	m.doorHandleName, err = encoding.Is[string](value["doorHandleName"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorLockName", value)
+	if err != nil {
+		return err
+	}
+	m.doorLockName, err = encoding.Is[string](value["doorLockName"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *_DoorHandleControllerPackageDoorForcedOpenEvent) Decode(value map[string]any, caller idl.Caller) error {
+	d.Event = valobj.For[event.Event]()
+	err := d.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("packageInfo", value)
+	if err != nil {
+		return err
+	}
+	err = d.packageInfo.Decode(value["packageInfo"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("channel", value)
+	if err != nil {
+		return err
+	}
+	d.channel, err = encoding.AsInt32(value["channel"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorStateName", value)
+	if err != nil {
+		return err
+	}
+	d.doorStateName, err = encoding.Is[string](value["doorStateName"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorHandleName", value)
+	if err != nil {
+		return err
+	}
+	d.doorHandleName, err = encoding.Is[string](value["doorHandleName"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("doorLockName", value)
+	if err != nil {
+		return err
+	}
+	d.doorLockName, err = encoding.Is[string](value["doorLockName"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (v *_BatteryPoweredDevicePackageVoltageChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	v.Event = valobj.For[event.Event]()
+	err := v.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldVoltage", value)
+	if err != nil {
+		return err
+	}
+	v.oldVoltage, err = encoding.AsFloat64(value["oldVoltage"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newVoltage", value)
+	if err != nil {
+		return err
+	}
+	v.newVoltage, err = encoding.AsFloat64(value["newVoltage"])
 	if err != nil {
 		return err
 	}

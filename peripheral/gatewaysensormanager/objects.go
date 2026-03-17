@@ -6,10 +6,10 @@ package gatewaysensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewGatewaySensorManager(rid string, caller idl.Caller) GatewaySensorManager
 func (g *_GatewaySensorManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.GatewaySensorManager",
-		Major: 1, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 0,
 	}
 }
 

@@ -6,12 +6,13 @@ package peripheraldevicepackage
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
 )
 
 func init() {
+	object.Register(NewBatteryPoweredDevicePackage)
 	object.Register(NewDoorHandleControllerPackage)
 	object.Register(NewPackage)
 }
@@ -28,7 +29,7 @@ func NewPackage(rid string, caller idl.Caller) Package {
 func (p *_Package) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.Package",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 3, Submajor: 0, Minor: 2,
 	}
 }
 
@@ -65,7 +66,7 @@ func NewDoorHandleControllerPackage(rid string, caller idl.Caller) DoorHandleCon
 func (d *_DoorHandleControllerPackage) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DoorHandleControllerPackage",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 3, Submajor: 0, Minor: 2,
 	}
 }
 
@@ -219,6 +220,43 @@ func (d *_DoorHandleControllerPackage) SetExternalDeviceType(ctx context.Context
 		return ret, err
 	}
 	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+type _BatteryPoweredDevicePackage struct {
+	Package
+}
+
+// NewBatteryPoweredDevicePackage returns a new BatteryPoweredDevicePackage interface for the object at given RID.
+func NewBatteryPoweredDevicePackage(rid string, caller idl.Caller) BatteryPoweredDevicePackage {
+	return &_BatteryPoweredDevicePackage{NewPackage(rid, caller)}
+}
+
+func (b *_BatteryPoweredDevicePackage) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "peripheral.BatteryPoweredDevicePackage",
+		Major: 1, Submajor: 0, Minor: 1,
+	}
+}
+
+func (b *_BatteryPoweredDevicePackage) GetBatteryVoltage(ctx context.Context) (float64, error) {
+	var ret float64
+	val, err := b.Caller().Call(ctx, b.RID(), "getBatteryVoltage", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsFloat64(res["_ret_"])
 	if err != nil {
 		return ret, err
 	}

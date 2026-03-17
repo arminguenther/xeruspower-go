@@ -6,9 +6,9 @@ package typebresidualcurrentnumericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewTypeBResidualCurrentNumericSensor(rid string, caller idl.Caller) TypeBRe
 func (t *_TypeBResidualCurrentNumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.TypeBResidualCurrentNumericSensor",
-		Major: 1, Submajor: 0, Minor: 5,
+		Major: 1, Submajor: 0, Minor: 6,
 	}
 }
 

@@ -4,11 +4,11 @@
 package outletgroup
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40040/idl"
-	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
 )
 
 func init() {
@@ -25,7 +25,7 @@ type _SensorsChangedEvent struct {
 
 func (s *_SensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_7.SensorsChangedEvent",
+		Name:  "pdumodel.OutletGroup_1_1_8.SensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -48,7 +48,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_7.SettingsChangedEvent",
+		Name:  "pdumodel.OutletGroup_1_1_8.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -71,7 +71,7 @@ type _PowerControlEvent struct {
 
 func (p *_PowerControlEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_7.PowerControlEvent",
+		Name:  "pdumodel.OutletGroup_1_1_8.PowerControlEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
