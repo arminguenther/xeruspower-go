@@ -1,0 +1,76 @@
+// SPDX-License-Identifier: BSD-3-Clause
+// Copyright 2026 Raritan Inc. All rights reserved.
+
+package modbusgatewaymgr
+
+import (
+	"context"
+
+	"github.com/arminguenther/xeruspower-go/idl"
+	"github.com/arminguenther/xeruspower-go/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
+)
+
+func init() {
+	object.Register(NewGatewayMgr)
+}
+
+type _GatewayMgr struct {
+	idl.Object
+}
+
+// NewGatewayMgr returns a new GatewayMgr interface for the object at given RID.
+func NewGatewayMgr(rid string, caller idl.Caller) GatewayMgr {
+	return &_GatewayMgr{idl.NewObject(rid, caller)}
+}
+
+func (g *_GatewayMgr) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "modbus.GatewayMgr",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (g *_GatewayMgr) GetSettings(ctx context.Context) (GatewayMgrSettings, error) {
+	var ret GatewayMgrSettings
+	val, err := g.Caller().Call(ctx, g.RID(), "getSettings", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], g.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (g *_GatewayMgr) SetSettings(ctx context.Context, in0 GatewayMgrSettings) (int32, error) {
+	var ret int32
+	val, err := g.Caller().Call(ctx, g.RID(), "setSettings", map[string]any{
+		"settings": in0.Encode(),
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
