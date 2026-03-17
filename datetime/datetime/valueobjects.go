@@ -4,12 +4,15 @@
 package datetime
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
+	"time"
+
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
 )
 
 func init() {
+	valobj.Register(func() ClockChangedEvent { return &_ClockChangedEvent{} })
 	valobj.Register(func() ConfigurationChangedEvent { return &_ConfigurationChangedEvent{} })
 }
 
@@ -19,9 +22,32 @@ type _ConfigurationChangedEvent struct {
 
 func (c *_ConfigurationChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "datetime.DateTime_3_0_2.ConfigurationChangedEvent",
+		Name:  "datetime.DateTime_3_0_3.ConfigurationChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
 
 func (c *_ConfigurationChangedEvent) isConfigurationChangedEvent() {}
+
+type _ClockChangedEvent struct {
+	event.Event
+	oldTime time.Time
+	newTime time.Time
+}
+
+func (c *_ClockChangedEvent) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "datetime.DateTime_3_0_3.ClockChangedEvent",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (c *_ClockChangedEvent) OldTime() time.Time {
+	return c.oldTime
+}
+
+func (c *_ClockChangedEvent) NewTime() time.Time {
+	return c.newTime
+}
+
+func (c *_ClockChangedEvent) isClockChangedEvent() {}

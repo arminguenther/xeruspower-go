@@ -6,10 +6,9 @@ package tacplusmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/tacplus/tacplusserversettings"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
 )
 
 func init() {
@@ -28,12 +27,12 @@ func NewTacPlusManager(rid string, caller idl.Caller) TacPlusManager {
 func (t *_TacPlusManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.TacPlusManager",
-		Major: 1, Submajor: 0, Minor: 0,
+		Major: 1, Submajor: 0, Minor: 1,
 	}
 }
 
-func (t *_TacPlusManager) GetTacPlusServers(ctx context.Context) ([]tacplusserversettings.ServerSettings, error) {
-	var ret []tacplusserversettings.ServerSettings
+func (t *_TacPlusManager) GetTacPlusServers(ctx context.Context) ([]ServerSettings, error) {
+	var ret []ServerSettings
 	val, err := t.Caller().Call(ctx, t.RID(), "getTacPlusServers", nil)
 	if err != nil {
 		return ret, err
@@ -51,9 +50,9 @@ func (t *_TacPlusManager) GetTacPlusServers(ctx context.Context) ([]tacplusserve
 	if err != nil {
 		return ret, err
 	}
-	ret = make([]tacplusserversettings.ServerSettings, 0, len(s0))
+	ret = make([]ServerSettings, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 tacplusserversettings.ServerSettings
+		var e0 ServerSettings
 		err = e0.Decode(a0, t.Caller())
 		if err != nil {
 			return ret, err
@@ -63,7 +62,7 @@ func (t *_TacPlusManager) GetTacPlusServers(ctx context.Context) ([]tacplusserve
 	return ret, nil
 }
 
-func (t *_TacPlusManager) SetTacPlusServers(ctx context.Context, in0 []tacplusserversettings.ServerSettings) (int32, error) {
+func (t *_TacPlusManager) SetTacPlusServers(ctx context.Context, in0 []ServerSettings) (int32, error) {
 	var ret int32
 	s0 := make([]any, 0, len(in0))
 	for _, e0 := range in0 {
@@ -90,7 +89,7 @@ func (t *_TacPlusManager) SetTacPlusServers(ctx context.Context, in0 []tacplusse
 	return ret, nil
 }
 
-func (t *_TacPlusManager) TestTacPlusServer(ctx context.Context, in0 string, in1 string, in2 tacplusserversettings.ServerSettings) (int32, error) {
+func (t *_TacPlusManager) TestTacPlusServer(ctx context.Context, in0 string, in1 string, in2 ServerSettings) (int32, error) {
 	var ret int32
 	val, err := t.Caller().Call(ctx, t.RID(), "testTacPlusServer", map[string]any{
 		"username": in0,

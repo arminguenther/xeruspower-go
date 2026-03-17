@@ -4,10 +4,10 @@
 package usermanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40000/usermgmt/user"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/usermgmt/user"
 )
 
 func init() {

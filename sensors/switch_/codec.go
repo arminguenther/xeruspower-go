@@ -4,10 +4,10 @@
 package switch_
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
 )
 
 func (s *_Event) Decode(value map[string]any, caller idl.Caller) error {

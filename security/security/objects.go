@@ -6,9 +6,9 @@ package security
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
 )
 
 func init() {
@@ -27,52 +27,8 @@ func NewSecurity(rid string, caller idl.Caller) Security {
 func (s *_Security) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "security.Security",
-		Major: 4, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 0,
 	}
-}
-
-func (s *_Security) GetSettings(ctx context.Context) (Settings, error) {
-	var ret Settings
-	val, err := s.Caller().Call(ctx, s.RID(), "getSettings", nil)
-	if err != nil {
-		return ret, err
-	}
-	res, err := encoding.Is[map[string]any](val)
-	if err != nil {
-		return ret, err
-	}
-	err = encoding.In("_ret_", res)
-	if err != nil {
-		return ret, err
-	}
-	err = ret.Decode(res["_ret_"], s.Caller())
-	if err != nil {
-		return ret, err
-	}
-	return ret, nil
-}
-
-func (s *_Security) SetSettings(ctx context.Context, in0 Settings) (int32, error) {
-	var ret int32
-	val, err := s.Caller().Call(ctx, s.RID(), "setSettings", map[string]any{
-		"settings": in0.Encode(),
-	})
-	if err != nil {
-		return ret, err
-	}
-	res, err := encoding.Is[map[string]any](val)
-	if err != nil {
-		return ret, err
-	}
-	err = encoding.In("_ret_", res)
-	if err != nil {
-		return ret, err
-	}
-	ret, err = encoding.AsInt32(res["_ret_"])
-	if err != nil {
-		return ret, err
-	}
-	return ret, nil
 }
 
 func (s *_Security) GetHttpRedirSettings(ctx context.Context) (bool, error) {
@@ -307,41 +263,31 @@ func (s *_Security) SetRoleAccessControlSettingsV6(ctx context.Context, in0 Role
 	return ret, nil
 }
 
-func (s *_Security) GetBlockSettings(ctx context.Context) (int32, int32, error) {
-	var out0 int32
-	var out1 int32
+func (s *_Security) GetBlockSettings(ctx context.Context) (BlockSettings, error) {
+	var ret BlockSettings
 	val, err := s.Caller().Call(ctx, s.RID(), "getBlockSettings", nil)
 	if err != nil {
-		return out0, out1, err
+		return ret, err
 	}
 	res, err := encoding.Is[map[string]any](val)
 	if err != nil {
-		return out0, out1, err
+		return ret, err
 	}
-	err = encoding.In("blockTimeout", res)
+	err = encoding.In("_ret_", res)
 	if err != nil {
-		return out0, out1, err
+		return ret, err
 	}
-	out0, err = encoding.AsInt32(res["blockTimeout"])
+	err = ret.Decode(res["_ret_"], s.Caller())
 	if err != nil {
-		return out0, out1, err
+		return ret, err
 	}
-	err = encoding.In("maxFailedLogins", res)
-	if err != nil {
-		return out0, out1, err
-	}
-	out1, err = encoding.AsInt32(res["maxFailedLogins"])
-	if err != nil {
-		return out0, out1, err
-	}
-	return out0, out1, nil
+	return ret, nil
 }
 
-func (s *_Security) SetBlockSettings(ctx context.Context, in0 int32, in1 int32) (int32, error) {
+func (s *_Security) SetBlockSettings(ctx context.Context, in0 BlockSettings) (int32, error) {
 	var ret int32
 	val, err := s.Caller().Call(ctx, s.RID(), "setBlockSettings", map[string]any{
-		"blockTimeout":    in0,
-		"maxFailedLogins": in1,
+		"settings": in0.Encode(),
 	})
 	if err != nil {
 		return ret, err

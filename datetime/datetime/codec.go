@@ -4,10 +4,10 @@
 package datetime
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
 )
 
 func (z *ZoneInfo) Encode() map[string]any {
@@ -173,6 +173,31 @@ func (c *Cfg) Decode(v any, caller idl.Caller) error {
 func (c *_ConfigurationChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
 	c.Event = valobj.For[event.Event]()
 	err := c.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *_ClockChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	c.Event = valobj.For[event.Event]()
+	err := c.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldTime", value)
+	if err != nil {
+		return err
+	}
+	c.oldTime, err = encoding.AsTime(value["oldTime"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newTime", value)
+	if err != nil {
+		return err
+	}
+	c.newTime, err = encoding.AsTime(value["newTime"])
 	if err != nil {
 		return err
 	}

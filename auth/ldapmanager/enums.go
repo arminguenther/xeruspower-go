@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright 2026 Raritan Inc. All rights reserved.
 
-package ldapserversettings
+package ldapmanager
 
 // IsKnown reports whether the ServerType is a known value.
 func (s ServerType) IsKnown() bool {

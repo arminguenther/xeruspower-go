@@ -11,8 +11,7 @@ package tacplusmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/tacplus/tacplusserversettings"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
 )
 
 const (
@@ -31,15 +30,15 @@ type TacPlusManager interface {
 
 	// Get a list of TACACS+ server settings
 	//
-	//	@return list of tacplus.ServerSettings
-	GetTacPlusServers(ctx context.Context) ([]tacplusserversettings.ServerSettings, error)
+	//	@return list of ServerSettings
+	GetTacPlusServers(ctx context.Context) ([]ServerSettings, error)
 
 	// Sets a list of TACACS+ servers.
 	// Any existing TACACS+ Server configuration will be cleared / overwritten.
 	//
 	//	@return 0                            on success
 	//	@return ERR_INVALID_CFG           in case of invalid configuration
-	SetTacPlusServers(ctx context.Context, serverList []tacplusserversettings.ServerSettings) (int32, error)
+	SetTacPlusServers(ctx context.Context, serverList []ServerSettings) (int32, error)
 
 	// Tests an TACACS+ server configuration.
 	//
@@ -51,5 +50,26 @@ type TacPlusManager interface {
 	//	@return ERR_AUTHENTICATION_FAILED         user could not be authenticated
 	//	@return ERR_NO_ROLES                      no roles are defined for the user
 	//	@return ERR_NO_KNOWN_ROLES                no known roles are defined for the user
-	TestTacPlusServer(ctx context.Context, username string, password string, settings tacplusserversettings.ServerSettings) (int32, error)
+	TestTacPlusServer(ctx context.Context, username string, password string, settings ServerSettings) (int32, error)
+}
+
+// TACACS+ authentication type
+type AuthenType int
+
+const (
+	ASCII  AuthenType = iota // Plain text authentication
+	PAP                      // PAP authentication
+	CHAP                     // CHAP authentication
+	MSCHAP                   // MSCHAP authentication
+)
+
+// Server settings
+type ServerSettings struct {
+	Server            string     // TACACS+ server name or IP address
+	Port              int32      // TACACS+ server TCP port
+	TimeoutSeconds    int32      // max time from connecting until session completion
+	Retries           int32      // max number of allowed retries
+	SharedSecret      string     // Shared secret between Xerus device and TACACs+ server
+	AuthenType        AuthenType // Authentication type
+	DisableAccounting bool       // true to disable accounting, false to enable accounting
 }

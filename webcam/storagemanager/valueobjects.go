@@ -4,10 +4,10 @@
 package storagemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
-	webcam_ "github.com/arminguenther/xeruspower-go/v40000/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	webcam_ "github.com/arminguenther/xeruspower-go/v40010/webcam/webcam"
 )
 
 func init() {

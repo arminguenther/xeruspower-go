@@ -11,8 +11,8 @@ package security
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
 )
 
 // IP packet filter policy
@@ -60,6 +60,13 @@ type RoleAccessControl struct {
 	Enabled       bool             // true to enable role-based access control
 	DefaultPolicy RoleAccessPolicy // Default policy
 	Rules         []RoleAccessRule // List of access rules
+}
+
+// User blocking settings
+type BlockSettings struct {
+	MaxFailedLogins    int32 // The number of failed logins before blocking a user
+	BlockTimeout       int32 // Time (in minutes) the account will be blocked
+	FailedLoginTimeout int32 // Time (in minutes) before resetting the failure counter
 }
 
 // Password settings
@@ -147,25 +154,6 @@ const ERR_INVALID_VALUE int32 = 1 // Invalid arguments
 type Security interface {
 	idl.Object
 
-	// Deprecated:
-	// Retrieve the security configuration.
-	// This method is depreacted and will be removed in V3.0,
-	// use concrete getter instead!
-	//
-	//	@return Security configuration
-	GetSettings(ctx context.Context) (Settings, error)
-
-	// Deprecated:
-	// Set the security configuration.
-	// This method is depreacted and will be removed in V3.0,
-	// use concrete setter instead!
-	//
-	//	@param settings  New security settings
-	//
-	//	@return 0 on success
-	//	@return ERR_INVALID_VALUE if any argument was invalid
-	SetSettings(ctx context.Context, settings Settings) (int32, error)
-
 	// Retrieve the current state of the HTTP-to-HTTPS redirection.
 	//
 	//	@return true if the HTTP-to-HTTPS redirection is enabled
@@ -240,18 +228,16 @@ type Security interface {
 
 	// Retrieve the current user blocking settings
 	//
-	//	@return blockTimeout    The block timeout in minutes
-	//	@return maxFailedLogins The maximum failure count
-	GetBlockSettings(ctx context.Context) (blockTimeout int32, maxFailedLogins int32, err error)
+	//	@return User blocking settings
+	GetBlockSettings(ctx context.Context) (BlockSettings, error)
 
 	// Change the user blocking settings.
 	//
-	//	@param blockTimeout     User blocking timeout in minutes
-	//	@param maxFailedLogins  Maximum number of failed logins
+	//	@param settings  New settings
 	//
 	//	@return 0 on success
 	//	@return ERR_INVALID_VALUE if any argument was invalid
-	SetBlockSettings(ctx context.Context, blockTimeout int32, maxFailedLogins int32) (int32, error)
+	SetBlockSettings(ctx context.Context, settings BlockSettings) (int32, error)
 
 	// Retrieve the password settings.
 	//
@@ -374,21 +360,4 @@ type Security interface {
 	//
 	//	@return TPM information
 	GetTpmInfo(ctx context.Context) (TpmInfo, error)
-}
-
-// Security configuration
-// This structure is deprecated and will be removed in V3.0,
-// use concrete getters and setters instead!
-type Settings struct {
-	Http2httpsRedir     bool              // true to enable HTTP-to-HTTPS redirection
-	UserBlockTimeout    int32             // User blocking timeout in minutes
-	UserMaxFailedLogins int32             // Maximum number of failed logins before blocking a user
-	IpFw                IpFw              // IP packet filter configuration
-	IpV6Fw              IpFw              // IPv6 packet filter configuration
-	RoleAccessControl   RoleAccessControl // Role-based access control settings
-	RoleAccessControlV6 RoleAccessControl // Role-based access control settings for IPv6
-	PwSettings          PasswordSettings  // Password settings
-	IdleTimeout         int32             // Session idle timeout in minutes
-	SingleLogin         bool              // true to enable single login limitation
-	SshSettings         SSHSettings       // SSH authentication settings
 }

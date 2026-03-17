@@ -12,17 +12,17 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/statesensor"
 )
 
 // Outlet statistics
@@ -191,7 +191,7 @@ const (
 // Outlet settings
 type Settings struct {
 	Name             string       // User-defined name
-	StartupState     StartupState // Power state on device startup
+	StartupState     StartupState // Power state after power is applied to the outlet
 	UsePduCycleDelay bool         // true to use power-cycle delay as defined in PDU settings
 	CycleDelay       int32        // Outlet-specific power-cycle delay
 	NonCritical      bool         // true if outlet is non-critical (for load shedding)

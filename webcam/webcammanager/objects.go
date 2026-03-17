@@ -6,11 +6,11 @@ package webcammanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/webcam/webcam"
-	"github.com/arminguenther/xeruspower-go/v40000/webcam/webcamchannel"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40010/webcam/webcamchannel"
 )
 
 func init() {

@@ -11,10 +11,10 @@ package sensorhub
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40000/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/portfuse"
 )
 
 // Sensor Hub interface

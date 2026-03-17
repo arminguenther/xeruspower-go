@@ -4,11 +4,11 @@
 package powermetercontroller
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/panel"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/panel"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/powermeter"
 )
 
 func init() {

@@ -7,11 +7,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
 )
 
 func init() {
@@ -30,8 +30,29 @@ func NewLogger(rid string, caller idl.Caller) Logger {
 func (l *_Logger) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Logger",
-		Major: 2, Submajor: 3, Minor: 8,
+		Major: 3, Submajor: 0, Minor: 0,
 	}
+}
+
+func (l *_Logger) GetInfo(ctx context.Context) (LoggerInfo, error) {
+	var ret LoggerInfo
+	val, err := l.Caller().Call(ctx, l.RID(), "getInfo", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], l.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
 }
 
 func (l *_Logger) GetSettings(ctx context.Context) (LoggerSettings, error) {
@@ -55,11 +76,10 @@ func (l *_Logger) GetSettings(ctx context.Context) (LoggerSettings, error) {
 	return ret, nil
 }
 
-func (l *_Logger) SetSettings(ctx context.Context, in0 bool, in1 int32) (int32, error) {
+func (l *_Logger) SetSettings(ctx context.Context, in0 LoggerSettings) (int32, error) {
 	var ret int32
 	val, err := l.Caller().Call(ctx, l.RID(), "setSettings", map[string]any{
-		"isEnabled":        in0,
-		"samplesPerRecord": in1,
+		"settings": in0.Encode(),
 	})
 	if err != nil {
 		return ret, err

@@ -6,19 +6,20 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40000/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40010/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensorlogger"
 )
 
 func init() {
@@ -37,7 +38,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 0, Minor: 0,
+		Major: 6, Submajor: 1, Minor: 1,
 	}
 }
 
@@ -119,6 +120,27 @@ func (p *_Pdu) GetSensorLogger(ctx context.Context) (sensorlogger.Logger, error)
 		return ret, err
 	}
 	ret, err = object.As[sensorlogger.Logger](res["_ret_"], p.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (p *_Pdu) GetAlertedSensorManager(ctx context.Context) (alertedsensormanager.AlertedSensorManager, error) {
+	var ret alertedsensormanager.AlertedSensorManager
+	val, err := p.Caller().Call(ctx, p.RID(), "getAlertedSensorManager", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = object.As[alertedsensormanager.AlertedSensorManager](res["_ret_"], p.Caller())
 	if err != nil {
 		return ret, err
 	}

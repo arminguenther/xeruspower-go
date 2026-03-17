@@ -4,9 +4,9 @@
 package transferswitch
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
 )
 
 func init() {
@@ -21,7 +21,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.TransferSwitch_5_0_0.SettingsChangedEvent",
+		Name:  "pdumodel.TransferSwitch_5_0_1.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

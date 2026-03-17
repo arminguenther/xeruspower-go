@@ -12,9 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/statesensor"
 )
 
 // Overcurrent protector trip sensor interface

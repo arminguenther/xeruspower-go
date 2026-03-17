@@ -4,10 +4,10 @@
 package cascademanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
 )
 
 func init() {
@@ -27,7 +27,7 @@ type _RoleChangedEvent struct {
 
 func (r *_RoleChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_0.RoleChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_1.RoleChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -49,18 +49,23 @@ func (r *_RoleChangedEvent) isRoleChangedEvent() {}
 type _LinkUnitAddedEvent struct {
 	userevent.UserEvent
 	linkId int32
+	type_  LinkUnitType
 	host   string
 }
 
 func (l *_LinkUnitAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_0.LinkUnitAddedEvent",
+		Name:  "cascading.CascadeManager_2_0_1.LinkUnitAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
 
 func (l *_LinkUnitAddedEvent) LinkId() int32 {
 	return l.linkId
+}
+
+func (l *_LinkUnitAddedEvent) Type() LinkUnitType {
+	return l.type_
 }
 
 func (l *_LinkUnitAddedEvent) Host() string {
@@ -72,18 +77,23 @@ func (l *_LinkUnitAddedEvent) isLinkUnitAddedEvent() {}
 type _LinkUnitReleasedEvent struct {
 	userevent.UserEvent
 	linkId int32
+	type_  LinkUnitType
 	host   string
 }
 
 func (l *_LinkUnitReleasedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_0.LinkUnitReleasedEvent",
+		Name:  "cascading.CascadeManager_2_0_1.LinkUnitReleasedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
 
 func (l *_LinkUnitReleasedEvent) LinkId() int32 {
 	return l.linkId
+}
+
+func (l *_LinkUnitReleasedEvent) Type() LinkUnitType {
+	return l.type_
 }
 
 func (l *_LinkUnitReleasedEvent) Host() string {
@@ -95,6 +105,7 @@ func (l *_LinkUnitReleasedEvent) isLinkUnitReleasedEvent() {}
 type _LinkUnitStatusChangedEvent struct {
 	event.Event
 	linkId    int32
+	type_     LinkUnitType
 	host      string
 	oldStatus LinkUnitStatus
 	newStatus LinkUnitStatus
@@ -102,13 +113,17 @@ type _LinkUnitStatusChangedEvent struct {
 
 func (l *_LinkUnitStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_0.LinkUnitStatusChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_1.LinkUnitStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
 
 func (l *_LinkUnitStatusChangedEvent) LinkId() int32 {
 	return l.linkId
+}
+
+func (l *_LinkUnitStatusChangedEvent) Type() LinkUnitType {
+	return l.type_
 }
 
 func (l *_LinkUnitStatusChangedEvent) Host() string {
@@ -133,7 +148,7 @@ type _LinkPortStatusChangedEvent struct {
 
 func (l *_LinkPortStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_0.LinkPortStatusChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_1.LinkPortStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

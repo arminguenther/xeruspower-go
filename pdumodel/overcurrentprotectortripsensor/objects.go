@@ -6,12 +6,12 @@ package overcurrentprotectortripsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/statesensor"
 )
 
 func init() {

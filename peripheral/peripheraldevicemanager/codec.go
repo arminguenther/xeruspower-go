@@ -4,14 +4,14 @@
 package peripheraldevicemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
 )
 
 func (s *DeviceManagerSettings) Encode() map[string]any {

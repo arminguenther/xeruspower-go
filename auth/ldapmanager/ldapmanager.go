@@ -11,8 +11,7 @@ package ldapmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/auth/ldapsrv/ldapserversettings"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
 )
 
 const (
@@ -31,8 +30,8 @@ type LdapManager interface {
 
 	// Get a list of LDAP server settings
 	//
-	//	@return list of ldapsrv.ServerSettings
-	GetLdapServers(ctx context.Context) ([]ldapserversettings.ServerSettings, error)
+	//	@return list of ServerSettings
+	GetLdapServers(ctx context.Context) ([]ServerSettings, error)
 
 	// Sets a list of LDAP servers.
 	// Any existing LDAP Server configuration will be cleared / overwritten.
@@ -40,7 +39,7 @@ type LdapManager interface {
 	//	@return 0                            on success
 	//	@return ERR_CYCLIC_DEP            in case of cyclic dependency
 	//	@return ERR_INVALID_CFG           in case of invalid configuration
-	SetLdapServers(ctx context.Context, serverList []ldapserversettings.ServerSettings) (int32, error)
+	SetLdapServers(ctx context.Context, serverList []ServerSettings) (int32, error)
 
 	// Tests an LDAP server configuration.
 	//
@@ -51,5 +50,48 @@ type LdapManager interface {
 	//	@return ERR_AUTHENTICATION_FAILED         user could not be authenticated
 	//	@return ERR_NO_ROLES                      no roles are defined for the user
 	//	@return ERR_NO_KNOWN_ROLES                no known roles are defined for the user
-	TestLdapServer(ctx context.Context, username string, password string, settings ldapserversettings.ServerSettings) (ret int32, diagMsg string, err error)
+	TestLdapServer(ctx context.Context, username string, password string, settings ServerSettings) (ret int32, diagMsg string, err error)
+}
+
+// LDAP server type
+type ServerType int
+
+const (
+	ACTIVE_DIRECTORY ServerType = iota // Active directory
+	OPEN_LDAP                          // OpenLDAP
+)
+
+// LDAP server type
+type SecurityProtocol int
+
+const (
+	SEC_PROTO_NONE     SecurityProtocol = iota // no security protocol
+	SEC_PROTO_SSL                              // use SSL
+	SEC_PROTO_STARTTLS                         // use STARTTLS
+)
+
+// Server settings
+type ServerSettings struct {
+	Id                     string           // Entry ID
+	Server                 string           // IP or name of ldap server
+	AdoptSettingsId        string           // Use settings from LDAP server with <ID>
+	Type                   ServerType       // Type of LDAP server
+	SecProto               SecurityProtocol // Security protocol
+	Port                   int32            // Server port (only for SEC_PROT_NONE and SEC_PROT_STARTTLS)
+	SslPort                int32            // SSL port (only for SEC_PROT_SSL)
+	ForceTrustedCert       bool             // Enforce trusted certificates
+	AllowOffTimeRangeCerts bool             // allow expired and not yet valid certificates
+	Certificate            string           // Certificates
+	AdsDomain              string           // ADS domain
+	UseAnonymousBind       bool             // use anonymous bind
+	BindDN                 string           // Bind DN
+	BindPwd                string           // Bind password
+	SearchBaseDN           string           // Base DN for search
+	LoginNameAttr          string           // Login name attribute
+	UserEntryObjClass      string           // User entry object class
+	UserSearchFilter       string           // User search subfilter
+	GroupInfoInUserEntry   bool             // Group membership info in user entry
+	GroupMemberAttr        string           // Group member attribute
+	GroupEntryObjClass     string           // Group entry object class
+	GroupSearchFilter      string           // Group search subfilter
 }

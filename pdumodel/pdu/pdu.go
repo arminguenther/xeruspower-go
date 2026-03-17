@@ -11,21 +11,22 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40000/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/sensorlogger"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/statesensor"
 )
 
 const ERR_INVALID_PARAM int32 = 1 // Invalid parameters
@@ -53,6 +54,11 @@ type Pdu interface {
 	//
 	//	@return Sensor logger reference
 	GetSensorLogger(ctx context.Context) (sensorlogger.Logger, error)
+
+	// Get the alerted sensor manager.
+	//
+	//	@return Alerted sensor manager
+	GetAlertedSensorManager(ctx context.Context) (alertedsensormanager.AlertedSensorManager, error)
 
 	// Get the list of sub controllers.
 	//
@@ -268,7 +274,7 @@ const (
 // PDU settings
 type Settings struct {
 	Name             string       // User-defined name
-	StartupState     StartupState // Default outlet state on device startup; can be overriden per outlet
+	StartupState     StartupState // Default outlet state after applying power to outlets; can be overriden per outlet
 	CycleDelay       int32        // Default power-cycle interval in seconds; can be overriden per outlet
 	InRushGuardDelay int32        // Minimum delay in milliseconds between switching two outlets on
 	// The order in which multiple outlets should be switched.
@@ -279,7 +285,7 @@ type Settings struct {
 	//   - setMultipleOutletPowerStates
 	//   - cycleMultipleOutletPowerStates
 	OutletPowerStateSequence []int32
-	PowerOnDelay             int32 // Delay in seconds before restoring outlet states after device startup
+	PowerOnDelay             int32 // Delay in seconds before restoring outlet states after power is applied to outlets
 	LatchingRelays           bool  // If true, relays keep their state during power-cycling
 	EnergyPulseEnabled       bool  // Enables energy consumption counting using the PDU's LED(s)
 	EnergyPulsesPerKWh       int32 // Ratio between LED pulses and energy consumption

@@ -11,18 +11,21 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40000/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40000/portsmodel/portfuse"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40000/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40010/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
 )
 
-const ERR_INVALID_PARAMS int32 = 1 // Invalid parameters
+const (
+	ERR_INVALID_PARAMS   int32 = 1 // Invalid parameters
+	ERR_NOT_ON_SECONDARY int32 = 2 // Unsupported on secondary instance
+)
 
 // Peripheral Device Manager
 type DeviceManager interface {
@@ -63,8 +66,9 @@ type DeviceManager interface {
 	//
 	//	@param settings            New peripheral DeviceManager's settings
 	//
-	//	@return 0                  if OK
-	//	@return ERR_INVALID_PARAMS if any parameters are invalid
+	//	@return 0 if OK
+	//	@return 1 if any parameters are invalid
+	//	@return 2 if this is a secondary instance; use primary to set settings
 	SetSettings(ctx context.Context, settings DeviceManagerSettings) (int32, error)
 
 	// Retreive the Peripheral DeviceManager's metadata.

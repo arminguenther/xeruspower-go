@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright 2026 Raritan Inc. All rights reserved.
 
-package radiusserversettings
+package radiusmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
 )
 
 func (s *ServerSettings) Encode() map[string]any {

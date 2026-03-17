@@ -12,18 +12,28 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
 )
 
 // Date and time configuration methods
+//
+//	Example to set timezone (id-based approach): @anchor set-timezone-example
+//
+//	@code{.py}
+//	zoneinfos = getZoneInfos(False)
+//	cfg = getCfg()
+//	cfg.zoneCfg.id = ... # choose zone id from returned zoneinfos
+//	status = setCfg(cfg)
+//	if status != 0: ... # error handling
+//	@endcode
 type DateTime interface {
 	idl.Object
 
 	// List all supported time zones.
 	//
 	//	@param zoneInfos  Result: List of time zones
-	//	@param useOlson   Use Olson zoneinfo names
+	//	@param useOlson   Use Olson timezone names (see also ZoneCfg)
 	GetZoneInfos(ctx context.Context, useOlson bool) (zoneInfos []ZoneInfo, err error)
 
 	// Check if a specified NTP server is usable.
@@ -47,6 +57,8 @@ type DateTime interface {
 	// Depending on the value of the protocol field either deviceTime
 	// or ntpCfg will be used from the cfg parameter.
 	//
+	// Specific @ref set-timezone-example "example" to set timezone.
+	//
 	//	@param cfg  New date and time configuration.
 	//
 	//	@return 0 if OK
@@ -55,26 +67,49 @@ type DateTime interface {
 
 	// Retrieve the current device date and time.
 	//
-	//	@param useOlson     Use Olson zoneinfo name
+	//	@param useOlson     Use Olson timezone name (see also ZoneCfg)
 	//	@param zone         Result: Active time zone
-	//	@param dstEnabled   if false, the time zone DST flag is not used
+	//	@param dstEnabled   if false, the time zone daylight saving time flag is not used
 	//	@param utcOffset    Result: Offset (in minutes) between local time and UTC
 	//	@param currentTime  Result: Device date and time (UNIX timestamp, UTC)
 	GetTime(ctx context.Context, useOlson bool) (zone ZoneInfo, dstEnabled bool, utcOffset int32, currentTime time.Time, err error)
 }
 
-// Time zone information
+// Time zone information (see also ZoneCfg)
+//
+// There are two different approaches on how to identify timezones. See the ZoneCfg description.
+//
+// For timezones with non-trivial daylight saving time rules hasDSTInfo is false.
 type ZoneInfo struct {
 	Id         int32  // Time zone id
 	Name       string // Time zone name
-	HasDSTInfo bool   // true if the time zone uses DST
+	HasDSTInfo bool   // true if the time zone has daylight saving time rules
 }
 
 // Time zone configuration
+//
+//	There are two approaches on how timezones are identified:
+//	1. id-based
+//
+//	   - timezone data identified with a numeric non-zero id
+//	   - id != 0
+//	   - name is the display name of the timezone and ignored on setCfg()
+//
+//	2. name-based (see NOTES below!)
+//
+//	   - timezone data identified with a name from the IANA timezone database (aka Olson database)
+//	   - id == 0
+//	   - name is the official IANA timezone name, e.g. Europe/Berlin or America/New_York
+//
+//	**NOTES**:
+//	- The user frontends currently only support the id-based approach and may not work correctly with
+//	  the name-based approach.
+//	- Setting enableAutoDST to true has only an effect if the according ZoneInfo::hasDSTInfo
+//	  field is also true.
 type ZoneCfg struct {
 	Id            int32  // Selected time zone id
-	Name          string // Selected time zone name
-	EnableAutoDST bool   // Enable automatic DST adjustment
+	Name          string // Selected time zone name (ignored on setCfg() if id != 0)
+	EnableAutoDST bool   // Enable automatic daylight saving time adjustment
 }
 
 // Time synchronization protocol
@@ -99,8 +134,16 @@ type Cfg struct {
 	NtpCfg     NtpCfg    // NTP server configuration
 }
 
-// Event that is send when the configuration changes
+// Event that is sent when the configuration changes
 type ConfigurationChangedEvent interface {
 	event.Event
 	isConfigurationChangedEvent()
+}
+
+// Event that is sent when the device time is changed
+type ClockChangedEvent interface {
+	event.Event
+	OldTime() time.Time // Device time before change (UNIX timestamp, UTC)
+	NewTime() time.Time // Device time after change (UNIX timestamp, UTC)
+	isClockChangedEvent()
 }

@@ -4,8 +4,8 @@
 package bulkrequest
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
 )
 
 func (r *Request) Encode() map[string]any {

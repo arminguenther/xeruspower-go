@@ -7,9 +7,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewDateTime(rid string, caller idl.Caller) DateTime {
 func (d *_DateTime) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "datetime.DateTime",
-		Major: 3, Submajor: 0, Minor: 2,
+		Major: 3, Submajor: 0, Minor: 3,
 	}
 }
 

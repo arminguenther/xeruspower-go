@@ -6,11 +6,11 @@ package inlet
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40000/idl"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40000/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40000/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/pole"
 )
 
 func init() {
