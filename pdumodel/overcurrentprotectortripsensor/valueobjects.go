@@ -22,7 +22,7 @@ type _TripStateChangedEvent struct {
 
 func (t *_TripStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OverCurrentProtectorTripSensor_1_1_12.TripStateChangedEvent",
+		Name:  "pdumodel.OverCurrentProtectorTripSensor_1_1_13.TripStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

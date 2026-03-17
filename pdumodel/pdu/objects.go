@@ -17,6 +17,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/pdumodel/overcurrentprotector"
 	"github.com/arminguenther/xeruspower-go/pdumodel/transferswitch"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/peripheral/poselement"
 	"github.com/arminguenther/xeruspower-go/portsmodel/port"
 	"github.com/arminguenther/xeruspower-go/sensors/alertedsensormanager"
 	"github.com/arminguenther/xeruspower-go/sensors/sensorlogger"
@@ -38,7 +39,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 3, Minor: 3,
+		Major: 6, Submajor: 4, Minor: 4,
 	}
 }
 
@@ -501,6 +502,40 @@ func (p *_Pdu) GetRemoteHubPorts(ctx context.Context) ([]port.Port, error) {
 	for _, a0 := range s0 {
 		var e0 port.Port
 		e0, err = object.As[port.Port](a0, p.Caller())
+		if err != nil {
+			return ret, err
+		}
+		ret = append(ret, e0)
+	}
+	return ret, nil
+}
+
+func (p *_Pdu) GetPorts(ctx context.Context, in0 poselement.PortType, in1 port.DeviceTypeId) ([]PortWithProperties, error) {
+	var ret []PortWithProperties
+	val, err := p.Caller().Call(ctx, p.RID(), "getPorts", map[string]any{
+		"portType": in0,
+		"devType":  in1,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	var s0 []any
+	s0, err = encoding.Is[[]any](res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	ret = make([]PortWithProperties, 0, len(s0))
+	for _, a0 := range s0 {
+		var e0 PortWithProperties
+		err = e0.Decode(a0, p.Caller())
 		if err != nil {
 			return ret, err
 		}

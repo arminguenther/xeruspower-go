@@ -27,7 +27,7 @@ type _PowerMeterCreatedEvent struct {
 
 func (p *_PowerMeterCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_10.PowerMeterCreatedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_11.PowerMeterCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -54,7 +54,7 @@ type _PowerMeterDeletedEvent struct {
 
 func (p *_PowerMeterDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_10.PowerMeterDeletedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_11.PowerMeterDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -76,7 +76,7 @@ type _PanelCreatedEvent struct {
 
 func (p *_PanelCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_10.PanelCreatedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_11.PanelCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -94,7 +94,7 @@ type _PanelDeletedEvent struct {
 
 func (p *_PanelDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_10.PanelDeletedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_11.PanelDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

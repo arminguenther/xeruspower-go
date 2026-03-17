@@ -103,8 +103,11 @@ type AssetStrip interface {
 	//	                             does not contain an extension
 	GetExtensionTags(ctx context.Context, rackUnitNumber int32) (ret int32, tags []TagInfo, err error)
 
+	// Deprecated:
 	// Trigger a powercycle of either the whole asset strip port or the
 	// LED part power supply on the asset strip
+	//
+	// Note: This method is not supported by any supported AMS hardware.
 	//
 	//	@param  hard                 true=whole port, false=LEDs only
 	TriggerPowercycle(ctx context.Context, hard bool) error

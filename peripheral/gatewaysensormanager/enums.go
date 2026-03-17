@@ -20,7 +20,7 @@ func (s SnmpPrivProtocol) IsKnown() bool {
 
 // IsKnown reports whether the EncodingType is a known value.
 func (e EncodingType) IsKnown() bool {
-	return e >= BOOL && e <= IEEE754
+	return e >= BOOL && e <= UINT_PACKED_BCD
 }
 
 // IsKnown reports whether the Interpretation is a known value.

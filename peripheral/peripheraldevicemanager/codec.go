@@ -11,6 +11,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicepackage"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/peripheral/poselement"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
 )
 
@@ -349,9 +350,9 @@ func (u *_DeviceManagerUnknownDeviceAttachedEvent) Decode(value map[string]any, 
 	if err != nil {
 		return err
 	}
-	u.position = make([]peripheraldeviceslot.PosElement, 0, len(s0))
+	u.position = make([]poselement.PosElement, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 peripheraldeviceslot.PosElement
+		var e0 poselement.PosElement
 		err = e0.Decode(a0, caller)
 		if err != nil {
 			return err

@@ -22,7 +22,7 @@ type _StatusChangedEvent struct {
 
 func (s *_StatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Controller_5_0_0.StatusChangedEvent",
+		Name:  "pdumodel.Controller_5_0_1.StatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -45,7 +45,7 @@ type _MetaDataChangedEvent struct {
 
 func (m *_MetaDataChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Controller_5_0_0.MetaDataChangedEvent",
+		Name:  "pdumodel.Controller_5_0_1.MetaDataChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

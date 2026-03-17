@@ -29,7 +29,7 @@ func NewInlet(rid string, caller idl.Caller) Inlet {
 func (i *_Inlet) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Inlet",
-		Major: 3, Submajor: 0, Minor: 2,
+		Major: 3, Submajor: 0, Minor: 3,
 	}
 }
 

@@ -24,7 +24,7 @@ type _LoggerInfoChangedEvent struct {
 
 func (i *_LoggerInfoChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_2.InfoChangedEvent",
+		Name:  "sensors.Logger_3_1_3.InfoChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -47,7 +47,7 @@ type _LoggerSettingsChangedEvent struct {
 
 func (s *_LoggerSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_2.SettingsChangedEvent",
+		Name:  "sensors.Logger_3_1_3.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -70,7 +70,7 @@ type _LoggerLoggedSensorsChangedEvent struct {
 
 func (l *_LoggerLoggedSensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_2.LoggedSensorsChangedEvent",
+		Name:  "sensors.Logger_3_1_3.LoggedSensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

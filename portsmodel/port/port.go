@@ -13,6 +13,7 @@ import (
 
 	"github.com/arminguenther/xeruspower-go/idl"
 	"github.com/arminguenther/xeruspower-go/idl/event"
+	"github.com/arminguenther/xeruspower-go/peripheral/poselement"
 	"github.com/arminguenther/xeruspower-go/portsmodel/portfuse"
 )
 
@@ -49,7 +50,7 @@ type Port interface {
 
 	// Get all detectable devices of this port
 	//
-	//	@return List of all registered detectable Devices
+	//	@return List of all registered detectable Devices as strings
 	GetDetectableDevices(ctx context.Context) ([]string, error)
 
 	// Get the connected device of the port
@@ -79,6 +80,24 @@ const (
 	DISABLED                      // port is disabled and will not detect any device connected
 )
 
+// devices types that may be connected to port
+type DeviceTypeId int
+
+const (
+	UNSPECIFIED    DeviceTypeId = iota // not specified, means "not detected" in Properties.detectedDeviceTypeId
+	OTHER                              // other types, not listet below
+	SENSOR_HUB                         // sensor hub
+	BEEPER                             // external beeper
+	ASSET_STRIP                        // asset strip
+	POWER_CIM                          // power cim
+	GATEWAY_SENSOR                     // modbus RTU gateway sensor
+)
+
+type DeviceTypeWithId struct {
+	Id   DeviceTypeId // device type ID
+	Type string       // device type string
+}
+
 // Port detection mode
 type DetectionMode struct {
 	Type             DetectionType // detection type: auto or pinned
@@ -87,11 +106,18 @@ type DetectionMode struct {
 
 // Port properties
 type Properties struct {
-	Name               string        // user defineable name - NOT USED RIGHT NOW!
-	Label              string        // label on device
-	Mode               DetectionMode // detection mode
-	DetectedDeviceType string        // detected device type or empty if nothing connected
-	DetectedDeviceName string        // detected device name or empty if nothing connected
+	Name                  string                  // user defineable name - NOT USED RIGHT NOW!
+	Label                 string                  // label on device
+	Mode                  DetectionMode           // detection mode
+	DetectedDeviceType    string                  // detected device type or empty if nothing connected
+	DetectedDeviceName    string                  // detected device name or empty if nothing connected
+	PinnedDeviceTypeId    DeviceTypeId            // contains specific device type ID in pinned mode, or UNSPECIFIED if not pinned
+	DetectedDeviceTypeId  DeviceTypeId            // detected device type ID or UNSPECIFIED if nothing connected
+	DetectableDeviceTypes []DeviceTypeWithId      // all detectable devices of this port as ID-string pairs
+	TopoId                string                  // short id depending on position, e.g. 'REMOTE-HUB-1' or 'USB-2-1-4'
+	SerialId              string                  // serial number of device, e.g. for USB Dongle, maybe empty
+	PortType              poselement.PortType     // machine-readable port type information
+	Position              []poselement.PosElement // full machine-readable position information
 }
 
 // Event: The port properties have changed

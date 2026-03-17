@@ -27,7 +27,7 @@ func NewLdapManager(rid string, caller idl.Caller) LdapManager {
 func (l *_LdapManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.LdapManager",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 4, Submajor: 0, Minor: 0,
 	}
 }
 

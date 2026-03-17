@@ -67,6 +67,7 @@ import (
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/powerqualitysensor"
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/residualcurrentstatesensor"
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/transferswitch"
+	_ "github.com/arminguenther/xeruspower-go/pdumodel/transferswitchbypassstatesensor"
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/typebresidualcurrentnumericsensor"
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/unit"
 	_ "github.com/arminguenther/xeruspower-go/pdumodel/voltagemonitoringsensor"

@@ -89,6 +89,7 @@ type MetaData struct {
 	Serial           string // Serial number; empty if unavailable
 	HaveResetCnt     bool   // true if controller reset counter is available
 	HaveEmResetCnt   bool   // true if energy meter reset counter is available
+	IsOptional       bool   // true if this controller is optional (temporary absence may be expected)
 }
 
 // Event: Controller communication status has changed

@@ -21,36 +21,41 @@ import (
 
 // Sensor state in log record
 const (
-	STATE_UNAVAILABLE          int32 = 0  // Unavailable
-	STATE_OPEN                 int32 = 1  // Circuit breaker open
-	STATE_CLOSE                int32 = 2  // Circuit breaker closed
-	STATE_BELOW_LOWER_CRITICAL int32 = 3  // Numeric sensor below lower critical threshold
-	STATE_BELOW_LOWER_WARNING  int32 = 4  // Numeric sensor below lower warning threshold
-	STATE_NORMAL               int32 = 5  // Numeric sensor in normal range; normal operation
-	STATE_ABOVE_UPPER_WARNING  int32 = 6  // Numeric sensor above upper warning threshold
-	STATE_ABOVE_UPPER_CRITICAL int32 = 7  // Numeric sensor above upper critical threshold
-	STATE_ON                   int32 = 8  // Power state on
-	STATE_OFF                  int32 = 9  // Power state off
-	STATE_ALARMED              int32 = 10 // Alarmed
-	STATE_OK                   int32 = 11 // OK
-	STATE_MARGINAL             int32 = 12 // Marginal
-	STATE_FAIL                 int32 = 13 // Fail
-	STATE_YES                  int32 = 14 // Yes
-	STATE_NO                   int32 = 15 // No
-	STATE_STANDBY              int32 = 16 // Standby operation
-	STATE_ONE                  int32 = 17 // First source active
-	STATE_TWO                  int32 = 18 // Second source active
-	STATE_IN_SYNC              int32 = 19 // Phases are in sync
-	STATE_OUT_OF_SYNC          int32 = 20 // Phases are out of sync
-	STATE_FAULT                int32 = 21 // Fault
-	STATE_SELF_TEST            int32 = 22 // Sensor is currently testing itself
-	STATE_I1_OPEN_FAULT        int32 = 23 // Inlet 1 switch open fault
-	STATE_I1_SHORT_FAULT       int32 = 24 // Inlet 1 switch short fault
-	STATE_I2_OPEN_FAULT        int32 = 25 // Inlet 2 switch open fault
-	STATE_I2_SHORT_FAULT       int32 = 26 // Inlet 2 switch short fault
-	STATE_WARNING              int32 = 27 // Warning
-	STATE_CRITICAL             int32 = 28 // Critical
-	STATE_NON_REDUNDANT        int32 = 29 // Non-redundant operation
+	STATE_UNAVAILABLE            int32 = 0  // Unavailable
+	STATE_OPEN                   int32 = 1  // Circuit breaker open
+	STATE_CLOSE                  int32 = 2  // Circuit breaker closed
+	STATE_BELOW_LOWER_CRITICAL   int32 = 3  // Numeric sensor below lower critical threshold
+	STATE_BELOW_LOWER_WARNING    int32 = 4  // Numeric sensor below lower warning threshold
+	STATE_NORMAL                 int32 = 5  // Numeric sensor in normal range; normal operation
+	STATE_ABOVE_UPPER_WARNING    int32 = 6  // Numeric sensor above upper warning threshold
+	STATE_ABOVE_UPPER_CRITICAL   int32 = 7  // Numeric sensor above upper critical threshold
+	STATE_ON                     int32 = 8  // Power state on
+	STATE_OFF                    int32 = 9  // Power state off
+	STATE_ALARMED                int32 = 10 // Alarmed
+	STATE_OK                     int32 = 11 // OK
+	STATE_MARGINAL               int32 = 12 // Marginal
+	STATE_FAIL                   int32 = 13 // Fail
+	STATE_YES                    int32 = 14 // Yes
+	STATE_NO                     int32 = 15 // No
+	STATE_STANDBY                int32 = 16 // Standby operation
+	STATE_ONE                    int32 = 17 // First source active
+	STATE_TWO                    int32 = 18 // Second source active
+	STATE_IN_SYNC                int32 = 19 // Phases are in sync
+	STATE_OUT_OF_SYNC            int32 = 20 // Phases are out of sync
+	STATE_FAULT                  int32 = 21 // Fault
+	STATE_SELF_TEST              int32 = 22 // Sensor is currently testing itself
+	STATE_I1_OPEN_FAULT          int32 = 23 // Inlet 1 switch open fault
+	STATE_I1_SHORT_FAULT         int32 = 24 // Inlet 1 switch short fault
+	STATE_I2_OPEN_FAULT          int32 = 25 // Inlet 2 switch open fault
+	STATE_I2_SHORT_FAULT         int32 = 26 // Inlet 2 switch short fault
+	STATE_WARNING                int32 = 27 // Warning
+	STATE_CRITICAL               int32 = 28 // Critical
+	STATE_NON_REDUNDANT          int32 = 29 // Non-redundant operation
+	STATE_INACTIVE               int32 = 30 // Bypass inactive
+	STATE_I1_SELECTED            int32 = 31 // Inlet 1 selected
+	STATE_I2_SELECTED            int32 = 32 // Inlet 2 selected
+	STATE_I1_SELECTED_AND_ACTIVE int32 = 33 // Inlet 1 selected and active
+	STATE_I2_SELECTED_AND_ACTIVE int32 = 34 // Inlet 2 selected and active
 )
 
 // Sensor logger interface.

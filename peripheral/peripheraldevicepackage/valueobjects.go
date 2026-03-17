@@ -32,7 +32,7 @@ type _DoorHandleControllerPackageMechanicallyUnlockedEvent struct {
 
 func (m *_DoorHandleControllerPackageMechanicallyUnlockedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DoorHandleControllerPackage_3_0_2.MechanicallyUnlockedEvent",
+		Name:  "peripheral.DoorHandleControllerPackage_3_0_3.MechanicallyUnlockedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -71,7 +71,7 @@ type _DoorHandleControllerPackageDoorForcedOpenEvent struct {
 
 func (d *_DoorHandleControllerPackageDoorForcedOpenEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DoorHandleControllerPackage_3_0_2.DoorForcedOpenEvent",
+		Name:  "peripheral.DoorHandleControllerPackage_3_0_3.DoorForcedOpenEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -107,7 +107,7 @@ type _BatteryPoweredDevicePackageVoltageChangedEvent struct {
 
 func (v *_BatteryPoweredDevicePackageVoltageChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.BatteryPoweredDevicePackage_1_0_1.VoltageChangedEvent",
+		Name:  "peripheral.BatteryPoweredDevicePackage_1_0_2.VoltageChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

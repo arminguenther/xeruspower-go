@@ -27,7 +27,7 @@ func NewDoorAccessControl(rid string, caller idl.Caller) DoorAccessControl {
 func (d *_DoorAccessControl) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "smartlock.DoorAccessControl",
-		Major: 1, Submajor: 2, Minor: 3,
+		Major: 1, Submajor: 2, Minor: 4,
 	}
 }
 

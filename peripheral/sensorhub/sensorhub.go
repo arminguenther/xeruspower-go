@@ -13,7 +13,7 @@ import (
 
 	"github.com/arminguenther/xeruspower-go/idl"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/peripheral/poselement"
 	"github.com/arminguenther/xeruspower-go/portsmodel/portfuse"
 )
 
@@ -49,12 +49,12 @@ type HubPortInfo struct {
 
 // Static (type, version) information for a SensorHub.
 type DeviceInfo struct {
-	Serial          string                          // Serial number of device
-	Model           string                          // Model name of device
-	UpstreamType    UpstreamType                    // Hardware type (indicated a certain upstream type)
-	Position        peripheraldeviceslot.PosElement // Peripheral device position element, list forms position
-	ProtocolVersion int32                           // Protocol version the hub is supporting
-	BootVersion     int32                           // Bootcode software version
-	AppVersion      int32                           // Application code software version
-	HubPortInfos    []HubPortInfo                   // Information about contained hub ports
+	Serial          string                // Serial number of device
+	Model           string                // Model name of device
+	UpstreamType    UpstreamType          // Hardware type (indicated a certain upstream type)
+	Position        poselement.PosElement // Peripheral device position element, list forms position
+	ProtocolVersion int32                 // Protocol version the hub is supporting
+	BootVersion     int32                 // Bootcode software version
+	AppVersion      int32                 // Application code software version
+	HubPortInfos    []HubPortInfo         // Information about contained hub ports
 }

@@ -30,7 +30,7 @@ func NewTransferSwitch(rid string, caller idl.Caller) TransferSwitch {
 func (t *_TransferSwitch) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.TransferSwitch",
-		Major: 5, Submajor: 0, Minor: 3,
+		Major: 6, Submajor: 0, Minor: 0,
 	}
 }
 

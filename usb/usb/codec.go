@@ -11,7 +11,8 @@ import (
 )
 
 func (u *Device) Encode() map[string]any {
-	j0 := make(map[string]any, 6)
+	j0 := make(map[string]any, 7)
+	j0["portNumber"] = u.PortNumber
 	j0["bus"] = u.Bus
 	j0["device"] = u.Device
 	j0["vendorId"] = u.VendorId
@@ -23,6 +24,14 @@ func (u *Device) Encode() map[string]any {
 
 func (u *Device) Decode(v any, caller idl.Caller) error {
 	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("portNumber", j0)
+	if err != nil {
+		return err
+	}
+	u.PortNumber, err = encoding.AsInt32(j0["portNumber"])
 	if err != nil {
 		return err
 	}

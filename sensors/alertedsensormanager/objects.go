@@ -27,7 +27,7 @@ func NewAlertedSensorManager(rid string, caller idl.Caller) AlertedSensorManager
 func (a *_AlertedSensorManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.AlertedSensorManager",
-		Major: 1, Submajor: 0, Minor: 4,
+		Major: 1, Submajor: 0, Minor: 5,
 	}
 }
 

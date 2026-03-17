@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright 2026 Raritan Inc. All rights reserved.
 
-package peripheraldeviceslot
+package poselement
 
 // IsKnown reports whether the PortType is a known value.
 func (p PortType) IsKnown() bool {
-	return p >= ONBOARD && p <= GATEWAY_SENSOR
+	return p >= ONBOARD && p <= USB_RS485_DONGLE
 }
 
 // Fallback returns a known PortType used as a fallback if an

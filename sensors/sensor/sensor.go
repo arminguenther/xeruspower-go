@@ -78,6 +78,8 @@ const (
 	PARTICLE_DENSITY          int32 = 49
 	DEW_POINT                 int32 = 50
 	ELECTRICAL_IMPEDANCE      int32 = 51
+	TS_BYPASS_STATE           int32 = 52
+	BATTERY_LEVEL             int32 = 53
 )
 
 // Sensor unit

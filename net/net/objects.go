@@ -27,7 +27,7 @@ func NewNet(rid string, caller idl.Caller) Net {
 func (n *_Net) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "net.Net",
-		Major: 7, Submajor: 0, Minor: 0,
+		Major: 7, Submajor: 0, Minor: 1,
 	}
 }
 

@@ -33,7 +33,7 @@ func NewOutlet(rid string, caller idl.Caller) Outlet {
 func (o *_Outlet) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Outlet",
-		Major: 3, Submajor: 0, Minor: 2,
+		Major: 3, Submajor: 0, Minor: 3,
 	}
 }
 
@@ -273,6 +273,29 @@ func (o *_Outlet) GetInrushWaveform(ctx context.Context) (waveform.Waveform, err
 		return ret, err
 	}
 	err = ret.Decode(res["_ret_"], o.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (o *_Outlet) SetServiceModeEnabled(ctx context.Context, in0 bool) (int32, error) {
+	var ret int32
+	val, err := o.Caller().Call(ctx, o.RID(), "setServiceModeEnabled", map[string]any{
+		"enabled": in0,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
 	if err != nil {
 		return ret, err
 	}

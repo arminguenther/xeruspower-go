@@ -22,7 +22,7 @@ type _PropertiesChangedEvent struct {
 
 func (p *_PropertiesChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "portsmodel.Port_2_0_3.PropertiesChangedEvent",
+		Name:  "portsmodel.Port_2_0_4.PropertiesChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -45,7 +45,7 @@ type _DeviceChangedEvent struct {
 
 func (d *_DeviceChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "portsmodel.Port_2_0_3.DeviceChangedEvent",
+		Name:  "portsmodel.Port_2_0_4.DeviceChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

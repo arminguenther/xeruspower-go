@@ -22,7 +22,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeter_2_0_2.SettingsChangedEvent",
+		Name:  "pdumodel.PowerMeter_2_0_3.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -45,7 +45,7 @@ type _EnergyPulseSettingsChangedEvent struct {
 
 func (e *_EnergyPulseSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeter_2_0_2.EnergyPulseSettingsChangedEvent",
+		Name:  "pdumodel.PowerMeter_2_0_3.EnergyPulseSettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

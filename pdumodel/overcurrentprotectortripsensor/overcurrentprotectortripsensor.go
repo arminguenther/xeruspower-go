@@ -28,7 +28,7 @@ type OverCurrentProtectorTripSensor interface {
 	//	        the OCP is not currently tripped or no outlet can be determined
 	//	        to have caused the trip, null is returned.
 	//
-	// This method is deprecated, use {@link getLastTripEventInformation} instead.
+	// This method is deprecated, use {@link getTripEventInformation} instead.
 	GetTripCause(ctx context.Context) (outlet.Outlet, error)
 
 	// Get information about the last trip event.

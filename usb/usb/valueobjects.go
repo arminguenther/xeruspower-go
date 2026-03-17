@@ -21,7 +21,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "usb.Usb_1_0_3.SettingsChangedEvent",
+		Name:  "usb.Usb_1_0_4.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

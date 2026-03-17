@@ -12,6 +12,7 @@ import (
 
 func init() {
 	valobj.Register(func() PowerControlEvent { return &_PowerControlEvent{} })
+	valobj.Register(func() ServiceModeChangedEvent { return &_ServiceModeChangedEvent{} })
 	valobj.Register(func() SettingsChangedEvent { return &_SettingsChangedEvent{} })
 	valobj.Register(func() StateChangedEvent { return &_StateChangedEvent{} })
 }
@@ -24,7 +25,7 @@ type _PowerControlEvent struct {
 
 func (p *_PowerControlEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_2.PowerControlEvent",
+		Name:  "pdumodel.Outlet_3_0_3.PowerControlEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -47,7 +48,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_2.StateChangedEvent",
+		Name:  "pdumodel.Outlet_3_0_3.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -70,7 +71,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_2.SettingsChangedEvent",
+		Name:  "pdumodel.Outlet_3_0_3.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -84,3 +85,21 @@ func (s *_SettingsChangedEvent) NewSettings() Settings {
 }
 
 func (s *_SettingsChangedEvent) isSettingsChangedEvent() {}
+
+type _ServiceModeChangedEvent struct {
+	userevent.UserEvent
+	enabled bool
+}
+
+func (s *_ServiceModeChangedEvent) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "pdumodel.Outlet_3_0_3.ServiceModeChangedEvent",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (s *_ServiceModeChangedEvent) Enabled() bool {
+	return s.enabled
+}
+
+func (s *_ServiceModeChangedEvent) isServiceModeChangedEvent() {}

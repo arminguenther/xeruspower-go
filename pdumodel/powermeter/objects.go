@@ -29,7 +29,7 @@ func NewPowerMeter(rid string, caller idl.Caller) PowerMeter {
 func (p *_PowerMeter) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.PowerMeter",
-		Major: 2, Submajor: 0, Minor: 2,
+		Major: 2, Submajor: 0, Minor: 3,
 	}
 }
 

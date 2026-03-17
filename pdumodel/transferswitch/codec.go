@@ -9,6 +9,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/internal/encoding"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/pdumodel/transferswitchbypassstatesensor"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
 	"github.com/arminguenther/xeruspower-go/sensors/statesensor"
 )
@@ -79,7 +80,7 @@ func (s *Sensors) Encode() map[string]any {
 	j0["overloadAlarm"] = object.ToMap(s.OverloadAlarm)
 	j0["phaseSyncAlarm"] = object.ToMap(s.PhaseSyncAlarm)
 	j0["switchFault"] = object.ToMap(s.SwitchFault)
-	j0["selectedBypassSource"] = object.ToMap(s.SelectedBypassSource)
+	j0["bypassState"] = object.ToMap(s.BypassState)
 	return j0
 }
 
@@ -136,11 +137,11 @@ func (s *Sensors) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("selectedBypassSource", j0)
+	err = encoding.In("bypassState", j0)
 	if err != nil {
 		return err
 	}
-	s.SelectedBypassSource, err = object.As[statesensor.StateSensor](j0["selectedBypassSource"], caller)
+	s.BypassState, err = object.As[transferswitchbypassstatesensor.TransferSwitchBypassStateSensor](j0["bypassState"], caller)
 	if err != nil {
 		return err
 	}

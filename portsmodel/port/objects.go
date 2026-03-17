@@ -28,7 +28,7 @@ func NewPort(rid string, caller idl.Caller) Port {
 func (p *_Port) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "portsmodel.Port",
-		Major: 2, Submajor: 0, Minor: 3,
+		Major: 2, Submajor: 0, Minor: 4,
 	}
 }
 

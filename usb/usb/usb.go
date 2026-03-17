@@ -17,6 +17,7 @@ import (
 
 // USB device information
 type Device struct {
+	PortNumber   int32  // USB Port number (1-based)
 	Bus          int32  // Bus number
 	Device       int32  // Device address
 	VendorId     int32  // Vendor ID
@@ -41,7 +42,12 @@ type Usb interface {
 	//	@return 0 if OK
 	SetSettings(ctx context.Context, settings Settings) (int32, error)
 
-	// Get a list of USB devices connected to the host port.
+	// Retrieve the number of external USB-A ports.
+	//
+	//	@return Number of host ports
+	GetHostPortCount(ctx context.Context) (int32, error)
+
+	// Get a list of USB devices connected to the host ports.
 	//
 	//	@param usbDevices  Result: List of discovered devices
 	GetDevices(ctx context.Context) (usbDevices []Device, err error)

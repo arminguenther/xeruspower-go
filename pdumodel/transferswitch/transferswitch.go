@@ -16,6 +16,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/pdumodel/edevice"
 	"github.com/arminguenther/xeruspower-go/pdumodel/nameplate"
 	"github.com/arminguenther/xeruspower-go/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/pdumodel/transferswitchbypassstatesensor"
 	"github.com/arminguenther/xeruspower-go/pdumodel/waveform"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
 	"github.com/arminguenther/xeruspower-go/sensors/statesensor"
@@ -137,6 +138,7 @@ const (
 	REASON_OVERLOAD                               // Switched off due to overload alarm
 	REASON_OVERHEAT                               // Switched off due to overheat alarm
 	REASON_INTERNAL_FAILURE                       // Transferred because of hardware failure (e.g. switch fault)
+	REASON_BYPASS_ACTIVE                          // Switched off due to active bypass
 )
 
 // Transfer switch metadata
@@ -156,7 +158,7 @@ type Sensors struct {
 	OverloadAlarm               statesensor.StateSensor     // Overload alarm
 	PhaseSyncAlarm              statesensor.StateSensor     // Source phases out of sync
 	SwitchFault                 statesensor.StateSensor     // Switch fault (ok, open, short)
-	SelectedBypassSource        statesensor.StateSensor     // Selected source in bypass module
+	BypassState                 transferswitchbypassstatesensor.TransferSwitchBypassStateSensor
 }
 
 // Transfer switch settings

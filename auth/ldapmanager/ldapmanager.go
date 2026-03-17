@@ -91,6 +91,7 @@ type ServerSettings struct {
 	UserEntryObjClass      string           // User entry object class
 	UserSearchFilter       string           // User search subfilter
 	GroupInfoInUserEntry   bool             // Group membership info in user entry
+	SupportNestedGroups    bool             // Support nested groups (only if groupInfoInUserEntry is true)
 	GroupMemberAttr        string           // Group member attribute
 	GroupEntryObjClass     string           // Group entry object class
 	GroupSearchFilter      string           // Group search subfilter

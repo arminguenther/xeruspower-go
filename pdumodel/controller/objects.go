@@ -27,7 +27,7 @@ func NewController(rid string, caller idl.Caller) Controller {
 func (c *_Controller) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Controller",
-		Major: 5, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 1,
 	}
 }
 
