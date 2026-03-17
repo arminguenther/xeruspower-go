@@ -11,8 +11,8 @@ package webcamchannel
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/webcam/webcam"
 )
 
 // Error codes

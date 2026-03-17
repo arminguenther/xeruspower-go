@@ -9,8 +9,8 @@
 package pole
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/residualcurrentstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/residualcurrentstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40040/sensors/numericsensor"
 )
 
 // Power line

@@ -6,20 +6,20 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40032/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40032/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/alertedsensormanager"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40040/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40040/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40040/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40040/sensors/sensorlogger"
 )
 
 func init() {
@@ -38,7 +38,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 1, Minor: 2,
+		Major: 6, Submajor: 2, Minor: 2,
 	}
 }
 

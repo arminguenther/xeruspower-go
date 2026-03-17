@@ -6,15 +6,15 @@ package outlet
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/waveform"
 )
 
 func init() {

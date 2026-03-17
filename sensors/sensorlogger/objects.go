@@ -7,11 +7,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40040/sensors/sensor"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func NewLogger(rid string, caller idl.Caller) Logger {
 func (l *_Logger) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Logger",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 3, Submajor: 1, Minor: 1,
 	}
 }
 

@@ -9,9 +9,9 @@ package dsammanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/dsam/dsamdevice"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40040/dsam/dsamdevice"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
 )
 
 // DSAM manager interface

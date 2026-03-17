@@ -8,7 +8,7 @@
 // Event interface
 package userevent
 
-import "github.com/arminguenther/xeruspower-go/v40032/idl/event"
+import "github.com/arminguenther/xeruspower-go/v40040/idl/event"
 
 // This UserEvent may be used as base valueobject for
 // all concrete events that are triggered because of

@@ -11,9 +11,9 @@ package edevice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40040/pdumodel/waveform"
 )
 
 // Common base interface for any kind of electrical device that is used

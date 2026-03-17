@@ -4,13 +4,13 @@
 package cardreadermanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40032/smartcard/cardreader"
+	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40040/smartcard/cardreader"
 )
 
 func (c *CardReaderSettings) Encode() map[string]any {

@@ -11,8 +11,8 @@ package switch_
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40040/sensors/statesensor"
 )
 
 const (

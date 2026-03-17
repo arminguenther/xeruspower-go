@@ -11,10 +11,10 @@ package assetstrip
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/assetmgrmodel/assetstripconfig"
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40040/assetmgrmodel/assetstripconfig"
+	"github.com/arminguenther/xeruspower-go/v40040/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/idl/event"
 )
 
 // Error codes

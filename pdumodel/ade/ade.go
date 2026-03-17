@@ -11,7 +11,7 @@ package ade
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
 )
 
 // Interface for ADE chips directly connected to main controller

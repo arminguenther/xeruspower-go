@@ -12,7 +12,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
 )
 
 // Helper that is used wherever key/value pairs are required.

@@ -4,11 +4,9 @@
 package peripheraldevicepackage
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40032/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40040/peripheral/peripheraldeviceslot"
 )
 
 func (p *PackageInfo) Encode() map[string]any {
@@ -170,31 +168,6 @@ func (p *PackageInfo) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	p.FwInfo.UpdateDate, err = encoding.AsTime(j3["updateDate"])
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func (v *_BatteryPoweredDevicePackageVoltageChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
-	v.Event = valobj.For[event.Event]()
-	err := v.Event.Decode(value, caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("oldVoltage", value)
-	if err != nil {
-		return err
-	}
-	v.oldVoltage, err = encoding.AsFloat64(value["oldVoltage"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("newVoltage", value)
-	if err != nil {
-		return err
-	}
-	v.newVoltage, err = encoding.AsFloat64(value["newVoltage"])
 	if err != nil {
 		return err
 	}

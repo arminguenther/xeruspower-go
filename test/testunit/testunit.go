@@ -11,8 +11,8 @@ package testunit
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/test/testdisplay"
+	"github.com/arminguenther/xeruspower-go/v40040/idl"
+	"github.com/arminguenther/xeruspower-go/v40040/test/testdisplay"
 )
 
 // Test interface for PDU components controlled by topofw
