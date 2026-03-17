@@ -37,12 +37,18 @@ type NumericSensor interface {
 	//	@return Set of default thresholds
 	GetDefaultThresholds(ctx context.Context) (Thresholds, error)
 
-	// Retrieve the active thresholds.
+	// Retrieve the thresholds.
 	//
-	//	@return Set of active thresholds
+	// Note: In case of peripheral devices these thresholds may be overridden
+	// by the device slot configuration.
+	//
+	//	@return Set of configured thresholds
 	GetThresholds(ctx context.Context) (Thresholds, error)
 
-	// Change the active thresholds.
+	// Change the thresholds.
+	//
+	// Note: In case of peripheral devices these thresholds may be overridden
+	// by the device slot configuration.
 	//
 	//	@param thresh  New set of thresholds
 	//

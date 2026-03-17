@@ -58,7 +58,7 @@ type _DeviceSlotDeviceChangedEvent struct {
 
 func (d *_DeviceSlotDeviceChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_4_0_2.DeviceChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_0.DeviceChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -81,7 +81,7 @@ type _DeviceSlotSettingsChangedEvent struct {
 
 func (s *_DeviceSlotSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_4_0_2.SettingsChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_0.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

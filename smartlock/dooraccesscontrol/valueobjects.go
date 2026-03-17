@@ -26,7 +26,7 @@ type _DoorAccessGrantedEvent struct {
 
 func (d *_DoorAccessGrantedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_1_2.DoorAccessGrantedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_2.DoorAccessGrantedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -50,7 +50,7 @@ type _DoorAccessDeniedEvent struct {
 
 func (d *_DoorAccessDeniedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_1_2.DoorAccessDeniedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_2.DoorAccessDeniedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -77,7 +77,7 @@ type _DoorAccessRuleAddedEvent struct {
 
 func (d *_DoorAccessRuleAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_1_2.DoorAccessRuleAddedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_2.DoorAccessRuleAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -101,7 +101,7 @@ type _DoorAccessRuleChangedEvent struct {
 
 func (d *_DoorAccessRuleChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_1_2.DoorAccessRuleChangedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_2.DoorAccessRuleChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -128,7 +128,7 @@ type _DoorAccessRuleDeletedEvent struct {
 
 func (d *_DoorAccessRuleDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_1_2.DoorAccessRuleDeletedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_2.DoorAccessRuleDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

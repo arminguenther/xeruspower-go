@@ -30,7 +30,7 @@ func NewLogger(rid string, caller idl.Caller) Logger {
 func (l *_Logger) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Logger",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 3, Submajor: 1, Minor: 1,
 	}
 }
 

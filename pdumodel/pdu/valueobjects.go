@@ -24,7 +24,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_1_2.SettingsChangedEvent",
+		Name:  "pdumodel.Pdu_6_2_2.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -46,7 +46,7 @@ type _LoadSheddingModeChangedEvent struct {
 
 func (l *_LoadSheddingModeChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_1_2.LoadSheddingModeChangedEvent",
+		Name:  "pdumodel.Pdu_6_2_2.LoadSheddingModeChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -64,7 +64,7 @@ type _OutletSequenceStateChangedEvent struct {
 
 func (o *_OutletSequenceStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_1_2.OutletSequenceStateChangedEvent",
+		Name:  "pdumodel.Pdu_6_2_2.OutletSequenceStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

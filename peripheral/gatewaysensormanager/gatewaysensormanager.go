@@ -128,7 +128,12 @@ type RemoteModbusDevice interface {
 
 type RemoteModbusRTUDevice interface {
 	RemoteModbusDevice
-	BusInterface() string                  // modbus/rs485 interface, e.g. 'sensorhub1-rs485`
+	// rs485 interface used for modbus communication
+	//
+	// only SRC-080X ist supported, possible values are
+	//   - "sensorhub0-rs485" means port "REMOTE HUB 1"
+	//   - "sensorhub1-rs485" means port "REMOTE HUB 2"
+	BusInterface() string
 	BusSettings() modbuscfg.SerialSettings // interface settings
 	InterframeDelayDeciChars() int32       // (== 0) -> default, (< 0) -> no delay, (> 0) -> e.g. 35 means 3.5 chars
 	isRemoteModbusRTUDevice()
