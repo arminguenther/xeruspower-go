@@ -12,9 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/sensor"
 )
 
 const (

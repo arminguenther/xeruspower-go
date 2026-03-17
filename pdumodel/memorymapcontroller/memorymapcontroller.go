@@ -11,7 +11,7 @@ package memorymapcontroller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/controller"
 )
 
 // Memory map controller

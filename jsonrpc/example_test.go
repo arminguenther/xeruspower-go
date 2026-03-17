@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/pdu"
-	"github.com/arminguenther/xeruspower-go/v40020/session/sessionmanager"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/pdu"
+	"github.com/arminguenther/xeruspower-go/v40032/session/sessionmanager"
 )
 
 func ExampleCodeFor() {

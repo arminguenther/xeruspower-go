@@ -11,9 +11,9 @@ package storagemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/webcam/webcam"
 )
 
 // Error codes

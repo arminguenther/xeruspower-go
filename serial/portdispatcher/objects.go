@@ -6,10 +6,10 @@ package portdispatcher
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40020/serial/serialport"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40032/serial/serialport"
 )
 
 func init() {

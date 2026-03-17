@@ -12,8 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/peripheral/peripheraldeviceslot"
 )
 
 // Peripheral device package information
@@ -73,4 +74,21 @@ type DoorHandleControllerPackage interface {
 	SetHandleType(ctx context.Context, channel int32, handleType string) (int32, error)
 
 	SetExternalDeviceType(ctx context.Context, channel int32, type_ string) (int32, error)
+}
+
+type BatteryPoweredDevicePackage interface {
+	Package
+
+	// This method outputs the given voltage value or zero if no value is available.
+	//
+	//	@return 0 or the voltage value in V
+	GetBatteryVoltage(ctx context.Context) (float64, error)
+}
+
+// Event: the voltage of this device changed
+type BatteryPoweredDevicePackageVoltageChangedEvent interface {
+	event.Event
+	OldVoltage() float64 // old voltage
+	NewVoltage() float64 // new voltage
+	isBatteryPoweredDevicePackageVoltageChangedEvent()
 }

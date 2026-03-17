@@ -4,14 +4,14 @@
 package sensorlogger
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40032/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/sensor"
 )
 
 func (i *LoggerInfo) Encode() map[string]any {

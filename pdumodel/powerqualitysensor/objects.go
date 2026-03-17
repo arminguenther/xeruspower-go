@@ -4,9 +4,9 @@
 package powerqualitysensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/statesensor"
 )
 
 func init() {

@@ -11,8 +11,8 @@ package accumulatingnumericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/numericsensor"
 )
 
 // A sensor which accumulates numeric readings (e.g. energy counter)

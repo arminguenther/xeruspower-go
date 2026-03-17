@@ -4,10 +4,10 @@
 package dsammanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40020/dsam/dsamdevice"
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40032/dsam/dsamdevice"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
 )
 
 func init() {

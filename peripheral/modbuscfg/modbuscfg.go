@@ -8,7 +8,7 @@
 // Peripheral Devices
 package modbuscfg
 
-import "github.com/arminguenther/xeruspower-go/v40020/idl"
+import "github.com/arminguenther/xeruspower-go/v40032/idl"
 
 const (
 	EXCEPTION_ILLEGAL_FUNCTION        int32 = 1

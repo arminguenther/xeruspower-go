@@ -4,12 +4,12 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40020/idl"
-	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40020/peripheral/modbuscfg"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40032/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40032/sensors/sensor"
 )
 
 func init() {
