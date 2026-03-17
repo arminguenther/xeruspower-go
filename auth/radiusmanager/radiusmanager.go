@@ -22,6 +22,7 @@ const (
 	ERR_AUTHENTICATION_FAILED int32 = 5 // User could not be authenticated
 	ERR_NO_ROLES              int32 = 6 // No roles are defined for the user
 	ERR_NO_KNOWN_ROLES        int32 = 7 // No known rules are defined for the user
+	ERR_MSG_AUTH_ATTR_MISSING int32 = 8 // Message-Authenticator attribute missing in Access-Request reply
 )
 
 // RADIUS server configuration interface
@@ -50,6 +51,7 @@ type RadiusManager interface {
 	//	@return ERR_AUTHENTICATION_FAILED         user could not be authenticated
 	//	@return ERR_NO_ROLES                      no roles are defined for the user
 	//	@return ERR_NO_KNOWN_ROLES                no known roles are defined for the user
+	//	@return ERR_MSG_AUTH_ATTR_MISSING         Message-Authenticator attribute missing in Access-Request reply
 	TestRadiusServer(ctx context.Context, username string, password string, settings ServerSettings) (int32, error)
 }
 
@@ -64,13 +66,14 @@ const (
 
 // Server settings
 type ServerSettings struct {
-	Id                string   // This field is unused; empty on read, ignored on write
-	Server            string   // IP or name of the radius servers
-	SharedSecret      string   // Shared secret between the Xerus device and the RADIUS server
-	UdpAuthPort       int32    // UDP port for RADIUS Authenticating service
-	UdpAccountPort    int32    // UDP port for RADIUS Accounting service
-	Timeout           int32    // Timeout in seconds
-	Retries           int32    // Number of retries
-	AuthType          AuthType // Authentication type
-	DisableAccounting bool     // true to disable accounting, false to enable accounting
+	Id                           string   // This field is unused; empty on read, ignored on write
+	Server                       string   // IP or name of the radius servers
+	SharedSecret                 string   // Shared secret between the Xerus device and the RADIUS server
+	UdpAuthPort                  int32    // UDP port for RADIUS Authenticating service
+	UdpAccountPort               int32    // UDP port for RADIUS Accounting service
+	Timeout                      int32    // Timeout in seconds
+	Retries                      int32    // Number of retries
+	AuthType                     AuthType // Authentication type
+	DisableAccounting            bool     // true to disable accounting, false to enable accounting
+	MessageAuthenticatorOptional bool     // true if not requiring Message-Authenticator attribute in reply to Access-Request
 }

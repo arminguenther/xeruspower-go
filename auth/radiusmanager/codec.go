@@ -9,7 +9,7 @@ import (
 )
 
 func (s *ServerSettings) Encode() map[string]any {
-	j0 := make(map[string]any, 9)
+	j0 := make(map[string]any, 10)
 	j0["id"] = s.Id
 	j0["server"] = s.Server
 	j0["sharedSecret"] = s.SharedSecret
@@ -19,6 +19,7 @@ func (s *ServerSettings) Encode() map[string]any {
 	j0["retries"] = s.Retries
 	j0["authType"] = s.AuthType
 	j0["disableAccounting"] = s.DisableAccounting
+	j0["messageAuthenticatorOptional"] = s.MessageAuthenticatorOptional
 	return j0
 }
 
@@ -96,6 +97,14 @@ func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	s.DisableAccounting, err = encoding.Is[bool](j0["disableAccounting"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("messageAuthenticatorOptional", j0)
+	if err != nil {
+		return err
+	}
+	s.MessageAuthenticatorOptional, err = encoding.Is[bool](j0["messageAuthenticatorOptional"])
 	if err != nil {
 		return err
 	}

@@ -27,7 +27,7 @@ func NewRadiusManager(rid string, caller idl.Caller) RadiusManager {
 func (r *_RadiusManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.RadiusManager",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 4, Submajor: 0, Minor: 0,
 	}
 }
 
