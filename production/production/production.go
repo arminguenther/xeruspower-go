@@ -11,7 +11,7 @@ package production
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 // Methods used during production
@@ -38,4 +38,17 @@ type Production interface {
 	//
 	//	@return true if factory configuration mode is enabled
 	IsFactoryConfigModeEnabled(ctx context.Context) (bool, error)
+
+	// Instruct RS485 controllers to choose random bus addresses.
+	//
+	// This command is only allowed in factory configuration mode.
+	//
+	//	@param deviceId    Device ID of target controllers
+	//	@param rangeStart  Start of address range
+	//	@param rangeEnd    End of address range
+	//
+	//	@return 0 if OK
+	//	@return 1 if any parameter is invalid
+	//	@return 2 if the device is not in factory configuration mode
+	AssignRandomRs485Addresses(ctx context.Context, deviceId byte, rangeStart byte, rangeEnd byte) (int32, error)
 }

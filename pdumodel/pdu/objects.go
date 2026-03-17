@@ -6,21 +6,21 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40220/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40220/peripheral/poselement"
-	"github.com/arminguenther/xeruspower-go/v40220/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/alertedsensormanager"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40300/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40300/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40300/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40300/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/sensorlogger"
 )
 
 func init() {
@@ -39,7 +39,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 4, Minor: 4,
+		Major: 6, Submajor: 5, Minor: 5,
 	}
 }
 

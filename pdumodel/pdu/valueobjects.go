@@ -4,10 +4,10 @@
 package pdu
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
 )
 
 func init() {
@@ -26,7 +26,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_4_4.SettingsChangedEvent",
+		Name:  "pdumodel.Pdu_6_5_5.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -48,7 +48,7 @@ type _LoadSheddingModeChangedEvent struct {
 
 func (l *_LoadSheddingModeChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_4_4.LoadSheddingModeChangedEvent",
+		Name:  "pdumodel.Pdu_6_5_5.LoadSheddingModeChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -66,7 +66,7 @@ type _OutletSequenceStateChangedEvent struct {
 
 func (o *_OutletSequenceStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_4_4.OutletSequenceStateChangedEvent",
+		Name:  "pdumodel.Pdu_6_5_5.OutletSequenceStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -84,7 +84,7 @@ type _PortAppearedEvent struct {
 
 func (p *_PortAppearedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_4_4.PortAppearedEvent",
+		Name:  "pdumodel.Pdu_6_5_5.PortAppearedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -102,7 +102,7 @@ type _PortDisappearedEvent struct {
 
 func (p *_PortDisappearedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_4_4.PortDisappearedEvent",
+		Name:  "pdumodel.Pdu_6_5_5.PortDisappearedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

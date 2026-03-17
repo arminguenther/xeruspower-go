@@ -4,10 +4,10 @@
 package sensorlogger
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
 )
 
 func init() {
@@ -24,7 +24,7 @@ type _LoggerInfoChangedEvent struct {
 
 func (i *_LoggerInfoChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_3.InfoChangedEvent",
+		Name:  "sensors.Logger_3_1_4.InfoChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -47,7 +47,7 @@ type _LoggerSettingsChangedEvent struct {
 
 func (s *_LoggerSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_3.SettingsChangedEvent",
+		Name:  "sensors.Logger_3_1_4.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -70,7 +70,7 @@ type _LoggerLoggedSensorsChangedEvent struct {
 
 func (l *_LoggerLoggedSensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Logger_3_1_3.LoggedSensorsChangedEvent",
+		Name:  "sensors.Logger_3_1_4.LoggedSensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

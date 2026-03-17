@@ -12,17 +12,17 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/statesensor"
 )
 
 // Outlet statistics
@@ -35,7 +35,7 @@ const (
 	ERR_OUTLET_NOT_SWITCHABLE  int32 = 1 // Outlet is not switchable
 	ERR_LOAD_SHEDDING_ACTIVE   int32 = 2 // Load-shedding is enabled (deprecated)
 	ERR_OUTLET_DISABLED        int32 = 3 // Outlet is disabled
-	ERR_OUTLET_NOT_OFF         int32 = 4 // Outlet is on or in power-cylce; unstick not possible
+	ERR_OUTLET_NOT_OFF         int32 = 4 // Outlet is on or in power-cylce (obsolete)
 	ERR_RELAY_CONTROL_DISABLED int32 = 5 // Relay control is disabled in PDU settings
 	ERR_INVALID_PARAM          int32 = 1 // Invalid parameters
 	ERR_OPERATION_UNSUPPORTED  int32 = 1 // Operation is not supported
@@ -123,19 +123,12 @@ type Outlet interface {
 	//	@return 1 if service mode is not supported on this outlet
 	SetServiceModeEnabled(ctx context.Context, enabled bool) (int32, error)
 
+	// Deprecated:
 	// Trigger an attempt to un-stick sticking relay contacts
 	//
-	// Warning: Please contact Tech Support before using this.
+	// Note: This method is not implemented and thus a no-op.
 	//
-	// Tries repairing relay contacts that are sticked together due to wear
-	// by switching the relay in a certain pattern.
-	// Prior to running this method, the outlet must be in 'off' state
-	// to acknowledge that loads were disconnected.
-	//
-	//	@return 0 if unsticking was triggered successfully
-	//	@return 1 if outlet is not switchable
-	//	@return 3 if the outlet is disabled
-	//	@return 4 if relay is in a power cycle or on
+	//	@return 0
 	Unstick(ctx context.Context) (int32, error)
 }
 

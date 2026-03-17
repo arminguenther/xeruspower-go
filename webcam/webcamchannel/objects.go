@@ -6,10 +6,10 @@ package webcamchannel
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/webcam/webcam"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewChannel(rid string, caller idl.Caller) Channel {
 func (c *_Channel) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.Channel",
-		Major: 1, Submajor: 0, Minor: 1,
+		Major: 1, Submajor: 0, Minor: 2,
 	}
 }
 

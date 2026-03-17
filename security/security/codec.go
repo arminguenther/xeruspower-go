@@ -4,10 +4,10 @@
 package security
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
 )
 
 func (i *IpfwRule) Encode() map[string]any {
@@ -536,6 +536,28 @@ func (t *TpmInfo) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	t.Detected, err = encoding.Is[bool](j0["detected"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FipsSettings) Encode() map[string]any {
+	j0 := make(map[string]any, 1)
+	j0["enabled"] = f.Enabled
+	return j0
+}
+
+func (f *FipsSettings) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("enabled", j0)
+	if err != nil {
+		return err
+	}
+	f.Enabled, err = encoding.Is[bool](j0["enabled"])
 	if err != nil {
 		return err
 	}

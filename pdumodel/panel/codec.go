@@ -4,12 +4,12 @@
 package panel
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/circuit"
 )
 
 func (p *Settings) Encode() map[string]any {

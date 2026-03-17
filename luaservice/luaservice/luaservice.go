@@ -37,7 +37,7 @@ package luaservice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 // A structure that descripts the state of a script.

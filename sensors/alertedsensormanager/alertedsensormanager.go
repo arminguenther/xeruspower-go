@@ -11,9 +11,9 @@ package alertedsensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/sensor"
 )
 
 // A global instance keeping track of sensors in alerted state

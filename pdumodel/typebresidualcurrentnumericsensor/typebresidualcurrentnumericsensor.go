@@ -11,7 +11,7 @@ package typebresidualcurrentnumericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
 )
 
 // An RCM current sensor of type B (AC/DC) which allows degaussing the sensor

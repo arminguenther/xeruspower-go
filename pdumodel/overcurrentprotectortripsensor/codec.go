@@ -4,12 +4,12 @@
 package overcurrentprotectortripsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/statesensor"
 )
 
 func (t *TripEventInformation) Encode() map[string]any {

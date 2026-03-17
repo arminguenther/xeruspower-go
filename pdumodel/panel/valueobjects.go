@@ -4,10 +4,10 @@
 package panel
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	circuit_ "github.com/arminguenther/xeruspower-go/v40220/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	circuit_ "github.com/arminguenther/xeruspower-go/v40300/pdumodel/circuit"
 )
 
 func init() {

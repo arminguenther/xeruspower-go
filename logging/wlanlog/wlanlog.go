@@ -11,8 +11,8 @@ package wlanlog
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/logging/log"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/logging/log"
 )
 
 // WLAN diagnostic log interface

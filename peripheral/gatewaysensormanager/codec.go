@@ -4,11 +4,11 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40220/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/peripheral/modbuscfg"
 )
 
 func (s *_SensorClass) Encode() map[string]any {
@@ -173,6 +173,11 @@ func (r *_RemoteModbusDevice) Encode() map[string]any {
 	}
 	ret["detectionIdentifiers"] = s0
 	ret["unitId"] = r.unitId
+	s1 := make([]any, 0, len(r.unsupportedFunctionCodes))
+	for _, e1 := range r.unsupportedFunctionCodes {
+		s1 = append(s1, e1)
+	}
+	ret["unsupportedFunctionCodes"] = s1
 	return ret
 }
 
@@ -212,6 +217,24 @@ func (r *_RemoteModbusDevice) Decode(value map[string]any, caller idl.Caller) er
 	r.unitId, err = encoding.AsInt32(value["unitId"])
 	if err != nil {
 		return err
+	}
+	err = encoding.In("unsupportedFunctionCodes", value)
+	if err != nil {
+		return err
+	}
+	var s1 []any
+	s1, err = encoding.Is[[]any](value["unsupportedFunctionCodes"])
+	if err != nil {
+		return err
+	}
+	r.unsupportedFunctionCodes = make([]byte, 0, len(s1))
+	for _, a1 := range s1 {
+		var e1 byte
+		e1, err = encoding.AsByte(a1)
+		if err != nil {
+			return err
+		}
+		r.unsupportedFunctionCodes = append(r.unsupportedFunctionCodes, e1)
 	}
 	return nil
 }
@@ -407,6 +430,7 @@ func (i *_InterpretationRule) Encode() map[string]any {
 	ret := i.ValueObject.Encode()
 	ret["interpretation"] = i.interpretation
 	ret["ignoreTimeout"] = i.ignoreTimeout
+	ret["accessType"] = i.accessType
 	return ret
 }
 
@@ -426,6 +450,14 @@ func (i *_InterpretationRule) Decode(value map[string]any, caller idl.Caller) er
 		return err
 	}
 	i.ignoreTimeout, err = encoding.AsInt32(value["ignoreTimeout"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("accessType", value)
+	if err != nil {
+		return err
+	}
+	i.accessType, err = encoding.AsEnum[AccessType](value["accessType"])
 	if err != nil {
 		return err
 	}
@@ -571,7 +603,7 @@ func (i *_InterpretationRuleRAW) Decode(value map[string]any, caller idl.Caller)
 	if err != nil {
 		return err
 	}
-	i.value, err = encoding.AsInt64(value["value"])
+	i.value, err = encoding.Is[string](value["value"])
 	if err != nil {
 		return err
 	}
@@ -579,7 +611,7 @@ func (i *_InterpretationRuleRAW) Decode(value map[string]any, caller idl.Caller)
 	if err != nil {
 		return err
 	}
-	i.mask, err = encoding.AsInt64(value["mask"])
+	i.mask, err = encoding.Is[string](value["mask"])
 	if err != nil {
 		return err
 	}
@@ -604,7 +636,7 @@ func (i *_InterpretationRuleRangeRAW) Decode(value map[string]any, caller idl.Ca
 	if err != nil {
 		return err
 	}
-	i.min, err = encoding.AsInt64(value["min"])
+	i.min, err = encoding.Is[string](value["min"])
 	if err != nil {
 		return err
 	}
@@ -612,7 +644,7 @@ func (i *_InterpretationRuleRangeRAW) Decode(value map[string]any, caller idl.Ca
 	if err != nil {
 		return err
 	}
-	i.max, err = encoding.AsInt64(value["max"])
+	i.max, err = encoding.Is[string](value["max"])
 	if err != nil {
 		return err
 	}
@@ -620,7 +652,7 @@ func (i *_InterpretationRuleRangeRAW) Decode(value map[string]any, caller idl.Ca
 	if err != nil {
 		return err
 	}
-	i.mask, err = encoding.AsInt64(value["mask"])
+	i.mask, err = encoding.Is[string](value["mask"])
 	if err != nil {
 		return err
 	}
@@ -648,10 +680,10 @@ func (i *_InterpretationRuleEnum) Decode(value map[string]any, caller idl.Caller
 	if err != nil {
 		return err
 	}
-	i.enumValues = make([]int64, 0, len(s0))
+	i.enumValues = make([]string, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 int64
-		e0, err = encoding.AsInt64(a0)
+		var e0 string
+		e0, err = encoding.Is[string](a0)
 		if err != nil {
 			return err
 		}
@@ -845,7 +877,7 @@ func (m *_ModbusValueEncoding8) Decode(value map[string]any, caller idl.Caller) 
 	if err != nil {
 		return err
 	}
-	m.mask, err = encoding.AsInt64(value["mask"])
+	m.mask, err = encoding.Is[string](value["mask"])
 	if err != nil {
 		return err
 	}
@@ -941,6 +973,10 @@ func (s *_Sensor) Encode() map[string]any {
 	ret["classId"] = s.classId
 	ret["encodingId"] = s.encodingId
 	ret["defaultName"] = s.defaultName
+	ret["defaultDescription"] = s.defaultDescription
+	ret["defaultLocationX"] = s.defaultLocationX
+	ret["defaultLocationY"] = s.defaultLocationY
+	ret["defaultLocationZ"] = s.defaultLocationZ
 	return ret
 }
 
@@ -992,6 +1028,38 @@ func (s *_Sensor) Decode(value map[string]any, caller idl.Caller) error {
 		return err
 	}
 	s.defaultName, err = encoding.Is[string](value["defaultName"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("defaultDescription", value)
+	if err != nil {
+		return err
+	}
+	s.defaultDescription, err = encoding.Is[string](value["defaultDescription"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("defaultLocationX", value)
+	if err != nil {
+		return err
+	}
+	s.defaultLocationX, err = encoding.Is[string](value["defaultLocationX"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("defaultLocationY", value)
+	if err != nil {
+		return err
+	}
+	s.defaultLocationY, err = encoding.Is[string](value["defaultLocationY"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("defaultLocationZ", value)
+	if err != nil {
+		return err
+	}
+	s.defaultLocationZ, err = encoding.Is[string](value["defaultLocationZ"])
 	if err != nil {
 		return err
 	}

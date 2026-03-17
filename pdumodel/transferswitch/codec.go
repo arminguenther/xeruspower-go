@@ -4,14 +4,14 @@
 package transferswitch
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/transferswitchbypassstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/transferswitchbypassstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/statesensor"
 )
 
 func (m *MetaData) Encode() map[string]any {
@@ -73,13 +73,15 @@ func (m *MetaData) Decode(v any, caller idl.Caller) error {
 }
 
 func (s *Sensors) Encode() map[string]any {
-	j0 := make(map[string]any, 7)
+	j0 := make(map[string]any, 9)
 	j0["selectedSource"] = object.ToMap(s.SelectedSource)
 	j0["operationalState"] = object.ToMap(s.OperationalState)
 	j0["sourceVoltagePhaseSyncAngle"] = object.ToMap(s.SourceVoltagePhaseSyncAngle)
 	j0["overloadAlarm"] = object.ToMap(s.OverloadAlarm)
 	j0["phaseSyncAlarm"] = object.ToMap(s.PhaseSyncAlarm)
 	j0["switchFault"] = object.ToMap(s.SwitchFault)
+	j0["installFaultAlarm"] = object.ToMap(s.InstallFaultAlarm)
+	j0["outputStatus"] = object.ToMap(s.OutputStatus)
 	j0["bypassState"] = object.ToMap(s.BypassState)
 	return j0
 }
@@ -134,6 +136,22 @@ func (s *Sensors) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	s.SwitchFault, err = object.As[statesensor.StateSensor](j0["switchFault"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("installFaultAlarm", j0)
+	if err != nil {
+		return err
+	}
+	s.InstallFaultAlarm, err = object.As[statesensor.StateSensor](j0["installFaultAlarm"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("outputStatus", j0)
+	if err != nil {
+		return err
+	}
+	s.OutputStatus, err = object.As[statesensor.StateSensor](j0["outputStatus"], caller)
 	if err != nil {
 		return err
 	}

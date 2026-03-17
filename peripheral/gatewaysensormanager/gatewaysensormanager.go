@@ -11,11 +11,11 @@ package gatewaysensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/peripheral/modbuscfg"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/sensor"
 )
 
 const (
@@ -23,9 +23,9 @@ const (
 	MODBUS_PRODUCT_CODE       int32 = 1
 	MODBUS_REVISION           int32 = 2
 	MODBUS_VENDOR_URL         int32 = 3
-	MODBUS_PRODUCT_NAME       int32 = 5
-	MODBUS_MODEL_NAME         int32 = 6
-	MODBUS_APP_NAME           int32 = 7
+	MODBUS_PRODUCT_NAME       int32 = 4
+	MODBUS_MODEL_NAME         int32 = 5
+	MODBUS_APP_NAME           int32 = 6
 	ERR_CONFIG_INCONSISTENT   int32 = 1
 	ERR_CONFIG_STORAGE_FAILED int32 = 2
 )
@@ -123,6 +123,18 @@ type RemoteModbusDevice interface {
 	RemoteDevice
 	DetectionIdentifiers() map[int32]string // list of expected device identifiers
 	UnitId() int32                          // modbus server address
+	// list of unsupported modbus function codes (FC)
+	//
+	// This information is used to select a supported way for communication,
+	// if more than one way is available. If there is no flexibility, the list is ignored.
+	// Therefore, some entries may have no effect.
+	//
+	// Examples:
+	//   - FC 43 (Read Device Identification) is used without regard to this list,
+	//     as there is no alternative way if detectionIdentifiers is to be used
+	//   - FC 22 (Masked Register Write) is only used if the support is known,
+	//     otherwise FC 03 + FC 06 (or FC 16 if not known as unsupported) will be used
+	UnsupportedFunctionCodes() []byte
 	isRemoteModbusDevice()
 }
 
@@ -132,7 +144,7 @@ type RemoteModbusRTUDevice interface {
 	//
 	// Supported values:
 	//
-	// (1) with SRC-080X, only the REMOTE HUB interfaces are support, possible values are:
+	// (1) with SRC-080X, the REMOTE HUB interfaces are supported, possible values are:
 	//   - "REMOTE-HUB-1" or "sensorhub0-rs485" (deprecated) mean port "REMOTE HUB 1"
 	//   - "REMOTE-HUB-2" or "sensorhub1-rs485" (deprecated) mean port "REMOTE HUB 2"
 	//
@@ -141,8 +153,8 @@ type RemoteModbusRTUDevice interface {
 	//   - "USB-2" means dongle connected to PDU USB port "USB A 2"
 	//   - "USB-1-2-3" means dongle is connected to a first USB hub at port 3,
 	//     and the first USB hub is connected to a second USB hub at port 2,
-	//     and the second USB is connected to PDU USB port "USB A 1"
-	//   - "<serial>": where <serial> is the serial number of USB donge, according to the label
+	//     and the second USB hub is connected to PDU USB port "USB A 1"
+	//   - "<serial>": where <serial> is the serial number of USB dongle, according to the label
 	BusInterface() string
 	BusSettings() modbuscfg.SerialSettings // interface settings
 	InterframeDelayDeciChars() int32       // (== 0) -> default, (< 0) -> no delay, (> 0) -> e.g. 35 means 3.5 chars
@@ -254,19 +266,32 @@ const (
 // REJECT_DEVICE can be used in this way to detect devices. The sensor defined for this purpose
 // does not have to be imported as gateway sensor (see Sensor.classId = "").
 //
-// DEFAULT on failed receives modbus exceptions REJECT_SENSOR. DEFAULT on modbus read errors
-// (e.g. timeouts) is REJECT_DEVICE.
+// Default on read access for
+//   - received modbus exceptions is REJECT_SENSOR
+//   - on modbus errors (SystemError or ModbusSystemError) is REJECT_DEVICE
+//   - on value decoding/conversion is normal numeric/state decoding
+//
+// Default on write access (actuator switch) for
+//   - all modbus exceptions and errors is UNAVAILABLE
 type Interpretation int
 
 const (
-	DEFAULT         Interpretation = iota // use default decoding
-	REJECT_DEVICE                         // device is treated as non-existent
-	REJECT_SENSOR                         // sensor is treated as non-existent
-	IGNORE                                // ignore (use previous value)
-	UNAVAILABLE                           // set value to unavailable
-	NUMERIC_INVALID                       // set numeric value to invalid
-	STATE_ON                              // set state to ON
-	STATE_OFF                             // set state to OFF
+	DEFAULT         Interpretation = iota // default behaviour as without rule, see above
+	REJECT_DEVICE                         // read only: device is treated as non-existent
+	REJECT_SENSOR                         // read only: sensor is treated as non-existent
+	IGNORE                                // read: ignore (use previous value) and retry  write: ignore error and retry
+	UNAVAILABLE                           // read: treat as unavailable (both state and numeric value)  write: give up, do not retry
+	NUMERIC_INVALID                       // read only: treat as invalid numeric value
+	STATE_ON                              // read: treat as state ON   write: use for reversed rule to handle requested ON
+	STATE_OFF                             // read: treat as state OFF  write: use for reversed rule to handle requested OFF
+)
+
+type AccessType int
+
+const (
+	ACCESS_READ_WRITE AccessType = iota // use rule for both read and write access
+	ACCESS_READ                         // use rule for read access only
+	ACCESS_WRITE                        // use rule for write access only
 )
 
 // InterpretationRule defines a rule that is applied to a reading, resulting in an Interpretation.
@@ -276,6 +301,7 @@ type InterpretationRule interface {
 	idl.ValueObject
 	Interpretation() Interpretation // how to interpret the applied rule
 	IgnoreTimeout() int32           // if > 0, ignoring stops after this timeout (seconds), and state changes to unavailable
+	AccessType() AccessType         // use rule for read and/or write access
 	isInterpretationRule()
 }
 
@@ -311,24 +337,24 @@ type InterpretationRuleModbusSpecificError interface {
 // InterpretationRuleRAW is applied after swap, but before masking (because it has it's own mask)
 type InterpretationRuleRAW interface {
 	InterpretationRuleInvertable
-	Value() int64 // compare to value
-	Mask() int64  // (0 = not masked, the same as 0xFFFF...)
+	Value() string // compare to value (unsigned 64-bit value as string, decimal or hexadecimal)
+	Mask() string  // mask before compare (unsigned 64-bit value as string, decimal or hexadecimal; "" or "0" = not masked, the same as "0xFFFFFFFFFFFFFFFF")
 	isInterpretationRuleRAW()
 }
 
 // InterpretationRuleRangeRAW is applied after swap, but before masking (because it has it's own mask)
 type InterpretationRuleRangeRAW interface {
 	InterpretationRuleInvertable
-	Min() int64  // minimum accepted value (always compare as unsigned)
-	Max() int64  // maximum accepted value (always compare as unsigned)
-	Mask() int64 // (0 = not masked, the same as 0xFFFF...)
+	Min() string  // minimum accepted value (unsigned 64-bit value as string, decimal or hexadecimal)
+	Max() string  // maximum accepted value (unsigned 64-bit value as string, decimal or hexadecimal)
+	Mask() string // mask before compare (unsigned 64-bit value as string, decimal or hexadecimal; "" or "0" = not masked, the same as "0xFFFFFFFFFFFFFFFF")
 	isInterpretationRuleRangeRAW()
 }
 
 // InterpretationRuleEnum is applied to a reading and maps the values to the given Interpretation
 type InterpretationRuleEnum interface {
 	InterpretationRuleInvertable
-	EnumValues() []int64 // values to map
+	EnumValues() []string // signed or unsigned 64-bit values as strings, decimal or hexadecimal 64-bit numbers
 	isInterpretationRuleEnum()
 }
 
@@ -383,7 +409,9 @@ type ModbusValueEncoding8 interface {
 	// be set. Another application is to use byteSwap to address a single byte in
 	// a 16-bit modbus word in case 8-bit values are requested (ModbusValueEncoding8).
 	ByteSwap() bool
-	Mask() int64 // mask raw value before interpreting (0 = not masked, the same as 0xFFFF...)
+	// 64-bit unsigned raw mask value as decimal or hexadecimal string, applied before interpreting
+	// ("" or "0" = not masked, the same as "0xFFFFFFFFFFFFFFFF")
+	Mask() string
 	// The least significant bit of the read word used in numerical interpretation.
 	// If `start` is greater than 0, then one or more least significant bits remain unused.
 	// 0 is the default value. For integer values a `start > 0` has mostly the same effect as
@@ -453,10 +481,26 @@ type Sensor interface {
 	//
 	// classId is used to locate the corresponding ValueEncoding
 	EncodingId() string
-	// default sensor name
+	// sensor name
 	//
-	// defaultName is used as sensor slot name
+	// defaultName is used as default sensor slot name
 	DefaultName() string
+	// sensor description
+	//
+	// defaultDescription is used as default sensor slot description
+	DefaultDescription() string
+	// sensor location X coordinate
+	//
+	// defaultLocationX is used as default sensor slot location X coordinate
+	DefaultLocationX() string
+	// sensor location Y coordinate
+	//
+	// defaultLocationY is used as default sensor slot location Y coordinate
+	DefaultLocationY() string
+	// sensor location Z coordinate
+	//
+	// defaultLocationZ is used as default sensor slot location Z coordinate
+	DefaultLocationZ() string
 	isSensor()
 }
 

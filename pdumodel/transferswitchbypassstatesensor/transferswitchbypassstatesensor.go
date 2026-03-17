@@ -11,7 +11,7 @@ package transferswitchbypassstatesensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/statesensor"
 )
 
 const (

@@ -4,8 +4,8 @@
 package smtp
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
 )
 
 func (c *Configuration) Encode() map[string]any {

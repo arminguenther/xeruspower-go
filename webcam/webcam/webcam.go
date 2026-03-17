@@ -11,8 +11,8 @@ package webcam
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 // PixelFormat
@@ -92,6 +92,12 @@ type Information struct {
 	SupportedFormats []Format // supported image formats
 }
 
+// Error codes
+const (
+	NO_ERROR          int32 = 0 // Operation successful, no error
+	ERR_INVALID_PARAM int32 = 1 // Invalid parameter for an operation
+)
+
 // The webcam interface
 type Webcam interface {
 	idl.Object
@@ -111,6 +117,7 @@ type Webcam interface {
 	//	@param settings  New webcam settings
 	//
 	//	@return 0 if success
+	//	@return 1 if any parameter is invalid
 	SetSettings(ctx context.Context, settings Settings) (int32, error)
 
 	// Apply webcam control settings without storing them
@@ -118,6 +125,7 @@ type Webcam interface {
 	//	@param controls  Control settings
 	//
 	//	@return 0 if success
+	//	@return 1 if any parameter is invalid
 	SetControls(ctx context.Context, controls Controls) (int32, error)
 
 	// Retrieve the default value of the controls.

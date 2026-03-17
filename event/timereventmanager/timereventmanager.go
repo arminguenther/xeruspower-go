@@ -11,7 +11,7 @@ package timereventmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 // Error codes

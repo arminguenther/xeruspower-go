@@ -4,8 +4,8 @@
 package serversslcert
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
 )
 
 func (c *CommonAttributes) Encode() map[string]any {
@@ -84,13 +84,60 @@ func (c *CommonAttributes) Decode(v any, caller idl.Caller) error {
 	return nil
 }
 
+func (k *KeyInfo) Encode() map[string]any {
+	j0 := make(map[string]any, 4)
+	j0["type"] = k.Type
+	j0["ecCurve"] = k.EcCurve
+	j0["rsaKeyLength"] = k.RsaKeyLength
+	j0["inSecureElement"] = k.InSecureElement
+	return j0
+}
+
+func (k *KeyInfo) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("type", j0)
+	if err != nil {
+		return err
+	}
+	k.Type, err = encoding.AsEnum[KeyType](j0["type"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("ecCurve", j0)
+	if err != nil {
+		return err
+	}
+	k.EcCurve, err = encoding.AsEnum[EllipticCurve](j0["ecCurve"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("rsaKeyLength", j0)
+	if err != nil {
+		return err
+	}
+	k.RsaKeyLength, err = encoding.AsInt32(j0["rsaKeyLength"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("inSecureElement", j0)
+	if err != nil {
+		return err
+	}
+	k.InSecureElement, err = encoding.Is[bool](j0["inSecureElement"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (r *ReqInfo) Encode() map[string]any {
-	j0 := make(map[string]any, 5)
+	j0 := make(map[string]any, 3)
 	j0["subject"] = r.Subject.Encode()
 	j0["names"] = encoding.NonNilSlice(r.Names)
-	j0["keyType"] = r.KeyType
-	j0["ellipticCurve"] = r.EllipticCurve
-	j0["rsaKeyLength"] = r.RsaKeyLength
+	j0["keyInfo"] = r.KeyInfo.Encode()
 	return j0
 }
 
@@ -125,27 +172,11 @@ func (r *ReqInfo) Decode(v any, caller idl.Caller) error {
 		}
 		r.Names = append(r.Names, e1)
 	}
-	err = encoding.In("keyType", j0)
+	err = encoding.In("keyInfo", j0)
 	if err != nil {
 		return err
 	}
-	r.KeyType, err = encoding.AsEnum[KeyType](j0["keyType"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("ellipticCurve", j0)
-	if err != nil {
-		return err
-	}
-	r.EllipticCurve, err = encoding.AsEnum[EllipticCurve](j0["ellipticCurve"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("rsaKeyLength", j0)
-	if err != nil {
-		return err
-	}
-	r.RsaKeyLength, err = encoding.AsInt32(j0["rsaKeyLength"])
+	err = r.KeyInfo.Decode(j0["keyInfo"], caller)
 	if err != nil {
 		return err
 	}
@@ -153,16 +184,14 @@ func (r *ReqInfo) Decode(v any, caller idl.Caller) error {
 }
 
 func (c *CertInfo) Encode() map[string]any {
-	j0 := make(map[string]any, 9)
+	j0 := make(map[string]any, 7)
 	j0["subject"] = c.Subject.Encode()
 	j0["issuer"] = c.Issuer.Encode()
 	j0["names"] = encoding.NonNilSlice(c.Names)
 	j0["invalidBefore"] = c.InvalidBefore
 	j0["invalidAfter"] = c.InvalidAfter
 	j0["serialNumber"] = c.SerialNumber
-	j0["keyType"] = c.KeyType
-	j0["ellipticCurve"] = c.EllipticCurve
-	j0["rsaKeyLength"] = c.RsaKeyLength
+	j0["keyInfo"] = c.KeyInfo.Encode()
 	return j0
 }
 
@@ -229,27 +258,11 @@ func (c *CertInfo) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("keyType", j0)
+	err = encoding.In("keyInfo", j0)
 	if err != nil {
 		return err
 	}
-	c.KeyType, err = encoding.AsEnum[KeyType](j0["keyType"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("ellipticCurve", j0)
-	if err != nil {
-		return err
-	}
-	c.EllipticCurve, err = encoding.AsEnum[EllipticCurve](j0["ellipticCurve"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("rsaKeyLength", j0)
-	if err != nil {
-		return err
-	}
-	c.RsaKeyLength, err = encoding.AsInt32(j0["rsaKeyLength"])
+	err = c.KeyInfo.Decode(j0["keyInfo"], caller)
 	if err != nil {
 		return err
 	}

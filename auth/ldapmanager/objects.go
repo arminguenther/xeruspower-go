@@ -6,9 +6,9 @@ package ldapmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewLdapManager(rid string, caller idl.Caller) LdapManager {
 func (l *_LdapManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.LdapManager",
-		Major: 4, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 0,
 	}
 }
 

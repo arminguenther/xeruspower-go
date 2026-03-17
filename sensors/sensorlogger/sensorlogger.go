@@ -12,11 +12,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/sensor"
 )
 
 // Sensor state in log record
@@ -56,6 +56,7 @@ const (
 	STATE_I2_SELECTED            int32 = 32 // Inlet 2 selected
 	STATE_I1_SELECTED_AND_ACTIVE int32 = 33 // Inlet 1 selected and active
 	STATE_I2_SELECTED_AND_ACTIVE int32 = 34 // Inlet 2 selected and active
+	STATE_BYPASS_ACTIVE          int32 = 35 // Operational state: bypass active
 )
 
 // Sensor logger interface.

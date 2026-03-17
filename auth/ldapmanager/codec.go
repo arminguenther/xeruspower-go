@@ -4,15 +4,13 @@
 package ldapmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
 )
 
 func (s *ServerSettings) Encode() map[string]any {
-	j0 := make(map[string]any, 23)
-	j0["id"] = s.Id
+	j0 := make(map[string]any, 21)
 	j0["server"] = s.Server
-	j0["adoptSettingsId"] = s.AdoptSettingsId
 	j0["type"] = s.Type
 	j0["secProto"] = s.SecProto
 	j0["port"] = s.Port
@@ -41,27 +39,11 @@ func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("id", j0)
-	if err != nil {
-		return err
-	}
-	s.Id, err = encoding.Is[string](j0["id"])
-	if err != nil {
-		return err
-	}
 	err = encoding.In("server", j0)
 	if err != nil {
 		return err
 	}
 	s.Server, err = encoding.Is[string](j0["server"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("adoptSettingsId", j0)
-	if err != nil {
-		return err
-	}
-	s.AdoptSettingsId, err = encoding.Is[string](j0["adoptSettingsId"])
 	if err != nil {
 		return err
 	}

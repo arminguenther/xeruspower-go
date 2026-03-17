@@ -11,10 +11,10 @@ package circuit
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
 )
 
 const (

@@ -6,11 +6,11 @@ package webcammanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/webcam/webcam"
-	"github.com/arminguenther/xeruspower-go/v40220/webcam/webcamchannel"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40300/webcam/webcamchannel"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func NewWebcamManager(rid string, caller idl.Caller) WebcamManager {
 func (w *_WebcamManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.WebcamManager",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 

@@ -12,7 +12,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 // The value/worstValue/rawValue is invalid (e.g. not initialized).

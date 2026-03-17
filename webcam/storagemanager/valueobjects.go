@@ -4,10 +4,10 @@
 package storagemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
-	webcam_ "github.com/arminguenther/xeruspower-go/v40220/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
+	webcam_ "github.com/arminguenther/xeruspower-go/v40300/webcam/webcam"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _ImageUploadStartedEvent struct {
 
 func (i *_ImageUploadStartedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "webcam.StorageManager_1_0_2.ImageUploadStartedEvent",
+		Name:  "webcam.StorageManager_1_0_3.ImageUploadStartedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -12,14 +12,14 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/transferswitchbypassstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40220/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/transferswitchbypassstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40300/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40300/sensors/statesensor"
 )
 
 const (
@@ -30,6 +30,7 @@ const (
 	OPERATIONAL_STATE_NORMAL        int32 = 1 // Active inlet equals preferred inlet
 	OPERATIONAL_STATE_STANDBY       int32 = 2 // Active inlet and preferred inlet are different
 	OPERATIONAL_STATE_NON_REDUNDANT int32 = 3 // Active inlet equals preferred inlet, standby power critical
+	OPERATIONAL_STATE_BYPASSED      int32 = 4 // Both inlets are off, but bypass is active
 	SWITCH_FAULT_I1_SHORT           int32 = 1 // Inlet 1 switch is permanently closed
 	SWITCH_FAULT_I1_OPEN            int32 = 2 // Inlet 1 switch is permanently open
 	SWITCH_FAULT_I2_SHORT           int32 = 4 // Inlet 2 switch is permanently closed
@@ -158,6 +159,8 @@ type Sensors struct {
 	OverloadAlarm               statesensor.StateSensor     // Overload alarm
 	PhaseSyncAlarm              statesensor.StateSensor     // Source phases out of sync
 	SwitchFault                 statesensor.StateSensor     // Switch fault (ok, open, short)
+	InstallFaultAlarm           statesensor.StateSensor     // Install fault alarm
+	OutputStatus                statesensor.StateSensor     // Output voltage status (ok, fault)
 	BypassState                 transferswitchbypassstatesensor.TransferSwitchBypassStateSensor
 }
 

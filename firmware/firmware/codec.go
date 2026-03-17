@@ -4,11 +4,11 @@
 package firmware
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40300/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/valobj"
 )
 
 func (u *UpdateHistoryEntry) Encode() map[string]any {
@@ -366,6 +366,46 @@ func (f *_UpdateCompletedEvent) Decode(value map[string]any, caller idl.Caller) 
 func (f *_UpdateFailedEvent) Decode(value map[string]any, caller idl.Caller) error {
 	f.UpdateEvent = valobj.For[UpdateEvent]()
 	err := f.UpdateEvent.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *Info) Encode() map[string]any {
+	j0 := make(map[string]any, 3)
+	j0["product"] = i.Product
+	j0["platform"] = i.Platform
+	j0["version"] = i.Version
+	return j0
+}
+
+func (i *Info) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("product", j0)
+	if err != nil {
+		return err
+	}
+	i.Product, err = encoding.Is[string](j0["product"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("platform", j0)
+	if err != nil {
+		return err
+	}
+	i.Platform, err = encoding.Is[string](j0["platform"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("version", j0)
+	if err != nil {
+		return err
+	}
+	i.Version, err = encoding.Is[string](j0["version"])
 	if err != nil {
 		return err
 	}

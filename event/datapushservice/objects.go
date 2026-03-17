@@ -6,9 +6,9 @@ package datapushservice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewDataPushService(rid string, caller idl.Caller) DataPushService {
 func (d *_DataPushService) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "event.DataPushService",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 

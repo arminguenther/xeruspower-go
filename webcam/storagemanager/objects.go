@@ -6,10 +6,10 @@ package storagemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40220/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40300/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40300/webcam/webcam"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewStorageManager(rid string, caller idl.Caller) StorageManager {
 func (s *_StorageManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.StorageManager",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 

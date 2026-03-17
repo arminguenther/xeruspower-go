@@ -11,7 +11,7 @@ package modbus
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40300/idl"
 )
 
 const ERR_INVALID_PARAM int32 = 1 // Invalid parameters
