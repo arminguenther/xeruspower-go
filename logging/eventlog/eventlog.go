@@ -11,9 +11,9 @@ package eventlog
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/logging/log"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/logging/log"
 )
 
 // Event log cleared event

@@ -4,9 +4,9 @@
 package inlet
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Inlet_3_0_0.SettingsChangedEvent",
+		Name:  "pdumodel.Inlet_3_0_1.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -44,7 +44,7 @@ type _EnableStateChangedEvent struct {
 
 func (e *_EnableStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Inlet_3_0_0.EnableStateChangedEvent",
+		Name:  "pdumodel.Inlet_3_0_1.EnableStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

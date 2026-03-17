@@ -4,11 +4,11 @@
 package powermetercontroller
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/panel"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/panel"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/powermeter"
 )
 
 func init() {
@@ -27,7 +27,7 @@ type _PowerMeterCreatedEvent struct {
 
 func (p *_PowerMeterCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_8.PowerMeterCreatedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_9.PowerMeterCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -54,7 +54,7 @@ type _PowerMeterDeletedEvent struct {
 
 func (p *_PowerMeterDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_8.PowerMeterDeletedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_9.PowerMeterDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -76,7 +76,7 @@ type _PanelCreatedEvent struct {
 
 func (p *_PanelCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_8.PanelCreatedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_9.PanelCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -94,7 +94,7 @@ type _PanelDeletedEvent struct {
 
 func (p *_PanelDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.PowerMeterController_1_2_8.PanelDeletedEvent",
+		Name:  "pdumodel.PowerMeterController_1_2_9.PanelDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -12,9 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
 )
 
 // Firmware update history status
@@ -154,6 +154,17 @@ type Firmware interface {
 	//	@return 0 if OK
 	//	@return 1 if not in production mode
 	HardFactoryReset(ctx context.Context) (int32, error)
+
+	// Semi-hard factory reset for manufacturing.
+	//
+	// This command clears both the user and system configuration layer,
+	// but keeps the ETO cache and subcontroller security association.
+	//
+	//	@note This command is only available during manufacturing!
+	//
+	//	@return 0 if OK
+	//	@return 1 if not in production mode
+	ManufacturingReset(ctx context.Context) (int32, error)
 
 	// Returns the currently installed firmware version.
 	//

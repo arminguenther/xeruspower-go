@@ -9,7 +9,7 @@ package modbusgatewaymgr
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
 )
 
 const (

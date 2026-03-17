@@ -6,10 +6,10 @@ package debuglog
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/logging/log"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/logging/log"
 )
 
 func init() {

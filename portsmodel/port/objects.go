@@ -6,10 +6,10 @@ package port
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/portsmodel/portfuse"
 )
 
 func init() {

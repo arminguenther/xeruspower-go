@@ -6,14 +6,15 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40020/portsmodel/portfuse"
 )
 
 func init() {
@@ -32,7 +33,7 @@ func NewDeviceManager(rid string, caller idl.Caller) DeviceManager {
 func (d *_DeviceManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DeviceManager",
-		Major: 5, Submajor: 0, Minor: 2,
+		Major: 5, Submajor: 0, Minor: 3,
 	}
 }
 
@@ -367,6 +368,27 @@ func (d *_DeviceManager) GetPortFuse(ctx context.Context) (portfuse.PortFuse, er
 		return ret, err
 	}
 	ret, err = object.As[portfuse.PortFuse](res["_ret_"], d.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (d *_DeviceManager) GetGatewaySensorManager(ctx context.Context) (gatewaysensormanager.GatewaySensorManager, error) {
+	var ret gatewaysensormanager.GatewaySensorManager
+	val, err := d.Caller().Call(ctx, d.RID(), "getGatewaySensorManager", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = object.As[gatewaysensormanager.GatewaySensorManager](res["_ret_"], d.Caller())
 	if err != nil {
 		return ret, err
 	}

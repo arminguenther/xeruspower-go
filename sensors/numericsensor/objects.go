@@ -6,10 +6,10 @@ package numericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewNumericSensor(rid string, caller idl.Caller) NumericSensor {
 func (n *_NumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.NumericSensor",
-		Major: 4, Submajor: 0, Minor: 5,
+		Major: 4, Submajor: 0, Minor: 6,
 	}
 }
 

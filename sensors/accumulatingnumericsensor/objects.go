@@ -6,9 +6,9 @@ package accumulatingnumericsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/numericsensor"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewAccumulatingNumericSensor(rid string, caller idl.Caller) AccumulatingNum
 func (a *_AccumulatingNumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.AccumulatingNumericSensor",
-		Major: 2, Submajor: 0, Minor: 5,
+		Major: 2, Submajor: 0, Minor: 6,
 	}
 }
 

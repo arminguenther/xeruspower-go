@@ -11,7 +11,7 @@ package serversslcert
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
 )
 
 // success code

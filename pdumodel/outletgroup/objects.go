@@ -6,10 +6,10 @@ package outletgroup
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/outlet"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewOutletGroup(rid string, caller idl.Caller) OutletGroup {
 func (o *_OutletGroup) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OutletGroup",
-		Major: 1, Submajor: 1, Minor: 6,
+		Major: 1, Submajor: 1, Minor: 7,
 	}
 }
 

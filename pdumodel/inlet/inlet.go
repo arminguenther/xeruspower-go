@@ -11,13 +11,13 @@ package inlet
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/residualcurrentstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/residualcurrentstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/statesensor"
 )
 
 // Inlet interface

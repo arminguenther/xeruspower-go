@@ -9,10 +9,10 @@ package outletgroupmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/outletgroup"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/outletgroup"
 )
 
 const (

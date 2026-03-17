@@ -12,9 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
 )
 
 const (
@@ -197,6 +197,14 @@ type MetaDataChangedEvent interface {
 	OldMetaData() MetaData // Metadata before change
 	NewMetaData() MetaData // Metadata after change
 	isMetaDataChangedEvent()
+}
+
+// Event: Sensor default thresholds have changed
+type DefaultThresholdsChangedEvent interface {
+	userevent.UserEvent
+	OldDefaultThresholds() Thresholds // Default thresholds set before change
+	NewDefaultThresholds() Thresholds // Default thresholds set after change
+	isDefaultThresholdsChangedEvent()
 }
 
 // Event: Sensor thresholds have changed

@@ -4,10 +4,10 @@
 package voltagemonitoringsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	event_ "github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	event_ "github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
 )
 
 func init() {
@@ -25,7 +25,7 @@ type _EventOccurredEvent struct {
 
 func (e *_EventOccurredEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.VoltageMonitoringSensor.EventOccurredEvent",
+		Name:  "pdumodel.VoltageMonitoringSensor_1_0_1.EventOccurredEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -42,7 +42,7 @@ type _EventListClearedEvent struct {
 
 func (e *_EventListClearedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.VoltageMonitoringSensor.EventListClearedEvent",
+		Name:  "pdumodel.VoltageMonitoringSensor_1_0_1.EventListClearedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -57,7 +57,7 @@ type _DipSwellThresholdsChangedEvent struct {
 
 func (d *_DipSwellThresholdsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.VoltageMonitoringSensor.DipSwellThresholdsChangedEvent",
+		Name:  "pdumodel.VoltageMonitoringSensor_1_0_1.DipSwellThresholdsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

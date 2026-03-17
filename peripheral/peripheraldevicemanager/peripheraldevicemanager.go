@@ -11,15 +11,16 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40010/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40010/portsmodel/portfuse"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40020/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40020/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
 )
 
 const (
@@ -101,6 +102,11 @@ type DeviceManager interface {
 	//
 	//	@return A fuse instance, if available
 	GetPortFuse(ctx context.Context) (portfuse.PortFuse, error)
+
+	// Get gateway sensors configuration
+	//
+	//	@return A GatewaySensorManager instance
+	GetGatewaySensorManager(ctx context.Context) (gatewaysensormanager.GatewaySensorManager, error)
 }
 
 // Z Coordinate Mode identifier

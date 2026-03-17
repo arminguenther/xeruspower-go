@@ -4,11 +4,11 @@
 package numericsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
 )
 
 func (r *Range) Encode() map[string]any {
@@ -502,6 +502,31 @@ func (m *_MetaDataChangedEvent) Decode(value map[string]any, caller idl.Caller) 
 		return err
 	}
 	err = m.newMetaData.Decode(value["newMetaData"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *_DefaultThresholdsChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	d.UserEvent = valobj.For[userevent.UserEvent]()
+	err := d.UserEvent.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldDefaultThresholds", value)
+	if err != nil {
+		return err
+	}
+	err = d.oldDefaultThresholds.Decode(value["oldDefaultThresholds"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newDefaultThresholds", value)
+	if err != nil {
+		return err
+	}
+	err = d.newDefaultThresholds.Decode(value["newDefaultThresholds"], caller)
 	if err != nil {
 		return err
 	}

@@ -4,13 +4,14 @@
 package numericsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
 )
 
 func init() {
+	valobj.Register(func() DefaultThresholdsChangedEvent { return &_DefaultThresholdsChangedEvent{} })
 	valobj.Register(func() MetaDataChangedEvent { return &_MetaDataChangedEvent{} })
 	valobj.Register(func() MinMaxChangedEvent { return &_MinMaxChangedEvent{} })
 	valobj.Register(func() MinMaxResetEvent { return &_MinMaxResetEvent{} })
@@ -26,7 +27,7 @@ type _ReadingChangedEvent struct {
 
 func (r *_ReadingChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.ReadingChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_6.ReadingChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -45,7 +46,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.StateChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_6.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -68,7 +69,7 @@ type _MetaDataChangedEvent struct {
 
 func (m *_MetaDataChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.MetaDataChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_6.MetaDataChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -83,6 +84,29 @@ func (m *_MetaDataChangedEvent) NewMetaData() MetaData {
 
 func (m *_MetaDataChangedEvent) isMetaDataChangedEvent() {}
 
+type _DefaultThresholdsChangedEvent struct {
+	userevent.UserEvent
+	oldDefaultThresholds Thresholds
+	newDefaultThresholds Thresholds
+}
+
+func (d *_DefaultThresholdsChangedEvent) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "sensors.NumericSensor_4_0_6.DefaultThresholdsChangedEvent",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (d *_DefaultThresholdsChangedEvent) OldDefaultThresholds() Thresholds {
+	return d.oldDefaultThresholds
+}
+
+func (d *_DefaultThresholdsChangedEvent) NewDefaultThresholds() Thresholds {
+	return d.newDefaultThresholds
+}
+
+func (d *_DefaultThresholdsChangedEvent) isDefaultThresholdsChangedEvent() {}
+
 type _ThresholdsChangedEvent struct {
 	userevent.UserEvent
 	oldThresholds Thresholds
@@ -91,7 +115,7 @@ type _ThresholdsChangedEvent struct {
 
 func (t *_ThresholdsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.ThresholdsChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_6.ThresholdsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -113,7 +137,7 @@ type _MinMaxChangedEvent struct {
 
 func (m *_MinMaxChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.MinMaxChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_6.MinMaxChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -132,7 +156,7 @@ type _MinMaxResetEvent struct {
 
 func (m *_MinMaxResetEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_5.MinMaxResetEvent",
+		Name:  "sensors.NumericSensor_4_0_6.MinMaxResetEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

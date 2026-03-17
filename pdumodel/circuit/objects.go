@@ -6,10 +6,10 @@ package circuit
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/pole"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewCircuit(rid string, caller idl.Caller) Circuit {
 func (c *_Circuit) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Circuit",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 1,
 	}
 }
 

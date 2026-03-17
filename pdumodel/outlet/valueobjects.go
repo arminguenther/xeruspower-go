@@ -4,10 +4,10 @@
 package outlet
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
 )
 
 func init() {
@@ -24,7 +24,7 @@ type _PowerControlEvent struct {
 
 func (p *_PowerControlEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_0.PowerControlEvent",
+		Name:  "pdumodel.Outlet_3_0_1.PowerControlEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -47,7 +47,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_0.StateChangedEvent",
+		Name:  "pdumodel.Outlet_3_0_1.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -70,7 +70,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Outlet_3_0_0.SettingsChangedEvent",
+		Name:  "pdumodel.Outlet_3_0_1.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

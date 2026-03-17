@@ -5,7 +5,7 @@ package peripheraldeviceslot
 
 // IsKnown reports whether the PortType is a known value.
 func (p PortType) IsKnown() bool {
-	return p >= ONBOARD && p <= UNSPECIFIED
+	return p >= ONBOARD && p <= GATEWAY_SENSOR
 }
 
 // Fallback returns a known PortType used as a fallback if an

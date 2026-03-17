@@ -6,11 +6,11 @@ package powermeter
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40010/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40020/pdumodel/pole"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func NewPowerMeter(rid string, caller idl.Caller) PowerMeter {
 func (p *_PowerMeter) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.PowerMeter",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 1,
 	}
 }
 

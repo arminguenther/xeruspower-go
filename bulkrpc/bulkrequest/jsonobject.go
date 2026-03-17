@@ -4,8 +4,8 @@
 package bulkrequest
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
 )
 
 // JsonObject is a plain JSON object used in JSON-RPC.

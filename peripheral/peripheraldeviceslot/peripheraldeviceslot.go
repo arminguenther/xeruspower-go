@@ -11,10 +11,10 @@ package peripheraldeviceslot
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/sensors/sensor"
 )
 
 // peripheral device port types
@@ -29,6 +29,7 @@ const (
 	WIRELESS_BRIDGE                   // a wireless bridge, e.g. usb dongle
 	WIRELESS_DEVICE                   // a wireless device
 	UNSPECIFIED                       // device type is unknown
+	GATEWAY_SENSOR                    // a gateway sensor
 )
 
 // peripheral device position element, list forms position

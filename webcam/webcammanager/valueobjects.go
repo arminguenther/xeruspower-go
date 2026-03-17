@@ -4,10 +4,10 @@
 package webcammanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding/valobj"
-	webcam_ "github.com/arminguenther/xeruspower-go/v40010/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding/valobj"
+	webcam_ "github.com/arminguenther/xeruspower-go/v40020/webcam/webcam"
 )
 
 func init() {

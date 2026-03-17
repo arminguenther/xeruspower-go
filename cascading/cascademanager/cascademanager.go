@@ -11,9 +11,9 @@ package cascademanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40010/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40020/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/idl/event"
 )
 
 const (
@@ -180,6 +180,9 @@ type CascadeManager interface {
 	AddLinkPortLinkUnit(ctx context.Context) (int32, error)
 
 	// Add a serial link unit (ScalePoint Base).
+	//
+	// As a special case, link ID 1 is used to pair the primary unit on the
+	// "internal" RS485 bus. It will not be added to the list of link units.
 	//
 	//	@param linkId       The ID for the new link unit
 	//	@param installKey   The install key from the Base unit's label

@@ -4,8 +4,8 @@
 package firmwareupdatestatus
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40010/idl"
-	"github.com/arminguenther/xeruspower-go/v40010/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40020/idl"
+	"github.com/arminguenther/xeruspower-go/v40020/internal/encoding"
 )
 
 func (u *UpdateStatus) Encode() map[string]any {
