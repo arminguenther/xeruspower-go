@@ -5,8 +5,10 @@ package accumulatingnumericsensor
 
 import (
 	"context"
+	"time"
 
 	"github.com/arminguenther/xeruspower-go/idl"
+	"github.com/arminguenther/xeruspower-go/internal/encoding"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
 )
@@ -27,11 +29,32 @@ func NewAccumulatingNumericSensor(rid string, caller idl.Caller) AccumulatingNum
 func (a *_AccumulatingNumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.AccumulatingNumericSensor",
-		Major: 2, Submajor: 0, Minor: 8,
+		Major: 2, Submajor: 0, Minor: 9,
 	}
 }
 
 func (a *_AccumulatingNumericSensor) ResetValue(ctx context.Context) error {
 	_, err := a.Caller().Call(ctx, a.RID(), "resetValue", nil)
 	return err
+}
+
+func (a *_AccumulatingNumericSensor) GetLastResetTime(ctx context.Context) (time.Time, error) {
+	var ret time.Time
+	val, err := a.Caller().Call(ctx, a.RID(), "getLastResetTime", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsTime(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
 }

@@ -30,6 +30,7 @@ const (
 	OPERATIONAL_STATE_NORMAL        int32 = 1 // Active inlet equals preferred inlet
 	OPERATIONAL_STATE_STANDBY       int32 = 2 // Active inlet and preferred inlet are different
 	OPERATIONAL_STATE_NON_REDUNDANT int32 = 3 // Active inlet equals preferred inlet, standby power critical
+	OPERATIONAL_STATE_BYPASSED      int32 = 4 // Both inlets are off, but bypass is active
 	SWITCH_FAULT_I1_SHORT           int32 = 1 // Inlet 1 switch is permanently closed
 	SWITCH_FAULT_I1_OPEN            int32 = 2 // Inlet 1 switch is permanently open
 	SWITCH_FAULT_I2_SHORT           int32 = 4 // Inlet 2 switch is permanently closed
@@ -158,6 +159,8 @@ type Sensors struct {
 	OverloadAlarm               statesensor.StateSensor     // Overload alarm
 	PhaseSyncAlarm              statesensor.StateSensor     // Source phases out of sync
 	SwitchFault                 statesensor.StateSensor     // Switch fault (ok, open, short)
+	InstallFaultAlarm           statesensor.StateSensor     // Install fault alarm
+	OutputStatus                statesensor.StateSensor     // Output voltage status (ok, fault)
 	BypassState                 transferswitchbypassstatesensor.TransferSwitchBypassStateSensor
 }
 

@@ -27,7 +27,7 @@ func NewSecurity(rid string, caller idl.Caller) Security {
 func (s *_Security) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "security.Security",
-		Major: 5, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 1,
 	}
 }
 
@@ -635,6 +635,29 @@ func (s *_Security) SetDefaultAdminAccountPassword(ctx context.Context, in0 stri
 	return ret, nil
 }
 
+func (s *_Security) SetAdminAccountPasswordHash(ctx context.Context, in0 string) (int32, error) {
+	var ret int32
+	val, err := s.Caller().Call(ctx, s.RID(), "setAdminAccountPasswordHash", map[string]any{
+		"passwordHash": in0,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
 func (s *_Security) IsSecureBootActive(ctx context.Context) (bool, error) {
 	var ret bool
 	val, err := s.Caller().Call(ctx, s.RID(), "isSecureBootActive", nil)
@@ -675,4 +698,53 @@ func (s *_Security) GetTpmInfo(ctx context.Context) (TpmInfo, error) {
 		return ret, err
 	}
 	return ret, nil
+}
+
+func (s *_Security) GetActiveFipsSettings(ctx context.Context) (FipsSettings, error) {
+	var ret FipsSettings
+	val, err := s.Caller().Call(ctx, s.RID(), "getActiveFipsSettings", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], s.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (s *_Security) GetPersistentFipsSettings(ctx context.Context) (FipsSettings, error) {
+	var ret FipsSettings
+	val, err := s.Caller().Call(ctx, s.RID(), "getPersistentFipsSettings", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], s.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (s *_Security) SetPersistentFipsSettings(ctx context.Context, in0 FipsSettings) error {
+	_, err := s.Caller().Call(ctx, s.RID(), "setPersistentFipsSettings", map[string]any{
+		"settings": in0.Encode(),
+	})
+	return err
 }

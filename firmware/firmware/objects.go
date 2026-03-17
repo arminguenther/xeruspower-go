@@ -27,8 +27,29 @@ func NewFirmware(rid string, caller idl.Caller) Firmware {
 func (f *_Firmware) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "firmware.Firmware",
-		Major: 2, Submajor: 0, Minor: 2,
+		Major: 2, Submajor: 0, Minor: 3,
 	}
+}
+
+func (f *_Firmware) GetInfo(ctx context.Context) (Info, error) {
+	var ret Info
+	val, err := f.Caller().Call(ctx, f.RID(), "getInfo", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	err = ret.Decode(res["_ret_"], f.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
 }
 
 func (f *_Firmware) Reboot(ctx context.Context) error {

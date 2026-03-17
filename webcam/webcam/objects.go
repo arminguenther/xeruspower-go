@@ -27,7 +27,7 @@ func NewWebcam(rid string, caller idl.Caller) Webcam {
 func (w *_Webcam) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.Webcam",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 

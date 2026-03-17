@@ -22,7 +22,7 @@ type _ImageUploadStartedEvent struct {
 
 func (i *_ImageUploadStartedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "webcam.StorageManager_1_0_2.ImageUploadStartedEvent",
+		Name:  "webcam.StorageManager_1_0_3.ImageUploadStartedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

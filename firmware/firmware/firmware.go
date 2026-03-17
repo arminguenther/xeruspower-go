@@ -138,6 +138,11 @@ type UpdateFailedEvent interface {
 type Firmware interface {
 	idl.Object
 
+	// Retrieve the firmware information.
+	//
+	//	@return Firmware information
+	GetInfo(ctx context.Context) (Info, error)
+
 	// Reboot the device.
 	//
 	// This function will fail if a firmware update is in progress.
@@ -198,4 +203,11 @@ type Firmware interface {
 	//
 	//	@param flags  List of firmware update flags; may be empty
 	StartUpdate(ctx context.Context, flags []UpdateFlags) error
+}
+
+// Firmware information
+type Info struct {
+	Product  string // Firmware product type
+	Platform string // Hardware platform
+	Version  string // Firmware version number
 }

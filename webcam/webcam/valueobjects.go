@@ -21,7 +21,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "webcam.Webcam_2_0_1.SettingsChangedEvent",
+		Name:  "webcam.Webcam_2_0_2.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

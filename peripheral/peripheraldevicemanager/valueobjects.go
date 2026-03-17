@@ -38,7 +38,7 @@ type _DeviceManagerSettingsChangedEvent struct {
 
 func (s *_DeviceManagerSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.SettingsChangedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -61,7 +61,7 @@ type _DeviceManagerDeviceEvent struct {
 
 func (d *_DeviceManagerDeviceEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.DeviceEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.DeviceEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -82,7 +82,7 @@ type _DeviceManagerDeviceAddedEvent struct {
 
 func (d *_DeviceManagerDeviceAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.DeviceAddedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.DeviceAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -95,7 +95,7 @@ type _DeviceManagerDeviceRemovedEvent struct {
 
 func (d *_DeviceManagerDeviceRemovedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.DeviceRemovedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.DeviceRemovedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -110,7 +110,7 @@ type _DeviceManagerUnknownDeviceAttachedEvent struct {
 
 func (u *_DeviceManagerUnknownDeviceAttachedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.UnknownDeviceAttachedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.UnknownDeviceAttachedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -135,7 +135,7 @@ type _DeviceManagerDeviceFirmwareUpdateStateChangedEvent struct {
 
 func (d *_DeviceManagerDeviceFirmwareUpdateStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.DeviceFirmwareUpdateStateChangedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.DeviceFirmwareUpdateStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -166,7 +166,7 @@ type _DeviceManagerFirmwareUpdateStateChangedEvent struct {
 
 func (f *_DeviceManagerFirmwareUpdateStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.FirmwareUpdateStateChangedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.FirmwareUpdateStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -186,7 +186,7 @@ type _DeviceManagerPackageEvent struct {
 
 func (p *_DeviceManagerPackageEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.PackageEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.PackageEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -207,7 +207,7 @@ type _DeviceManagerPackageAddedEvent struct {
 
 func (p *_DeviceManagerPackageAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.PackageAddedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.PackageAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -220,7 +220,7 @@ type _DeviceManagerPackageRemovedEvent struct {
 
 func (p *_DeviceManagerPackageRemovedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceManager_5_2_5.PackageRemovedEvent",
+		Name:  "peripheral.DeviceManager_5_3_5.PackageRemovedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -28,6 +28,11 @@ func (i Interpretation) IsKnown() bool {
 	return i >= DEFAULT && i <= STATE_OFF
 }
 
+// IsKnown reports whether the AccessType is a known value.
+func (a AccessType) IsKnown() bool {
+	return a >= ACCESS_READ_WRITE && a <= ACCESS_WRITE
+}
+
 // IsKnown reports whether the ModbusEndianness is a known value.
 func (m ModbusEndianness) IsKnown() bool {
 	return m >= MODBUS_BIG_ENDIAN && m <= MODBUS_LITTLE_ENDIAN
@@ -38,4 +43,4 @@ func (f FeedbackObjectFeedbackState) IsKnown() bool {
 	return f >= UNSPECIFIED && f <= GOOD
 }
 
-//go:generate stringer -output=enum_strings.go -type=SnmpAuthProtocol,FeedbackObjectFeedbackState,EncodingType,ModbusEndianness,SnmpPrivProtocol,Interpretation,SnmpSecurityLevel
+//go:generate stringer -output=enum_strings.go -type=SnmpAuthProtocol,FeedbackObjectFeedbackState,EncodingType,ModbusEndianness,SnmpPrivProtocol,Interpretation,SnmpSecurityLevel,AccessType

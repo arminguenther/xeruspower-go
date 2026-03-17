@@ -27,16 +27,17 @@ func NewDiagnostics(rid string, caller idl.Caller) Diagnostics {
 func (d *_Diagnostics) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "net.Diagnostics",
-		Major: 1, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 0,
 	}
 }
 
-func (d *_Diagnostics) Ping(ctx context.Context, in0 string, in1 int32) (int32, []string, error) {
+func (d *_Diagnostics) Ping(ctx context.Context, in0 string, in1 int32, in2 int32) (int32, []string, error) {
 	var ret int32
 	var out0 []string
 	val, err := d.Caller().Call(ctx, d.RID(), "ping", map[string]any{
 		"hostName": in0,
 		"count":    in1,
+		"size":     in2,
 	})
 	if err != nil {
 		return ret, out0, err
@@ -229,4 +230,11 @@ func (d *_Diagnostics) ResolveHostName(ctx context.Context, in0 string) ([]strin
 		out0 = append(out0, e0)
 	}
 	return out0, nil
+}
+
+func (d *_Diagnostics) FlushRouteCache(ctx context.Context, in0 string) error {
+	_, err := d.Caller().Call(ctx, d.RID(), "flushRouteCache", map[string]any{
+		"ifName": in0,
+	})
+	return err
 }

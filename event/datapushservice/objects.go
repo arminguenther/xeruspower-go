@@ -27,7 +27,7 @@ func NewDataPushService(rid string, caller idl.Caller) DataPushService {
 func (d *_DataPushService) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "event.DataPushService",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 

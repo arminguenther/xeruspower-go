@@ -10,6 +10,7 @@ package accumulatingnumericsensor
 
 import (
 	"context"
+	"time"
 
 	"github.com/arminguenther/xeruspower-go/event/userevent"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
@@ -21,6 +22,9 @@ type AccumulatingNumericSensor interface {
 
 	// Resets the accumulated value of the sensor
 	ResetValue(ctx context.Context) error
+
+	// Unix timestamp (UTC) when the value was last reset
+	GetLastResetTime(ctx context.Context) (time.Time, error)
 }
 
 // Event: Accumulated value has been reset

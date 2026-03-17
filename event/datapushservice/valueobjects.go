@@ -25,7 +25,7 @@ type _EntryAddedEvent struct {
 
 func (e *_EntryAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "event.DataPushService_1_0_2.EntryAddedEvent",
+		Name:  "event.DataPushService_1_0_3.EntryAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -49,7 +49,7 @@ type _EntryModifiedEvent struct {
 
 func (e *_EntryModifiedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "event.DataPushService_1_0_2.EntryModifiedEvent",
+		Name:  "event.DataPushService_1_0_3.EntryModifiedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -75,7 +75,7 @@ type _EntryDeletedEvent struct {
 
 func (e *_EntryDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "event.DataPushService_1_0_2.EntryDeletedEvent",
+		Name:  "event.DataPushService_1_0_3.EntryDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -94,7 +94,7 @@ type _EntryStatusChangedEvent struct {
 
 func (e *_EntryStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "event.DataPushService_1_0_2.EntryStatusChangedEvent",
+		Name:  "event.DataPushService_1_0_3.EntryStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

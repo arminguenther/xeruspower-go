@@ -25,7 +25,7 @@ type _GroupCreatedEvent struct {
 
 func (g *_GroupCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroupManager_1_1_9.GroupCreatedEvent",
+		Name:  "pdumodel.OutletGroupManager_1_1_10.GroupCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -57,7 +57,7 @@ type _GroupDeletedEvent struct {
 
 func (g *_GroupDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroupManager_1_1_9.GroupDeletedEvent",
+		Name:  "pdumodel.OutletGroupManager_1_1_10.GroupDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

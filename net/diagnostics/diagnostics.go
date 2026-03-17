@@ -30,13 +30,14 @@ type Diagnostics interface {
 	//
 	//	@param hostName      host that should be pinged
 	//	@param count         number of echo requests that should be sent (up to 20)
+	//	@param size          payload size (0..65535)
 	//	@param results       output of the ping command
 	//
 	//	@return NO_ERROR             if ping command was successful
 	//	@return ERR_INVALID_PARAM    if any parameters were invalid
 	//	@return ERR_EXEC_FAIL        if there was an error during ping execution
 	//	@return ERR_RESOLVE_FAIL     if the host name could not be resolved
-	Ping(ctx context.Context, hostName string, count int32) (ret int32, results []string, err error)
+	Ping(ctx context.Context, hostName string, count int32, size int32) (ret int32, results []string, err error)
 
 	// Get the route packet trace to a network host
 	//
@@ -69,4 +70,11 @@ type Diagnostics interface {
 	//	@param hostName              host name to resolve
 	//	@param results               result (includes meta data and the actual result or error message)
 	ResolveHostName(ctx context.Context, hostName string) (results []string, err error)
+
+	// Flush IPv4/IPv6 route cache
+	//
+	// Primarily used by IPv6 conformance test.
+	//
+	//	@param ifName                the route cache of at least this interface is cleared
+	FlushRouteCache(ctx context.Context, ifName string) error
 }

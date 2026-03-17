@@ -56,6 +56,7 @@ const (
 	STATE_I2_SELECTED            int32 = 32 // Inlet 2 selected
 	STATE_I1_SELECTED_AND_ACTIVE int32 = 33 // Inlet 1 selected and active
 	STATE_I2_SELECTED_AND_ACTIVE int32 = 34 // Inlet 2 selected and active
+	STATE_BYPASS_ACTIVE          int32 = 35 // Operational state: bypass active
 )
 
 // Sensor logger interface.

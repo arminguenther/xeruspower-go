@@ -542,6 +542,28 @@ func (t *TpmInfo) Decode(v any, caller idl.Caller) error {
 	return nil
 }
 
+func (f *FipsSettings) Encode() map[string]any {
+	j0 := make(map[string]any, 1)
+	j0["enabled"] = f.Enabled
+	return j0
+}
+
+func (f *FipsSettings) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("enabled", j0)
+	if err != nil {
+		return err
+	}
+	f.Enabled, err = encoding.Is[bool](j0["enabled"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *_PasswordSettingsChanged) Decode(value map[string]any, caller idl.Caller) error {
 	p.UserEvent = valobj.For[userevent.UserEvent]()
 	err := p.UserEvent.Decode(value, caller)

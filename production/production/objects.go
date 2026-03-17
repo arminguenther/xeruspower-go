@@ -27,7 +27,7 @@ func NewProduction(rid string, caller idl.Caller) Production {
 func (p *_Production) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "production.Production",
-		Major: 1, Submajor: 0, Minor: 0,
+		Major: 1, Submajor: 0, Minor: 1,
 	}
 }
 
@@ -74,6 +74,31 @@ func (p *_Production) IsFactoryConfigModeEnabled(ctx context.Context) (bool, err
 		return ret, err
 	}
 	ret, err = encoding.Is[bool](res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (p *_Production) AssignRandomRs485Addresses(ctx context.Context, in0 byte, in1 byte, in2 byte) (int32, error) {
+	var ret int32
+	val, err := p.Caller().Call(ctx, p.RID(), "assignRandomRs485Addresses", map[string]any{
+		"deviceId":   in0,
+		"rangeStart": in1,
+		"rangeEnd":   in2,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
 	if err != nil {
 		return ret, err
 	}

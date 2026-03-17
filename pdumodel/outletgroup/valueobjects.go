@@ -25,7 +25,7 @@ type _SensorsChangedEvent struct {
 
 func (s *_SensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_9.SensorsChangedEvent",
+		Name:  "pdumodel.OutletGroup_1_1_10.SensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -48,7 +48,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_9.SettingsChangedEvent",
+		Name:  "pdumodel.OutletGroup_1_1_10.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -71,7 +71,7 @@ type _PowerControlEvent struct {
 
 func (p *_PowerControlEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OutletGroup_1_1_9.PowerControlEvent",
+		Name:  "pdumodel.OutletGroup_1_1_10.PowerControlEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	ERR_CYCLIC_DEP            int32 = 1 // Cyclic dependency in server list
+	ERR_CYCLIC_DEP            int32 = 1 // Cyclic dependency in server list (not used anymore)
 	ERR_INVALID_CFG           int32 = 2 // The server configuration is invalid
 	ERR_SERVER_UNSPECIFIED    int32 = 1 // Unspecified error
 	ERR_SERVER_UNREACHABLE    int32 = 3 // LDAP server could not be contacted
@@ -37,7 +37,6 @@ type LdapManager interface {
 	// Any existing LDAP Server configuration will be cleared / overwritten.
 	//
 	//	@return 0                            on success
-	//	@return ERR_CYCLIC_DEP            in case of cyclic dependency
 	//	@return ERR_INVALID_CFG           in case of invalid configuration
 	SetLdapServers(ctx context.Context, serverList []ServerSettings) (int32, error)
 
@@ -72,9 +71,7 @@ const (
 
 // Server settings
 type ServerSettings struct {
-	Id                     string           // Entry ID
 	Server                 string           // IP or name of ldap server
-	AdoptSettingsId        string           // Use settings from LDAP server with <ID>
 	Type                   ServerType       // Type of LDAP server
 	SecProto               SecurityProtocol // Security protocol
 	Port                   int32            // Server port (only for SEC_PROT_NONE and SEC_PROT_STARTTLS)

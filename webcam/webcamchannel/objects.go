@@ -28,7 +28,7 @@ func NewChannel(rid string, caller idl.Caller) Channel {
 func (c *_Channel) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.Channel",
-		Major: 1, Submajor: 0, Minor: 1,
+		Major: 1, Submajor: 0, Minor: 2,
 	}
 }
 

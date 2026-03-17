@@ -17,27 +17,44 @@ import (
 // success code
 const SUCCESS int32 = 0
 
-// key-pair generation error codes
+// shared error codes
+const (
+	ERR_BUSY                int32 = 1
+	ERR_CSR_OR_CERT_PENDING int32 = 101
+	ERR_KEY_MISSING         int32 = 200
+	ERR_CERT_MISSING        int32 = 201
+	ERR_CERT_FORMAT_INVALID int32 = 202
+	ERR_CERT_KEY_MISMATCH   int32 = 203
+	ERR_KEY_FORMAT_INVALID  int32 = 204
+)
+
+// key-pair generation specific error codes
 const (
 	ERR_GEN_KEY_LEN_INVALID        int32 = 100
-	ERR_GEN_CSR_OR_CERT_PENDING    int32 = 101
+	ERR_GEN_CSR_OR_CERT_PENDING    int32 = 101 // same as ERR_CSR_OR_CERT_PENDING
 	ERR_GEN_KEY_GEN_FAILED         int32 = 102
 	ERR_GEN_KEY_TYPE_INVALID       int32 = 103
 	ERR_GEN_ELLIPTIC_CURVE_INVALID int32 = 104
+	ERR_GEN_VALIDITY_OUT_OF_RANGE  int32 = 105
 )
 
-// key-pair installation error codes
+// key-pair installation specific error codes (backward compatibility)
 const (
-	ERR_INSTALL_KEY_MISSING         int32 = 200
-	ERR_INSTALL_CERT_MISSING        int32 = 201
-	ERR_INSTALL_CERT_FORMAT_INVALID int32 = 202
-	ERR_INSTALL_CERT_KEY_MISMATCH   int32 = 203
+	ERR_INSTALL_KEY_MISSING         int32 = 200 // same as ERR_KEY_MISSING
+	ERR_INSTALL_CERT_MISSING        int32 = 201 // same as ERR_CERT_MISSING
+	ERR_INSTALL_CERT_FORMAT_INVALID int32 = 202 // same as ERR_CERT_FORMAT_INVALID
+	ERR_INSTALL_CERT_KEY_MISMATCH   int32 = 203 // same as ERR_CERT_KEY_MISMATCH
 	ERR_INSTALL_KEY_FORMAT_INVALID  int32 = 204
 )
 
 // TLS certificate management interface
 type ServerSSLCert interface {
 	idl.Object
+
+	// Get all supported key variants.
+	//
+	//	@return Vector of KeyInfo structures representing all supported key variants
+	GetSupportedKeyInfos(ctx context.Context) ([]KeyInfo, error)
 
 	// Generate an unsigned key pair.
 	//
@@ -55,7 +72,7 @@ type ServerSSLCert interface {
 	//	@return SUCCESS or one of the error code constants
 	GenerateSelfSignedKeyPair(ctx context.Context, reqInfo ReqInfo, days int32) (int32, error)
 
-	// Remove a pending certificate signing request or certificate.
+	// Remove pending key and certificate signing request or certificate.
 	DeletePending(ctx context.Context) error
 
 	// Retrieve certificate manager information.
@@ -63,12 +80,72 @@ type ServerSSLCert interface {
 	//	@param info  Result: Certificate manager information
 	GetInfo(ctx context.Context) (info Info, err error)
 
+	// Get the active cert chain in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@return Cert chain in PEM format.
+	GetActiveCertChainPEM(ctx context.Context) (string, error)
+
+	// Get the active private key in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@param keyPassword  Password to encrypt the returned key (currently not used)
+	//
+	//	@return The private key in PEM format.
+	GetActiveKeyPEM(ctx context.Context, keyPassword string) (string, error)
+
+	// Get the pending cert signing request (CSR) in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@return Cert signing request in PEM format.
+	GetPendingRequestPEM(ctx context.Context) (string, error)
+
+	// Get the pending cert chain in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@return Cert chain in PEM format.
+	GetPendingCertChainPEM(ctx context.Context) (string, error)
+
+	// Get the pending private key in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@param keyPassword  Password to encrypt the returned key (currently not used)
+	//
+	//	@return The private key in PEM format.
+	GetPendingKeyPEM(ctx context.Context, keyPassword string) (string, error)
+
+	// Set the pending cert chain in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@param certChain  Cert chain in PEM format.
+	//
+	//	@return SUCCESS or one of the error code constants
+	SetPendingCertChainPEM(ctx context.Context, certChain string) (int32, error)
+
+	// Set the pending private key and cert chain in PEM format.
+	//
+	// Currently not available via JSON-RPC.
+	//
+	//	@param key          Private key in PEM format.
+	//	@param certChain    Cert chain in PEM format.
+	//	@param keyPassword  Password to decrypt the private key (currently not used)
+	//
+	//	@return SUCCESS or one of the error code constants
+	SetPendingKeyAndCertChainPEM(ctx context.Context, key string, certChain string, keyPassword string) (int32, error)
+
 	// Activate a pending key pair.
 	//
 	//	@return SUCCESS or one of the error code constants
 	InstallPendingKeyPair(ctx context.Context) (int32, error)
 }
 
+// > same as ERR_KEY_FORMAT_INVALID
 // Certificate issuer or subject attributes
 type CommonAttributes struct {
 	Country            string // Country code
@@ -99,15 +176,21 @@ const (
 	EC_CURVE_NIST_P521                      // NIST curve P-521 (also known as secp521r1)
 )
 
+// Public key information
+type KeyInfo struct {
+	Type            KeyType       // Key type
+	EcCurve         EllipticCurve // Selected elliptic curve (only relevant if key type is ECDSA)
+	RsaKeyLength    int32         // Length of the RSA key in bits (only relevant if key type is RSA)
+	InSecureElement bool          // true if located in a Secure Element
+}
+
 // Certificate signing request information
 //
 // If names is empty then commonName from the subject is used as single entry.
 type ReqInfo struct {
-	Subject       CommonAttributes // Certificate subject attributes
-	Names         []string         // DNS names and/or IP addresses
-	KeyType       KeyType          // Key type
-	EllipticCurve EllipticCurve    // Selected elliptic curve (only relevant if key type is ECDSA)
-	RsaKeyLength  int32            // Length of the RSA key in bits (only relevant if key type is RSA)
+	Subject CommonAttributes // Certificate subject attributes
+	Names   []string         // DNS names and/or IP addresses
+	KeyInfo KeyInfo          // Key information
 }
 
 // Certificate information
@@ -118,9 +201,7 @@ type CertInfo struct {
 	InvalidBefore string           // Begin of validity period
 	InvalidAfter  string           // End of validity period
 	SerialNumber  string           // Serial number
-	KeyType       KeyType          // Key type
-	EllipticCurve EllipticCurve    // Selected elliptic curve (only relevant if key type is ECDSA)
-	RsaKeyLength  int32            // Length of the RSA key in bits (only relevant if key type is RSA)
+	KeyInfo       KeyInfo          // Key information
 }
 
 // Certificate manager information

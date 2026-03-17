@@ -29,7 +29,7 @@ func NewWebcamManager(rid string, caller idl.Caller) WebcamManager {
 func (w *_WebcamManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.WebcamManager",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 

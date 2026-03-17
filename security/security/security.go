@@ -126,9 +126,16 @@ type RestrictedServiceAgreement struct {
 	Banner  string // Restricted Service Agreement Banner
 }
 
-// Information about Trusted Platform Module
+// Information about an installed Secure Element
+//
+// The name TpmInfo is kept for backward compatibility.
 type TpmInfo struct {
 	Detected bool
+}
+
+// FIPS settings
+type FipsSettings struct {
+	Enabled bool // FIPS mode enabled state
 }
 
 // This Event is emitted after any of the password-settings
@@ -346,6 +353,16 @@ type Security interface {
 	//	           For this case, the password is too short (must be at least 8 characters).
 	SetDefaultAdminAccountPassword(ctx context.Context, password string, disableStrongPasswordReq bool) (int32, error)
 
+	// Set the password hash for the admin user. Naturally, this circumvents
+	// checks for password complexity requirements and the password history,
+	// since we only receive the salted hash of a password.
+	//
+	// This method is only allowed on link units when called by the primary unit.
+	//
+	//	@return  0 OK
+	//	@return  2 The password hash must not be empty.
+	SetAdminAccountPasswordHash(ctx context.Context, passwordHash string) (int32, error)
+
 	// Check whether secure boot is active.
 	//
 	// ATTENTION: There are some uncertainties involved here. It is possible that it reports secure boot
@@ -356,8 +373,29 @@ type Security interface {
 	//	@return true if secure boot is active
 	IsSecureBootActive(ctx context.Context) (bool, error)
 
-	// Return information about an installed Trusted Platform Module (TPM).
+	// Return information about an installed Secure Element.
 	//
-	//	@return TPM information
+	// The name getTpmInfo is kept for backward compatibility.
+	//
+	//	@return Secure Element information
 	GetTpmInfo(ctx context.Context) (TpmInfo, error)
+
+	// Get active FIPS settings.
+	//
+	//	@return Active FIPS settings
+	GetActiveFipsSettings(ctx context.Context) (FipsSettings, error)
+
+	// Get persistent FIPS settings.
+	//
+	// Those settings are applied on next boot and may differ from currently active settings.
+	//
+	//	@return Persistent FIPS settings
+	GetPersistentFipsSettings(ctx context.Context) (FipsSettings, error)
+
+	// Set persistent FIPS settings.
+	//
+	// Those settings are applied on next boot and may differ from currently active settings.
+	//
+	//	@param settings  new persistent FIPS settings
+	SetPersistentFipsSettings(ctx context.Context, settings FipsSettings) error
 }

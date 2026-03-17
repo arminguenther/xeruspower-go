@@ -371,3 +371,43 @@ func (f *_UpdateFailedEvent) Decode(value map[string]any, caller idl.Caller) err
 	}
 	return nil
 }
+
+func (i *Info) Encode() map[string]any {
+	j0 := make(map[string]any, 3)
+	j0["product"] = i.Product
+	j0["platform"] = i.Platform
+	j0["version"] = i.Version
+	return j0
+}
+
+func (i *Info) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("product", j0)
+	if err != nil {
+		return err
+	}
+	i.Product, err = encoding.Is[string](j0["product"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("platform", j0)
+	if err != nil {
+		return err
+	}
+	i.Platform, err = encoding.Is[string](j0["platform"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("version", j0)
+	if err != nil {
+		return err
+	}
+	i.Version, err = encoding.Is[string](j0["version"])
+	if err != nil {
+		return err
+	}
+	return nil
+}

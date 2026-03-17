@@ -11,8 +11,30 @@ import (
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
 )
 
+func (m *MqttSettings) Encode() map[string]any {
+	j0 := make(map[string]any, 1)
+	j0["topicPrefix"] = m.TopicPrefix
+	return j0
+}
+
+func (m *MqttSettings) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("topicPrefix", j0)
+	if err != nil {
+		return err
+	}
+	m.TopicPrefix, err = encoding.Is[string](j0["topicPrefix"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (e *EntrySettings) Encode() map[string]any {
-	j0 := make(map[string]any, 8)
+	j0 := make(map[string]any, 9)
 	j0["url"] = e.Url
 	j0["allowOffTimeRangeCerts"] = e.AllowOffTimeRangeCerts
 	j0["caCertChain"] = e.CaCertChain
@@ -21,6 +43,7 @@ func (e *EntrySettings) Encode() map[string]any {
 	j0["password"] = e.Password
 	j0["type"] = e.Type
 	j0["items"] = encoding.NonNilSlice(e.Items)
+	j0["mqttSettings"] = e.MqttSettings.Encode()
 	return j0
 }
 
@@ -102,6 +125,14 @@ func (e *EntrySettings) Decode(v any, caller idl.Caller) error {
 			return err
 		}
 		e.Items = append(e.Items, e1)
+	}
+	err = encoding.In("mqttSettings", j0)
+	if err != nil {
+		return err
+	}
+	err = e.MqttSettings.Decode(j0["mqttSettings"], caller)
+	if err != nil {
+		return err
 	}
 	return nil
 }

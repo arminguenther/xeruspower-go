@@ -108,16 +108,26 @@ const (
 	AUDITLOG                    // Audit log
 )
 
+// Data Push Mqtt Settings
+type MqttSettings struct {
+	// Prefix added to all topics published to,
+	// must end with level separator '/' if non-empty
+	TopicPrefix string
+}
+
 // Data Push Entry Settings
 type EntrySettings struct {
-	Url                    string    // Destination host
-	AllowOffTimeRangeCerts bool      // allow expired and not yet valid TLS certificates
-	CaCertChain            string    // TLS CA certificate chain
-	UseAuth                bool      // true to use HTTP basic authentication
-	Username               string    // Authentication user name
-	Password               string    // Password; write-only, empty to leave unchanged
-	Type                   EntryType // Type of data
-	Items                  []string  // Included items (e.g. list of sensors) depending on type
+	Url                    string // Destination host
+	AllowOffTimeRangeCerts bool   // allow expired and not yet valid TLS certificates
+	CaCertChain            string // TLS CA certificate chain
+	// true to use username/password authentication
+	// (basic authentication in case of HTTP)
+	UseAuth      bool
+	Username     string       // Authentication user name
+	Password     string       // Password; write-only, empty to leave unchanged
+	Type         EntryType    // Type of data
+	Items        []string     // Included items (e.g. list of sensors) depending on type
+	MqttSettings MqttSettings // MQTT specific settings
 }
 
 // Data Push Entry Status

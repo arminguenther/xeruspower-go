@@ -28,7 +28,7 @@ func NewStorageManager(rid string, caller idl.Caller) StorageManager {
 func (s *_StorageManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "webcam.StorageManager",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 
