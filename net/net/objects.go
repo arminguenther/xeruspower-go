@@ -6,9 +6,9 @@ package net
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewNet(rid string, caller idl.Caller) Net {
 func (n *_Net) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "net.Net",
-		Major: 7, Submajor: 0, Minor: 0,
+		Major: 7, Submajor: 0, Minor: 1,
 	}
 }
 

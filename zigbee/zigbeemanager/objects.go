@@ -6,10 +6,10 @@ package zigbeemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/zigbee/zigbeedevice"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/zigbee/zigbeedevice"
 )
 
 func init() {

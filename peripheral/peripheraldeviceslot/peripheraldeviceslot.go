@@ -11,32 +11,12 @@ package peripheraldeviceslot
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
-
-// peripheral device port types
-type PortType int
-
-const (
-	ONBOARD           PortType = iota // a built in, inaccessible port
-	DEV_PORT                          // a sensor port on the device
-	ONEWIRE_HUB_PORT                  // a port on a Hub
-	ONEWIRE_CHAIN_POS                 // a chain position
-	REMOTE_HUB_PORT                   // a RS485 remote hub port
-	WIRELESS_BRIDGE                   // a wireless bridge, e.g. usb dongle
-	WIRELESS_DEVICE                   // a wireless device
-	UNSPECIFIED                       // device type is unknown
-	GATEWAY_SENSOR                    // a gateway sensor
-)
-
-// peripheral device position element, list forms position
-type PosElement struct {
-	PortType PortType // type of the element
-	Port     string   // value of the element, a label
-}
 
 // peripheral device identification
 type DeviceID struct {
@@ -48,10 +28,10 @@ type DeviceID struct {
 
 // peripheral device position based address
 type Address struct {
-	Position   []PosElement    // Position within 1-wire topo
-	Type       sensor.TypeSpec // device's type spec
-	IsActuator bool            // true if device is an actuator
-	Channel    int32           // Channel number
+	Position   []poselement.PosElement // Position within 1-wire topo
+	Type       sensor.TypeSpec         // device's type spec
+	IsActuator bool                    // true if device is an actuator
+	Channel    int32                   // Channel number
 }
 
 // A peripheral device is the collection of
@@ -61,10 +41,10 @@ type Address struct {
 //   - device reference
 type Device interface {
 	idl.ValueObject
-	DeviceID() DeviceID     // device identification
-	Position() []PosElement // Position within 1-wire topo
-	PackageClass() string   // physical package identifier
-	Device() sensor.Sensor  // device reference
+	DeviceID() DeviceID                // device identification
+	Position() []poselement.PosElement // Position within 1-wire topo
+	PackageClass() string              // physical package identifier
+	Device() sensor.Sensor             // device reference
 	isDevice()
 }
 

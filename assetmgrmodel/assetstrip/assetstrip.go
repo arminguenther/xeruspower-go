@@ -11,10 +11,10 @@ package assetstrip
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/assetmgrmodel/assetstripconfig"
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/assetmgrmodel/assetstripconfig"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
 )
 
 // Error codes
@@ -103,8 +103,11 @@ type AssetStrip interface {
 	//	                             does not contain an extension
 	GetExtensionTags(ctx context.Context, rackUnitNumber int32) (ret int32, tags []TagInfo, err error)
 
+	// Deprecated:
 	// Trigger a powercycle of either the whole asset strip port or the
 	// LED part power supply on the asset strip
+	//
+	// Note: This method is not supported by any supported AMS hardware.
 	//
 	//	@param  hard                 true=whole port, false=LEDs only
 	TriggerPowercycle(ctx context.Context, hard bool) error

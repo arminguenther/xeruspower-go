@@ -4,10 +4,10 @@
 package dooraccesscontrol
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
 )
 
 func init() {
@@ -26,7 +26,7 @@ type _DoorAccessGrantedEvent struct {
 
 func (d *_DoorAccessGrantedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_2_3.DoorAccessGrantedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_4.DoorAccessGrantedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -50,7 +50,7 @@ type _DoorAccessDeniedEvent struct {
 
 func (d *_DoorAccessDeniedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_2_3.DoorAccessDeniedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_4.DoorAccessDeniedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -77,7 +77,7 @@ type _DoorAccessRuleAddedEvent struct {
 
 func (d *_DoorAccessRuleAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_2_3.DoorAccessRuleAddedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_4.DoorAccessRuleAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -101,7 +101,7 @@ type _DoorAccessRuleChangedEvent struct {
 
 func (d *_DoorAccessRuleChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_2_3.DoorAccessRuleChangedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_4.DoorAccessRuleChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -128,7 +128,7 @@ type _DoorAccessRuleDeletedEvent struct {
 
 func (d *_DoorAccessRuleDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "smartlock.DoorAccessControl_1_2_3.DoorAccessRuleDeletedEvent",
+		Name:  "smartlock.DoorAccessControl_1_2_4.DoorAccessRuleDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

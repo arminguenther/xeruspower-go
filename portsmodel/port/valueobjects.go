@@ -4,9 +4,9 @@
 package port
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _PropertiesChangedEvent struct {
 
 func (p *_PropertiesChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "portsmodel.Port_2_0_3.PropertiesChangedEvent",
+		Name:  "portsmodel.Port_2_0_4.PropertiesChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -45,7 +45,7 @@ type _DeviceChangedEvent struct {
 
 func (d *_DeviceChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "portsmodel.Port_2_0_3.DeviceChangedEvent",
+		Name:  "portsmodel.Port_2_0_4.DeviceChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

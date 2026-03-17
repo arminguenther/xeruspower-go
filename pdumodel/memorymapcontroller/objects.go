@@ -6,10 +6,10 @@ package memorymapcontroller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/controller"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewMemoryMapController(rid string, caller idl.Caller) MemoryMapController {
 func (m *_MemoryMapController) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.MemoryMapController",
-		Major: 5, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 1,
 	}
 }
 

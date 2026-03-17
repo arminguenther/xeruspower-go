@@ -4,14 +4,15 @@
 package peripheraldevicemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
 )
 
 func (s *DeviceManagerSettings) Encode() map[string]any {
@@ -349,9 +350,9 @@ func (u *_DeviceManagerUnknownDeviceAttachedEvent) Decode(value map[string]any, 
 	if err != nil {
 		return err
 	}
-	u.position = make([]peripheraldeviceslot.PosElement, 0, len(s0))
+	u.position = make([]poselement.PosElement, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 peripheraldeviceslot.PosElement
+		var e0 poselement.PosElement
 		err = e0.Decode(a0, caller)
 		if err != nil {
 			return err

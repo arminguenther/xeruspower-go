@@ -6,10 +6,10 @@ package switch_
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewSwitch(rid string, caller idl.Caller) Switch {
 func (s *_Switch) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Switch",
-		Major: 2, Submajor: 0, Minor: 8,
+		Major: 2, Submajor: 0, Minor: 9,
 	}
 }
 

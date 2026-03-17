@@ -4,9 +4,9 @@
 package statesensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
 )
 
 func init() {
@@ -21,7 +21,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.StateSensor_4_0_6.StateChangedEvent",
+		Name:  "sensors.StateSensor_4_0_7.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

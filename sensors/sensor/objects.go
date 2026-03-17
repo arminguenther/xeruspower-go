@@ -6,9 +6,9 @@ package sensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewSensor(rid string, caller idl.Caller) Sensor {
 func (s *_Sensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Sensor",
-		Major: 4, Submajor: 0, Minor: 6,
+		Major: 4, Submajor: 0, Minor: 7,
 	}
 }
 

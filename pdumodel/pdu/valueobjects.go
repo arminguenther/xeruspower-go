@@ -4,15 +4,17 @@
 package pdu
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
 )
 
 func init() {
 	valobj.Register(func() LoadSheddingModeChangedEvent { return &_LoadSheddingModeChangedEvent{} })
 	valobj.Register(func() OutletSequenceStateChangedEvent { return &_OutletSequenceStateChangedEvent{} })
+	valobj.Register(func() PortAppearedEvent { return &_PortAppearedEvent{} })
+	valobj.Register(func() PortDisappearedEvent { return &_PortDisappearedEvent{} })
 	valobj.Register(func() SettingsChangedEvent { return &_SettingsChangedEvent{} })
 }
 
@@ -24,7 +26,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_3_3.SettingsChangedEvent",
+		Name:  "pdumodel.Pdu_6_4_4.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -46,7 +48,7 @@ type _LoadSheddingModeChangedEvent struct {
 
 func (l *_LoadSheddingModeChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_3_3.LoadSheddingModeChangedEvent",
+		Name:  "pdumodel.Pdu_6_4_4.LoadSheddingModeChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -64,7 +66,7 @@ type _OutletSequenceStateChangedEvent struct {
 
 func (o *_OutletSequenceStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Pdu_6_3_3.OutletSequenceStateChangedEvent",
+		Name:  "pdumodel.Pdu_6_4_4.OutletSequenceStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -74,3 +76,39 @@ func (o *_OutletSequenceStateChangedEvent) NewState() OutletSequenceState {
 }
 
 func (o *_OutletSequenceStateChangedEvent) isOutletSequenceStateChangedEvent() {}
+
+type _PortAppearedEvent struct {
+	event.Event
+	port PortWithProperties
+}
+
+func (p *_PortAppearedEvent) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "pdumodel.Pdu_6_4_4.PortAppearedEvent",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (p *_PortAppearedEvent) Port() PortWithProperties {
+	return p.port
+}
+
+func (p *_PortAppearedEvent) isPortAppearedEvent() {}
+
+type _PortDisappearedEvent struct {
+	event.Event
+	portId string
+}
+
+func (p *_PortDisappearedEvent) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "pdumodel.Pdu_6_4_4.PortDisappearedEvent",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (p *_PortDisappearedEvent) PortId() string {
+	return p.portId
+}
+
+func (p *_PortDisappearedEvent) isPortDisappearedEvent() {}

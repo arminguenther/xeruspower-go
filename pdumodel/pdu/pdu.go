@@ -11,22 +11,23 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/alertedsensormanager"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensorlogger"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 const ERR_INVALID_PARAM int32 = 1 // Invalid parameters
@@ -147,6 +148,18 @@ type Pdu interface {
 	//	@return List of all Remote Hub Ports
 	GetRemoteHubPorts(ctx context.Context) ([]port.Port, error)
 
+	// Get all serial ports of this device using filters
+	//
+	// This returns an entry for all detected ports, no matter whether
+	// something is connected or not. The ports may be filtered by
+	// peripheral.PortType and/or supported device type portsmodel.Port.DeviceTypeId.
+	//
+	//	@param portType filter for port type, or use peripheral.Portype.UNSPECIFIED
+	//	@param devType  filter the ports that support a specific device, or use portsmodel.Port.DeviceTypeId.UNSPECIFIED
+	//
+	//	@return List of ports with id and properties.
+	GetPorts(ctx context.Context, portType poselement.PortType, devType port.DeviceTypeId) ([]PortWithProperties, error)
+
 	// Enter RS485 config mode and assign an address to a relay board.
 	// @warning This is dangerous! Do not use except for manufacturing.
 	//
@@ -178,6 +191,7 @@ type Pdu interface {
 	//	@param pstate  New power state for all outlets
 	//
 	//	@return 0 if OK
+	//	@return 5 if relay control is disabled in the PDU settings
 	SetAllOutletPowerStates(ctx context.Context, pstate outlet.PowerState) (int32, error)
 
 	// Switch multiple outlets.
@@ -188,11 +202,13 @@ type Pdu interface {
 	//
 	//	@return 0 if OK
 	//	@return 3 if any of the selected outlets is disabled
+	//	@return 5 if relay control is disabled in the PDU settings
 	SetMultipleOutletPowerStates(ctx context.Context, outletNumbers []int32, state outlet.PowerState, respectSequence bool) (int32, error)
 
 	// Power-cycle all outlets.
 	//
 	//	@return 0 if OK
+	//	@return 5 if relay control is disabled in the PDU settings
 	CycleAllOutletPowerStates(ctx context.Context) (int32, error)
 
 	// Power-cycle multiple outlets.
@@ -202,6 +218,7 @@ type Pdu interface {
 	//
 	//	@return 0 if OK
 	//	@return 3 if any of the selected outlets is disabled
+	//	@return 5 if relay control is disabled in the PDU settings
 	CycleMultipleOutletPowerStates(ctx context.Context, outletNumbers []int32, respectSequence bool) (int32, error)
 
 	// Retrieve PDU statistics.
@@ -294,6 +311,7 @@ type Settings struct {
 	// If true, outlets suspected to have caused an OCP to trip are
 	// automatically suspended (turned off)
 	SuspendTripCauseOutlets bool
+	InhibitRelayControl     bool // If true, all relay control methods are disabled
 }
 
 // Outlet sequencing status
@@ -305,6 +323,13 @@ type OutletSequenceState struct {
 	// Number of outlets remaining whose switch operation can be canceled
 	// (non-cancelable operations won't be affected by canceling the sequence)
 	CancelableOutletsRemaining int32
+}
+
+// Port with id and properties, used in PortAppearedEvent and getPorts()
+type PortWithProperties struct {
+	Id         string          // this id corresponds to portID in PortDisappearedEvent
+	Port       port.Port       // the appeared port
+	Properties port.Properties // actual properties of appeared port
 }
 
 // Event: PDU settings have been changed
@@ -327,4 +352,18 @@ type OutletSequenceStateChangedEvent interface {
 	event.Event
 	NewState() OutletSequenceState // New sequencing state
 	isOutletSequenceStateChangedEvent()
+}
+
+// Event: Serial port has appeared
+type PortAppearedEvent interface {
+	event.Event
+	Port() PortWithProperties // port with id and actual properties
+	isPortAppearedEvent()
+}
+
+// Event: Serial port has disappeared
+type PortDisappearedEvent interface {
+	event.Event
+	PortId() string // this id corresponds to port id used in PortAppearedEvent and getPorts()
+	isPortDisappearedEvent()
 }

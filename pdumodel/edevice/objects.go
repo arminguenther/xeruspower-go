@@ -6,11 +6,11 @@ package edevice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
 )
 
 func init() {

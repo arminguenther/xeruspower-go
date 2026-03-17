@@ -4,11 +4,11 @@
 package peripheraldevicepackage
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
 )
 
 func (p *PackageInfo) Encode() map[string]any {
@@ -62,9 +62,9 @@ func (p *PackageInfo) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	p.Position = make([]peripheraldeviceslot.PosElement, 0, len(s1))
+	p.Position = make([]poselement.PosElement, 0, len(s1))
 	for _, a1 := range s1 {
-		var e1 peripheraldeviceslot.PosElement
+		var e1 poselement.PosElement
 		err = e1.Decode(a1, caller)
 		if err != nil {
 			return err

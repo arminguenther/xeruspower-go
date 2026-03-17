@@ -6,10 +6,10 @@ package statesensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewStateSensor(rid string, caller idl.Caller) StateSensor {
 func (s *_StateSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.StateSensor",
-		Major: 4, Submajor: 0, Minor: 6,
+		Major: 4, Submajor: 0, Minor: 7,
 	}
 }
 

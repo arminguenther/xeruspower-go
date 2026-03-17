@@ -6,10 +6,10 @@ package port
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/portsmodel/portfuse"
 )
 
 func init() {
@@ -28,7 +28,7 @@ func NewPort(rid string, caller idl.Caller) Port {
 func (p *_Port) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "portsmodel.Port",
-		Major: 2, Submajor: 0, Minor: 3,
+		Major: 2, Submajor: 0, Minor: 4,
 	}
 }
 

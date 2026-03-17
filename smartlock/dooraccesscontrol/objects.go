@@ -6,9 +6,9 @@ package dooraccesscontrol
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewDoorAccessControl(rid string, caller idl.Caller) DoorAccessControl {
 func (d *_DoorAccessControl) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "smartlock.DoorAccessControl",
-		Major: 1, Submajor: 2, Minor: 3,
+		Major: 1, Submajor: 2, Minor: 4,
 	}
 }
 

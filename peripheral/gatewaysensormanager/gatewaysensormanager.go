@@ -11,11 +11,11 @@ package gatewaysensormanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/modbuscfg"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
 
 const (
@@ -130,9 +130,19 @@ type RemoteModbusRTUDevice interface {
 	RemoteModbusDevice
 	// rs485 interface used for modbus communication
 	//
-	// only SRC-080X ist supported, possible values are
-	//   - "sensorhub0-rs485" means port "REMOTE HUB 1"
-	//   - "sensorhub1-rs485" means port "REMOTE HUB 2"
+	// Supported values:
+	//
+	// (1) with SRC-080X, only the REMOTE HUB interfaces are support, possible values are:
+	//   - "REMOTE-HUB-1" or "sensorhub0-rs485" (deprecated) mean port "REMOTE HUB 1"
+	//   - "REMOTE-HUB-2" or "sensorhub1-rs485" (deprecated) mean port "REMOTE HUB 2"
+	//
+	// (2) with Raritan Modbus/RS-485 dongle "USB-MOD-DONGLE", possible values are:
+	//   - "USB<topo>": where <topo> contains the USB port number and possibly the topology of USB hubs
+	//   - "USB-2" means dongle connected to PDU USB port "USB A 2"
+	//   - "USB-1-2-3" means dongle is connected to a first USB hub at port 3,
+	//     and the first USB hub is connected to a second USB hub at port 2,
+	//     and the second USB is connected to PDU USB port "USB A 1"
+	//   - "<serial>": where <serial> is the serial number of USB donge, according to the label
 	BusInterface() string
 	BusSettings() modbuscfg.SerialSettings // interface settings
 	InterframeDelayDeciChars() int32       // (== 0) -> default, (< 0) -> no delay, (> 0) -> e.g. 35 means 3.5 chars
@@ -199,19 +209,24 @@ type RemoteSnmpV3Device interface {
 	isRemoteSnmpV3Device()
 }
 
-// Specification of value encoding
-//
-// Before an instance of Sensor can be created,
-// an instance of ValueEncoding must be present.
-// The Sensor locates the corresponding ValueEncoding
-// using the sensor class id `encodingId`.
+// interpretation of binary values
 type EncodingType int
 
 const (
-	BOOL    EncodingType = iota // boolean
-	INT                         // signed integer of a size specified in ValueEncoding
-	UINT                        // unsigned integer of a size specified in ValueEncoding
-	IEEE754                     // IEEE 754 floating point of a size specified in ValueEncoding
+	BOOL                          EncodingType = iota // boolean
+	INT                                               // signed integer of a size specified in ValueEncoding as two's complement
+	UINT                                              // unsigned integer of a size specified in ValueEncoding
+	IEEE754                                           // IEEE 754 floating point of a size specified in ValueEncoding
+	INT_ONES_COMPLEMENT                               // integer as one's complement
+	INT_SIGN_MAGNITUDE                                // signed integer with sign in MSB
+	INT_10K                                           // signed integer stored as 'modulo 10000' (int16[0] + 10000 * int16[1] + 10000^2 * int16[2] ...), the int16 parts are stores as two's complement
+	UINT_10K                                          // unsigned integer stored as 'modulo 10000' (uint16[0] + 10000 * uint16[1] + 10000^2 * uint16[2] ...)
+	INT_BCD                                           // signed integer as BCD, 10th complement
+	INT_SIGN_MAGNITUDE_BCD                            // signed integer as BCD, with sign in MSB
+	UINT_BCD                                          // unsigned integer as BCD
+	INT_PACKED_BCD                                    // signed integer as packed BCD, 10th complement
+	INT_SIGN_MAGNITUDE_PACKED_BCD                     // signed integer as packed BCD, with sign in MSB
+	UINT_PACKED_BCD                                   // unsigned integer as packed BCD
 )
 
 // Here you define how certain read values are to be interpreted
@@ -304,8 +319,8 @@ type InterpretationRuleRAW interface {
 // InterpretationRuleRangeRAW is applied after swap, but before masking (because it has it's own mask)
 type InterpretationRuleRangeRAW interface {
 	InterpretationRuleInvertable
-	Min() int64  // minimum accepted value
-	Max() int64  // maximum accepted value
+	Min() int64  // minimum accepted value (always compare as unsigned)
+	Max() int64  // maximum accepted value (always compare as unsigned)
 	Mask() int64 // (0 = not masked, the same as 0xFFFF...)
 	isInterpretationRuleRangeRAW()
 }
@@ -333,12 +348,19 @@ type InterpretationRuleCatchAll interface {
 	isInterpretationRuleCatchAll()
 }
 
+// Specification of value encoding
+//
+// Before an instance of Sensor can be created,
+// an instance of ValueEncoding must be present.
+// The Sensor locates the corresponding ValueEncoding
+// using the sensor class id `encodingId`.
 type ValueEncoding interface {
 	idl.ValueObject
 	EncodingId() string                        // encoding type id
 	Type() EncodingType                        // value coding type
 	InvertState() bool                         // invert when interpreting as state
-	InterpretationRules() []InterpretationRule // error/value inerpretation rules
+	InterpretationRules() []InterpretationRule // error/value interpretation rules
+	MinAccessInterval() int32                  // minimum time interval between two read accesses in seconds
 	isValueEncoding()
 }
 
@@ -362,6 +384,20 @@ type ModbusValueEncoding8 interface {
 	// a 16-bit modbus word in case 8-bit values are requested (ModbusValueEncoding8).
 	ByteSwap() bool
 	Mask() int64 // mask raw value before interpreting (0 = not masked, the same as 0xFFFF...)
+	// The least significant bit of the read word used in numerical interpretation.
+	// If `start` is greater than 0, then one or more least significant bits remain unused.
+	// 0 is the default value. For integer values a `start > 0` has mostly the same effect as
+	// using a `mask = ~(2^start-1)` and a `scalingFactor = 1/2^start`.
+	Start() int32
+	// Word width in bits used in numerical interpretation.
+	// If `width` is smaller than the read word width, then the most significant bits remain unused.
+	// 0 is the default value.
+	// Example: 24 bit signed integer:
+	//
+	//	`ModbusValueEncoding32` with `start = 0` and `width = 24` and 'type = INT`
+	//
+	// (Only for unsigned integer the use of `mask` would be sufficient.)
+	Width() int32
 	isModbusValueEncoding8()
 }
 
@@ -383,6 +419,11 @@ type ModbusValueEncoding32 interface {
 	// devices that do not comply with this, endianness must be set to LITTLE_ENDIAN.
 	Endianness() ModbusEndianness
 	isModbusValueEncoding32()
+}
+
+type ModbusValueEncoding48 interface {
+	ModbusValueEncoding32
+	isModbusValueEncoding48()
 }
 
 type ModbusValueEncoding64 interface {

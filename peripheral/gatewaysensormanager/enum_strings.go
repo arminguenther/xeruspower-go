@@ -58,11 +58,21 @@ func _() {
 	_ = x[INT-1]
 	_ = x[UINT-2]
 	_ = x[IEEE754-3]
+	_ = x[INT_ONES_COMPLEMENT-4]
+	_ = x[INT_SIGN_MAGNITUDE-5]
+	_ = x[INT_10K-6]
+	_ = x[UINT_10K-7]
+	_ = x[INT_BCD-8]
+	_ = x[INT_SIGN_MAGNITUDE_BCD-9]
+	_ = x[UINT_BCD-10]
+	_ = x[INT_PACKED_BCD-11]
+	_ = x[INT_SIGN_MAGNITUDE_PACKED_BCD-12]
+	_ = x[UINT_PACKED_BCD-13]
 }
 
-const _EncodingType_name = "BOOLINTUINTIEEE754"
+const _EncodingType_name = "BOOLINTUINTIEEE754INT_ONES_COMPLEMENTINT_SIGN_MAGNITUDEINT_10KUINT_10KINT_BCDINT_SIGN_MAGNITUDE_BCDUINT_BCDINT_PACKED_BCDINT_SIGN_MAGNITUDE_PACKED_BCDUINT_PACKED_BCD"
 
-var _EncodingType_index = [...]uint8{0, 4, 7, 11, 18}
+var _EncodingType_index = [...]uint8{0, 4, 7, 11, 18, 37, 55, 62, 70, 77, 99, 107, 121, 150, 165}
 
 func (i EncodingType) String() string {
 	if i < 0 || i >= EncodingType(len(_EncodingType_index)-1) {

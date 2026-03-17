@@ -12,13 +12,14 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/transferswitchbypassstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 const (
@@ -137,6 +138,7 @@ const (
 	REASON_OVERLOAD                               // Switched off due to overload alarm
 	REASON_OVERHEAT                               // Switched off due to overheat alarm
 	REASON_INTERNAL_FAILURE                       // Transferred because of hardware failure (e.g. switch fault)
+	REASON_BYPASS_ACTIVE                          // Switched off due to active bypass
 )
 
 // Transfer switch metadata
@@ -156,7 +158,7 @@ type Sensors struct {
 	OverloadAlarm               statesensor.StateSensor     // Overload alarm
 	PhaseSyncAlarm              statesensor.StateSensor     // Source phases out of sync
 	SwitchFault                 statesensor.StateSensor     // Switch fault (ok, open, short)
-	SelectedBypassSource        statesensor.StateSensor     // Selected source in bypass module
+	BypassState                 transferswitchbypassstatesensor.TransferSwitchBypassStateSensor
 }
 
 // Transfer switch settings

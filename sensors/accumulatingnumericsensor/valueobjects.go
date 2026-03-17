@@ -4,10 +4,10 @@
 package accumulatingnumericsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _ResetEvent struct {
 
 func (r *_ResetEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.AccumulatingNumericSensor_2_0_7.ResetEvent",
+		Name:  "sensors.AccumulatingNumericSensor_2_0_8.ResetEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

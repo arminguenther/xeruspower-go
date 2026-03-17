@@ -6,9 +6,9 @@ package usb
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewUsb(rid string, caller idl.Caller) Usb {
 func (u *_Usb) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "usb.Usb",
-		Major: 1, Submajor: 0, Minor: 3,
+		Major: 1, Submajor: 0, Minor: 4,
 	}
 }
 
@@ -57,6 +57,27 @@ func (u *_Usb) SetSettings(ctx context.Context, in0 Settings) (int32, error) {
 	val, err := u.Caller().Call(ctx, u.RID(), "setSettings", map[string]any{
 		"settings": in0.Encode(),
 	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (u *_Usb) GetHostPortCount(ctx context.Context) (int32, error) {
+	var ret int32
+	val, err := u.Caller().Call(ctx, u.RID(), "getHostPortCount", nil)
 	if err != nil {
 		return ret, err
 	}

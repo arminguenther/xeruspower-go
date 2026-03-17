@@ -4,11 +4,12 @@
 package peripheraldeviceslot
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
 
 func init() {
@@ -20,7 +21,7 @@ func init() {
 type _Device struct {
 	idl.ValueObject
 	deviceID     DeviceID
-	position     []PosElement
+	position     []poselement.PosElement
 	packageClass string
 	device       sensor.Sensor
 }
@@ -28,7 +29,7 @@ type _Device struct {
 func (d *_Device) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.Device",
-		Major: 7, Submajor: 0, Minor: 1,
+		Major: 7, Submajor: 0, Minor: 2,
 	}
 }
 
@@ -36,7 +37,7 @@ func (d *_Device) DeviceID() DeviceID {
 	return d.deviceID
 }
 
-func (d *_Device) Position() []PosElement {
+func (d *_Device) Position() []poselement.PosElement {
 	return d.position
 }
 
@@ -58,7 +59,7 @@ type _DeviceSlotDeviceChangedEvent struct {
 
 func (d *_DeviceSlotDeviceChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_5_0_1.DeviceChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_2.DeviceChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -81,7 +82,7 @@ type _DeviceSlotSettingsChangedEvent struct {
 
 func (s *_DeviceSlotSettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.DeviceSlot_5_0_1.SettingsChangedEvent",
+		Name:  "peripheral.DeviceSlot_5_0_2.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

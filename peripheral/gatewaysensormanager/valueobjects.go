@@ -4,12 +4,12 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/modbuscfg"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
 
 func init() {
@@ -31,6 +31,7 @@ func init() {
 	valobj.Register(func() ModbusSensor { return &_ModbusSensor{} })
 	valobj.Register(func() ModbusValueEncoding16 { return &_ModbusValueEncoding16{} })
 	valobj.Register(func() ModbusValueEncoding32 { return &_ModbusValueEncoding32{} })
+	valobj.Register(func() ModbusValueEncoding48 { return &_ModbusValueEncoding48{} })
 	valobj.Register(func() ModbusValueEncoding64 { return &_ModbusValueEncoding64{} })
 	valobj.Register(func() ModbusValueEncoding8 { return &_ModbusValueEncoding8{} })
 	valobj.Register(func() ModbusValueEncodingBit { return &_ModbusValueEncodingBit{} })
@@ -64,7 +65,7 @@ func NewSensorClass(classId string) SensorClass {
 
 func (s *_SensorClass) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.SensorClass",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.SensorClass",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -89,7 +90,7 @@ func NewNumericSensorClass(classId string, metadata numericsensor.MetaData, defa
 
 func (n *_NumericSensorClass) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.NumericSensorClass",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.NumericSensorClass",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -120,7 +121,7 @@ func NewStateSensorClass(classId string, type_ sensor.TypeSpec) StateSensorClass
 
 func (s *_StateSensorClass) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.StateSensorClass",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.StateSensorClass",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -142,7 +143,7 @@ func NewSwitchSensorClass(classId string, type_ sensor.TypeSpec) SwitchSensorCla
 
 func (s *_SwitchSensorClass) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.SwitchSensorClass",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.SwitchSensorClass",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -165,7 +166,7 @@ func NewRemoteDevice(deviceId string, disabled bool, name string, timeoutMs int3
 
 func (r *_RemoteDevice) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteDevice",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteDevice",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -205,7 +206,7 @@ func NewRemoteModbusDevice(deviceId string, disabled bool, name string, timeoutM
 
 func (r *_RemoteModbusDevice) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteModbusDevice",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteModbusDevice",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -234,7 +235,7 @@ func NewRemoteModbusRTUDevice(deviceId string, disabled bool, name string, timeo
 
 func (r *_RemoteModbusRTUDevice) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteModbusRTUDevice",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteModbusRTUDevice",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -266,7 +267,7 @@ func NewRemoteModbusTCPDevice(deviceId string, disabled bool, name string, timeo
 
 func (r *_RemoteModbusTCPDevice) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteModbusTCPDevice",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteModbusTCPDevice",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -293,7 +294,7 @@ func NewRemoteSnmpDevice(deviceId string, disabled bool, name string, timeoutMs 
 
 func (r *_RemoteSnmpDevice) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteSnmpDevice",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteSnmpDevice",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -316,7 +317,7 @@ func NewRemoteSnmpV1V2Device(deviceId string, disabled bool, name string, timeou
 
 func (r *_RemoteSnmpV1V2Device) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteSnmpV1V2Device",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteSnmpV1V2Device",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -344,7 +345,7 @@ func NewRemoteSnmpV3Device(deviceId string, disabled bool, name string, timeoutM
 
 func (r *_RemoteSnmpV3Device) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.RemoteSnmpV3Device",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.RemoteSnmpV3Device",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -388,7 +389,7 @@ func NewInterpretationRule(interpretation Interpretation, ignoreTimeout int32) I
 
 func (i *_InterpretationRule) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRule",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRule",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -415,7 +416,7 @@ func NewInterpretationRuleInvertable(interpretation Interpretation, ignoreTimeou
 
 func (i *_InterpretationRuleInvertable) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleInvertable",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleInvertable",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -438,7 +439,7 @@ func NewInterpretationRuleModbusException(interpretation Interpretation, ignoreT
 
 func (i *_InterpretationRuleModbusException) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleModbusException",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleModbusException",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -461,7 +462,7 @@ func NewInterpretationRuleModbusSystemError(interpretation Interpretation, ignor
 
 func (i *_InterpretationRuleModbusSystemError) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleModbusSystemError",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleModbusSystemError",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -484,7 +485,7 @@ func NewInterpretationRuleModbusSpecificError(interpretation Interpretation, ign
 
 func (i *_InterpretationRuleModbusSpecificError) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleModbusSpecificError",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleModbusSpecificError",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -508,7 +509,7 @@ func NewInterpretationRuleRAW(interpretation Interpretation, ignoreTimeout int32
 
 func (i *_InterpretationRuleRAW) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleRAW",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleRAW",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -537,7 +538,7 @@ func NewInterpretationRuleRangeRAW(interpretation Interpretation, ignoreTimeout 
 
 func (i *_InterpretationRuleRangeRAW) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleRangeRAW",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleRangeRAW",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -568,7 +569,7 @@ func NewInterpretationRuleEnum(interpretation Interpretation, ignoreTimeout int3
 
 func (i *_InterpretationRuleEnum) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleEnum",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleEnum",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -590,7 +591,7 @@ func NewInterpretationRuleIEEE754INF(interpretation Interpretation, ignoreTimeou
 
 func (i *_InterpretationRuleIEEE754INF) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleIEEE754INF",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleIEEE754INF",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -608,7 +609,7 @@ func NewInterpretationRuleIEEE754NAN(interpretation Interpretation, ignoreTimeou
 
 func (i *_InterpretationRuleIEEE754NAN) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleIEEE754NAN",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleIEEE754NAN",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -626,7 +627,7 @@ func NewInterpretationRuleCatchAll(interpretation Interpretation, ignoreTimeout 
 
 func (i *_InterpretationRuleCatchAll) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.InterpretationRuleCatchAll",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.InterpretationRuleCatchAll",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -639,16 +640,17 @@ type _ValueEncoding struct {
 	type_               EncodingType
 	invertState         bool
 	interpretationRules []InterpretationRule
+	minAccessInterval   int32
 }
 
 // NewValueEncoding returns a new ValueEncoding value object.
-func NewValueEncoding(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule) ValueEncoding {
-	return &_ValueEncoding{idl.NewValueObject(), encodingId, type_, invertState, interpretationRules}
+func NewValueEncoding(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32) ValueEncoding {
+	return &_ValueEncoding{idl.NewValueObject(), encodingId, type_, invertState, interpretationRules, minAccessInterval}
 }
 
 func (v *_ValueEncoding) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ValueEncoding",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ValueEncoding",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -669,6 +671,10 @@ func (v *_ValueEncoding) InterpretationRules() []InterpretationRule {
 	return v.interpretationRules
 }
 
+func (v *_ValueEncoding) MinAccessInterval() int32 {
+	return v.minAccessInterval
+}
+
 func (v *_ValueEncoding) isValueEncoding() {}
 
 type _NumericValueEncoding struct {
@@ -678,13 +684,13 @@ type _NumericValueEncoding struct {
 }
 
 // NewNumericValueEncoding returns a new NumericValueEncoding value object.
-func NewNumericValueEncoding(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, scalingFactor float32, offset float32) NumericValueEncoding {
-	return &_NumericValueEncoding{NewValueEncoding(encodingId, type_, invertState, interpretationRules), scalingFactor, offset}
+func NewNumericValueEncoding(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32) NumericValueEncoding {
+	return &_NumericValueEncoding{NewValueEncoding(encodingId, type_, invertState, interpretationRules, minAccessInterval), scalingFactor, offset}
 }
 
 func (n *_NumericValueEncoding) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.NumericValueEncoding",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.NumericValueEncoding",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -704,13 +710,13 @@ type _ModbusValueEncodingBit struct {
 }
 
 // NewModbusValueEncodingBit returns a new ModbusValueEncodingBit value object.
-func NewModbusValueEncodingBit(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule) ModbusValueEncodingBit {
-	return &_ModbusValueEncodingBit{NewValueEncoding(encodingId, type_, invertState, interpretationRules)}
+func NewModbusValueEncodingBit(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32) ModbusValueEncodingBit {
+	return &_ModbusValueEncodingBit{NewValueEncoding(encodingId, type_, invertState, interpretationRules, minAccessInterval)}
 }
 
 func (m *_ModbusValueEncodingBit) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusValueEncodingBit",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncodingBit",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -721,16 +727,18 @@ type _ModbusValueEncoding8 struct {
 	NumericValueEncoding
 	byteSwap bool
 	mask     int64
+	start    int32
+	width    int32
 }
 
 // NewModbusValueEncoding8 returns a new ModbusValueEncoding8 value object.
-func NewModbusValueEncoding8(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, scalingFactor float32, offset float32, byteSwap bool, mask int64) ModbusValueEncoding8 {
-	return &_ModbusValueEncoding8{NewNumericValueEncoding(encodingId, type_, invertState, interpretationRules, scalingFactor, offset), byteSwap, mask}
+func NewModbusValueEncoding8(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32, byteSwap bool, mask int64, start int32, width int32) ModbusValueEncoding8 {
+	return &_ModbusValueEncoding8{NewNumericValueEncoding(encodingId, type_, invertState, interpretationRules, minAccessInterval, scalingFactor, offset), byteSwap, mask, start, width}
 }
 
 func (m *_ModbusValueEncoding8) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusValueEncoding8",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncoding8",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -743,6 +751,14 @@ func (m *_ModbusValueEncoding8) Mask() int64 {
 	return m.mask
 }
 
+func (m *_ModbusValueEncoding8) Start() int32 {
+	return m.start
+}
+
+func (m *_ModbusValueEncoding8) Width() int32 {
+	return m.width
+}
+
 func (m *_ModbusValueEncoding8) isModbusValueEncoding8() {}
 
 type _ModbusValueEncoding16 struct {
@@ -750,13 +766,13 @@ type _ModbusValueEncoding16 struct {
 }
 
 // NewModbusValueEncoding16 returns a new ModbusValueEncoding16 value object.
-func NewModbusValueEncoding16(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, scalingFactor float32, offset float32, byteSwap bool, mask int64) ModbusValueEncoding16 {
-	return &_ModbusValueEncoding16{NewModbusValueEncoding8(encodingId, type_, invertState, interpretationRules, scalingFactor, offset, byteSwap, mask)}
+func NewModbusValueEncoding16(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32, byteSwap bool, mask int64, start int32, width int32) ModbusValueEncoding16 {
+	return &_ModbusValueEncoding16{NewModbusValueEncoding8(encodingId, type_, invertState, interpretationRules, minAccessInterval, scalingFactor, offset, byteSwap, mask, start, width)}
 }
 
 func (m *_ModbusValueEncoding16) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusValueEncoding16",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncoding16",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -769,13 +785,13 @@ type _ModbusValueEncoding32 struct {
 }
 
 // NewModbusValueEncoding32 returns a new ModbusValueEncoding32 value object.
-func NewModbusValueEncoding32(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, scalingFactor float32, offset float32, byteSwap bool, mask int64, endianness ModbusEndianness) ModbusValueEncoding32 {
-	return &_ModbusValueEncoding32{NewModbusValueEncoding16(encodingId, type_, invertState, interpretationRules, scalingFactor, offset, byteSwap, mask), endianness}
+func NewModbusValueEncoding32(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32, byteSwap bool, mask int64, start int32, width int32, endianness ModbusEndianness) ModbusValueEncoding32 {
+	return &_ModbusValueEncoding32{NewModbusValueEncoding16(encodingId, type_, invertState, interpretationRules, minAccessInterval, scalingFactor, offset, byteSwap, mask, start, width), endianness}
 }
 
 func (m *_ModbusValueEncoding32) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusValueEncoding32",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncoding32",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -786,18 +802,36 @@ func (m *_ModbusValueEncoding32) Endianness() ModbusEndianness {
 
 func (m *_ModbusValueEncoding32) isModbusValueEncoding32() {}
 
+type _ModbusValueEncoding48 struct {
+	ModbusValueEncoding32
+}
+
+// NewModbusValueEncoding48 returns a new ModbusValueEncoding48 value object.
+func NewModbusValueEncoding48(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32, byteSwap bool, mask int64, start int32, width int32, endianness ModbusEndianness) ModbusValueEncoding48 {
+	return &_ModbusValueEncoding48{NewModbusValueEncoding32(encodingId, type_, invertState, interpretationRules, minAccessInterval, scalingFactor, offset, byteSwap, mask, start, width, endianness)}
+}
+
+func (m *_ModbusValueEncoding48) TypeCode() idl.TypeCode {
+	return idl.TypeCode{
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncoding48",
+		Major: 1, Submajor: 0, Minor: 0,
+	}
+}
+
+func (m *_ModbusValueEncoding48) isModbusValueEncoding48() {}
+
 type _ModbusValueEncoding64 struct {
 	ModbusValueEncoding32
 }
 
 // NewModbusValueEncoding64 returns a new ModbusValueEncoding64 value object.
-func NewModbusValueEncoding64(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, scalingFactor float32, offset float32, byteSwap bool, mask int64, endianness ModbusEndianness) ModbusValueEncoding64 {
-	return &_ModbusValueEncoding64{NewModbusValueEncoding32(encodingId, type_, invertState, interpretationRules, scalingFactor, offset, byteSwap, mask, endianness)}
+func NewModbusValueEncoding64(encodingId string, type_ EncodingType, invertState bool, interpretationRules []InterpretationRule, minAccessInterval int32, scalingFactor float32, offset float32, byteSwap bool, mask int64, start int32, width int32, endianness ModbusEndianness) ModbusValueEncoding64 {
+	return &_ModbusValueEncoding64{NewModbusValueEncoding32(encodingId, type_, invertState, interpretationRules, minAccessInterval, scalingFactor, offset, byteSwap, mask, start, width, endianness)}
 }
 
 func (m *_ModbusValueEncoding64) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusValueEncoding64",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusValueEncoding64",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -821,7 +855,7 @@ func NewSensor(sensorId string, disabled bool, deviceId string, classId string, 
 
 func (s *_Sensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.Sensor",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.Sensor",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -865,7 +899,7 @@ func NewModbusSensor(sensorId string, disabled bool, deviceId string, classId st
 
 func (m *_ModbusSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ModbusSensor",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ModbusSensor",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -892,7 +926,7 @@ func NewSnmpSensor(sensorId string, disabled bool, deviceId string, classId stri
 
 func (s *_SnmpSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.SnmpSensor",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.SnmpSensor",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -910,7 +944,7 @@ type _ConfigurationChangedEvent struct {
 
 func (c *_ConfigurationChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.ConfigurationChangedEvent",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.ConfigurationChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -929,7 +963,7 @@ type _Feedback struct {
 
 func (f *_Feedback) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.Feedback",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.Feedback",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -952,7 +986,7 @@ type _DeviceFeedback struct {
 
 func (d *_DeviceFeedback) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.DeviceFeedback",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.DeviceFeedback",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -976,7 +1010,7 @@ type _SensorFeedback struct {
 
 func (s *_SensorFeedback) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.SensorFeedback",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.SensorFeedback",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -1002,7 +1036,7 @@ type _FeedbackChangedEvent struct {
 
 func (f *_FeedbackChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "peripheral.GatewaySensorManager_2_0_0.FeedbackChangedEvent",
+		Name:  "peripheral.GatewaySensorManager_2_0_1.FeedbackChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

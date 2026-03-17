@@ -6,20 +6,21 @@ package pdu
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/hmi/internalbeeper"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/transferswitch"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicemanager"
-	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/port"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/alertedsensormanager"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensorlogger"
+	"github.com/arminguenther/xeruspower-go/v40200/hmi/internalbeeper"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/transferswitch"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldevicemanager"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/alertedsensormanager"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensorlogger"
 )
 
 func init() {
@@ -38,7 +39,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 3, Minor: 3,
+		Major: 6, Submajor: 4, Minor: 4,
 	}
 }
 
@@ -501,6 +502,40 @@ func (p *_Pdu) GetRemoteHubPorts(ctx context.Context) ([]port.Port, error) {
 	for _, a0 := range s0 {
 		var e0 port.Port
 		e0, err = object.As[port.Port](a0, p.Caller())
+		if err != nil {
+			return ret, err
+		}
+		ret = append(ret, e0)
+	}
+	return ret, nil
+}
+
+func (p *_Pdu) GetPorts(ctx context.Context, in0 poselement.PortType, in1 port.DeviceTypeId) ([]PortWithProperties, error) {
+	var ret []PortWithProperties
+	val, err := p.Caller().Call(ctx, p.RID(), "getPorts", map[string]any{
+		"portType": in0,
+		"devType":  in1,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	var s0 []any
+	s0, err = encoding.Is[[]any](res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	ret = make([]PortWithProperties, 0, len(s0))
+	for _, a0 := range s0 {
+		var e0 PortWithProperties
+		err = e0.Decode(a0, p.Caller())
 		if err != nil {
 			return ret, err
 		}

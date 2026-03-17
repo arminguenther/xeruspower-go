@@ -12,15 +12,15 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
 )
 
 // Peripheral device package information
 type PackageInfo struct {
-	State    PackageInfoState                  // The peripheral device package operational state
-	Position []peripheraldeviceslot.PosElement // Position within 1-wire topo
+	State    PackageInfoState        // The peripheral device package operational state
+	Position []poselement.PosElement // Position within 1-wire topo
 	HwInfo   struct /*HardwareInfo*/ {
 		Serial              string // serial number
 		PackageClass        string // serial number prefix for current packages

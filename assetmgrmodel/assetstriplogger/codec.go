@@ -4,9 +4,9 @@
 package assetstriplogger
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/assetmgrmodel/assetstrip"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/assetmgrmodel/assetstrip"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
 )
 
 func (i *Info) Encode() map[string]any {

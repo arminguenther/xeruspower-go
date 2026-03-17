@@ -11,7 +11,7 @@ package nameservice
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
 )
 
 // RPC Object Name Service

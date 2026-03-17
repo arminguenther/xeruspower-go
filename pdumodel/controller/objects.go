@@ -6,9 +6,9 @@ package controller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewController(rid string, caller idl.Caller) Controller {
 func (c *_Controller) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Controller",
-		Major: 5, Submajor: 0, Minor: 0,
+		Major: 5, Submajor: 0, Minor: 1,
 	}
 }
 

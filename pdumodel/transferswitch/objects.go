@@ -6,12 +6,12 @@ package transferswitch
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
 )
 
 func init() {
@@ -30,7 +30,7 @@ func NewTransferSwitch(rid string, caller idl.Caller) TransferSwitch {
 func (t *_TransferSwitch) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.TransferSwitch",
-		Major: 5, Submajor: 0, Minor: 3,
+		Major: 6, Submajor: 0, Minor: 0,
 	}
 }
 

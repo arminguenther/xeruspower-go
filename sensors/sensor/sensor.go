@@ -11,8 +11,8 @@ package sensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
 )
 
 const ERR_NOT_SUPPORTED int32 = 1 // The operation is not supported
@@ -78,6 +78,8 @@ const (
 	PARTICLE_DENSITY          int32 = 49
 	DEW_POINT                 int32 = 50
 	ELECTRICAL_IMPEDANCE      int32 = 51
+	TS_BYPASS_STATE           int32 = 52
+	BATTERY_LEVEL             int32 = 53
 )
 
 // Sensor unit

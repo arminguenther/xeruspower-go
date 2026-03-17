@@ -4,9 +4,9 @@
 package powerqualitysensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 func init() {
@@ -25,6 +25,6 @@ func NewPowerQualitySensor(rid string, caller idl.Caller) PowerQualitySensor {
 func (p *_PowerQualitySensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.PowerQualitySensor",
-		Major: 2, Submajor: 0, Minor: 6,
+		Major: 2, Submajor: 0, Minor: 7,
 	}
 }

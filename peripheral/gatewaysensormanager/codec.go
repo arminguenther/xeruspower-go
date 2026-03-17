@@ -4,11 +4,11 @@
 package gatewaysensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/modbuscfg"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/modbuscfg"
 )
 
 func (s *_SensorClass) Encode() map[string]any {
@@ -712,6 +712,7 @@ func (v *_ValueEncoding) Encode() map[string]any {
 		s0 = append(s0, valobj.ToMap(e0))
 	}
 	ret["interpretationRules"] = s0
+	ret["minAccessInterval"] = v.minAccessInterval
 	return ret
 }
 
@@ -759,6 +760,14 @@ func (v *_ValueEncoding) Decode(value map[string]any, caller idl.Caller) error {
 			return err
 		}
 		v.interpretationRules = append(v.interpretationRules, e0)
+	}
+	err = encoding.In("minAccessInterval", value)
+	if err != nil {
+		return err
+	}
+	v.minAccessInterval, err = encoding.AsInt32(value["minAccessInterval"])
+	if err != nil {
+		return err
 	}
 	return nil
 }
@@ -813,6 +822,8 @@ func (m *_ModbusValueEncoding8) Encode() map[string]any {
 	ret := m.NumericValueEncoding.Encode()
 	ret["byteSwap"] = m.byteSwap
 	ret["mask"] = m.mask
+	ret["start"] = m.start
+	ret["width"] = m.width
 	return ret
 }
 
@@ -835,6 +846,22 @@ func (m *_ModbusValueEncoding8) Decode(value map[string]any, caller idl.Caller) 
 		return err
 	}
 	m.mask, err = encoding.AsInt64(value["mask"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("start", value)
+	if err != nil {
+		return err
+	}
+	m.start, err = encoding.AsInt32(value["start"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("width", value)
+	if err != nil {
+		return err
+	}
+	m.width, err = encoding.AsInt32(value["width"])
 	if err != nil {
 		return err
 	}
@@ -872,6 +899,20 @@ func (m *_ModbusValueEncoding32) Decode(value map[string]any, caller idl.Caller)
 		return err
 	}
 	m.endianness, err = encoding.AsEnum[ModbusEndianness](value["endianness"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *_ModbusValueEncoding48) Encode() map[string]any {
+	ret := m.ModbusValueEncoding32.Encode()
+	return ret
+}
+
+func (m *_ModbusValueEncoding48) Decode(value map[string]any, caller idl.Caller) error {
+	m.ModbusValueEncoding32 = valobj.For[ModbusValueEncoding32]()
+	err := m.ModbusValueEncoding32.Decode(value, caller)
 	if err != nil {
 		return err
 	}

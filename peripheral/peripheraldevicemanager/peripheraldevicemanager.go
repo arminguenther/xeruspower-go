@@ -11,16 +11,17 @@ package peripheraldevicemanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/gatewaysensormanager"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldevicepackage"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40100/peripheral/sensorhub"
-	"github.com/arminguenther/xeruspower-go/v40100/portsmodel/portfuse"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/gatewaysensormanager"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/sensorhub"
+	"github.com/arminguenther/xeruspower-go/v40200/portsmodel/portfuse"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
 
 const (
@@ -103,7 +104,7 @@ type DeviceManager interface {
 	//	@return A fuse instance, if available
 	GetPortFuse(ctx context.Context) (portfuse.PortFuse, error)
 
-	// Get gateway sensors configuration
+	// Get gateway sensors configuration manager
 	//
 	//	@return A GatewaySensorManager instance
 	GetGatewaySensorManager(ctx context.Context) (gatewaysensormanager.GatewaySensorManager, error)
@@ -181,8 +182,8 @@ type DeviceManagerDeviceRemovedEvent interface {
 // Event: An unknown device was attached
 type DeviceManagerUnknownDeviceAttachedEvent interface {
 	event.Event
-	RomCode() string                             // Device ROM code
-	Position() []peripheraldeviceslot.PosElement // Device position in the chain
+	RomCode() string                   // Device ROM code
+	Position() []poselement.PosElement // Device position in the chain
 	isDeviceManagerUnknownDeviceAttachedEvent()
 }
 

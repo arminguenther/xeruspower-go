@@ -4,17 +4,18 @@
 package pdu
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40200/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 func (m *MetaData) Encode() map[string]any {
@@ -302,7 +303,7 @@ func (s *Statistic) Decode(v any, caller idl.Caller) error {
 }
 
 func (s *Settings) Encode() map[string]any {
-	j0 := make(map[string]any, 12)
+	j0 := make(map[string]any, 13)
 	j0["name"] = s.Name
 	j0["startupState"] = s.StartupState
 	j0["cycleDelay"] = s.CycleDelay
@@ -315,6 +316,7 @@ func (s *Settings) Encode() map[string]any {
 	j0["demandUpdateInterval"] = s.DemandUpdateInterval
 	j0["demandAveragingIntervals"] = s.DemandAveragingIntervals
 	j0["suspendTripCauseOutlets"] = s.SuspendTripCauseOutlets
+	j0["inhibitRelayControl"] = s.InhibitRelayControl
 	return j0
 }
 
@@ -429,6 +431,14 @@ func (s *Settings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
+	err = encoding.In("inhibitRelayControl", j0)
+	if err != nil {
+		return err
+	}
+	s.InhibitRelayControl, err = encoding.Is[bool](j0["inhibitRelayControl"])
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -490,6 +500,46 @@ func (o *OutletSequenceState) Decode(v any, caller idl.Caller) error {
 	return nil
 }
 
+func (p *PortWithProperties) Encode() map[string]any {
+	j0 := make(map[string]any, 3)
+	j0["id"] = p.Id
+	j0["port"] = object.ToMap(p.Port)
+	j0["properties"] = p.Properties.Encode()
+	return j0
+}
+
+func (p *PortWithProperties) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("id", j0)
+	if err != nil {
+		return err
+	}
+	p.Id, err = encoding.Is[string](j0["id"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("port", j0)
+	if err != nil {
+		return err
+	}
+	p.Port, err = object.As[port.Port](j0["port"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("properties", j0)
+	if err != nil {
+		return err
+	}
+	err = p.Properties.Decode(j0["properties"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *_SettingsChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
 	s.UserEvent = valobj.For[userevent.UserEvent]()
 	err := s.UserEvent.Decode(value, caller)
@@ -543,6 +593,40 @@ func (o *_OutletSequenceStateChangedEvent) Decode(value map[string]any, caller i
 		return err
 	}
 	err = o.newState.Decode(value["newState"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *_PortAppearedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	p.Event = valobj.For[event.Event]()
+	err := p.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("port", value)
+	if err != nil {
+		return err
+	}
+	err = p.port.Decode(value["port"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *_PortDisappearedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	p.Event = valobj.For[event.Event]()
+	err := p.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("portId", value)
+	if err != nil {
+		return err
+	}
+	p.portId, err = encoding.Is[string](value["portId"])
 	if err != nil {
 		return err
 	}

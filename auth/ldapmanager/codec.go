@@ -4,12 +4,12 @@
 package ldapmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
 )
 
 func (s *ServerSettings) Encode() map[string]any {
-	j0 := make(map[string]any, 22)
+	j0 := make(map[string]any, 23)
 	j0["id"] = s.Id
 	j0["server"] = s.Server
 	j0["adoptSettingsId"] = s.AdoptSettingsId
@@ -29,6 +29,7 @@ func (s *ServerSettings) Encode() map[string]any {
 	j0["userEntryObjClass"] = s.UserEntryObjClass
 	j0["userSearchFilter"] = s.UserSearchFilter
 	j0["groupInfoInUserEntry"] = s.GroupInfoInUserEntry
+	j0["supportNestedGroups"] = s.SupportNestedGroups
 	j0["groupMemberAttr"] = s.GroupMemberAttr
 	j0["groupEntryObjClass"] = s.GroupEntryObjClass
 	j0["groupSearchFilter"] = s.GroupSearchFilter
@@ -189,6 +190,14 @@ func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	s.GroupInfoInUserEntry, err = encoding.Is[bool](j0["groupInfoInUserEntry"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("supportNestedGroups", j0)
+	if err != nil {
+		return err
+	}
+	s.SupportNestedGroups, err = encoding.Is[bool](j0["supportNestedGroups"])
 	if err != nil {
 		return err
 	}

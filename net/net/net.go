@@ -11,8 +11,8 @@ package net
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
 )
 
 // IPv4/IPv6 address and prefix len
@@ -443,6 +443,7 @@ const (
 const (
 	ERR_PF_INVALID_PRIMARY_UNIT_DOWNSTREAM_INTERFACE  int32 = 300
 	ERR_PF_NO_WORKING_PRIMARY_UNIT_UPSTREAM_INTERFACE int32 = 301
+	ERR_PF_NOT_SUPPORTED                              int32 = 302
 )
 
 // interface common parameter errors
@@ -477,7 +478,11 @@ const (
 	ERR_WLAN_IF_INVALID_BSSID int32 = 601
 	ERR_WLAN_IF_INVALID_PSK   int32 = 602
 	ERR_WLAN_IF_INVALID_MTU   int32 = 603
+	ERR_WLAN_IF_NOT_SUPPORTED int32 = 604
 )
+
+// BRIDGE interface parameter errors
+const ERR_BRIDGE_IF_NOT_SUPPORTED int32 = 700
 
 // Network configuration interface
 type Net interface {

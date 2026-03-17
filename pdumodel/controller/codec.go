@@ -4,10 +4,10 @@
 package controller
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
 )
 
 func (c *CtrlStatistic) Encode() map[string]any {
@@ -69,7 +69,7 @@ func (c *CtrlStatistic) Decode(v any, caller idl.Caller) error {
 }
 
 func (m *MetaData) Encode() map[string]any {
-	j0 := make(map[string]any, 10)
+	j0 := make(map[string]any, 11)
 	j0["type"] = m.Type
 	j0["address"] = m.Address
 	j0["magic"] = m.Magic
@@ -80,6 +80,7 @@ func (m *MetaData) Encode() map[string]any {
 	j0["serial"] = m.Serial
 	j0["haveResetCnt"] = m.HaveResetCnt
 	j0["haveEmResetCnt"] = m.HaveEmResetCnt
+	j0["isOptional"] = m.IsOptional
 	return j0
 }
 
@@ -165,6 +166,14 @@ func (m *MetaData) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	m.HaveEmResetCnt, err = encoding.Is[bool](j0["haveEmResetCnt"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("isOptional", j0)
+	if err != nil {
+		return err
+	}
+	m.IsOptional, err = encoding.Is[bool](j0["isOptional"])
 	if err != nil {
 		return err
 	}

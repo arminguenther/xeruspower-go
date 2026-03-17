@@ -11,8 +11,8 @@ package controller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
 )
 
 // Sub controller statistics
@@ -89,6 +89,7 @@ type MetaData struct {
 	Serial           string // Serial number; empty if unavailable
 	HaveResetCnt     bool   // true if controller reset counter is available
 	HaveEmResetCnt   bool   // true if energy meter reset counter is available
+	IsOptional       bool   // true if this controller is optional (temporary absence may be expected)
 }
 
 // Event: Controller communication status has changed

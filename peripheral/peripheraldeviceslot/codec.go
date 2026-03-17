@@ -4,45 +4,15 @@
 package peripheraldeviceslot
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/peripheral/poselement"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
 )
-
-func (p *PosElement) Encode() map[string]any {
-	j0 := make(map[string]any, 2)
-	j0["portType"] = p.PortType
-	j0["port"] = p.Port
-	return j0
-}
-
-func (p *PosElement) Decode(v any, caller idl.Caller) error {
-	j0, err := encoding.Is[map[string]any](v)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("portType", j0)
-	if err != nil {
-		return err
-	}
-	p.PortType, err = encoding.AsEnum[PortType](j0["portType"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("port", j0)
-	if err != nil {
-		return err
-	}
-	p.Port, err = encoding.Is[string](j0["port"])
-	if err != nil {
-		return err
-	}
-	return nil
-}
 
 func (d *DeviceID) Encode() map[string]any {
 	j0 := make(map[string]any, 4)
@@ -120,9 +90,9 @@ func (a *Address) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	a.Position = make([]PosElement, 0, len(s1))
+	a.Position = make([]poselement.PosElement, 0, len(s1))
 	for _, a1 := range s1 {
-		var e1 PosElement
+		var e1 poselement.PosElement
 		err = e1.Decode(a1, caller)
 		if err != nil {
 			return err
@@ -176,9 +146,9 @@ func (d *_Device) Decode(value map[string]any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	d.position = make([]PosElement, 0, len(s0))
+	d.position = make([]poselement.PosElement, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 PosElement
+		var e0 poselement.PosElement
 		err = e0.Decode(a0, caller)
 		if err != nil {
 			return err

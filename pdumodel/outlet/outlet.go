@@ -12,17 +12,17 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/controller"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/overcurrentprotector"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/controller"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/overcurrentprotector"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 // Outlet statistics
@@ -32,11 +32,13 @@ type Statistic struct {
 }
 
 const (
-	ERR_OUTLET_NOT_SWITCHABLE int32 = 1 // Outlet is not switchable
-	ERR_LOAD_SHEDDING_ACTIVE  int32 = 2 // Load-shedding is enabled (deprecated)
-	ERR_OUTLET_DISABLED       int32 = 3 // Outlet is disabled
-	ERR_OUTLET_NOT_OFF        int32 = 4 // Outlet is on or in power-cylce; unstick not possible
-	ERR_INVALID_PARAM         int32 = 1 // Invalid parameters
+	ERR_OUTLET_NOT_SWITCHABLE  int32 = 1 // Outlet is not switchable
+	ERR_LOAD_SHEDDING_ACTIVE   int32 = 2 // Load-shedding is enabled (deprecated)
+	ERR_OUTLET_DISABLED        int32 = 3 // Outlet is disabled
+	ERR_OUTLET_NOT_OFF         int32 = 4 // Outlet is on or in power-cylce; unstick not possible
+	ERR_RELAY_CONTROL_DISABLED int32 = 5 // Relay control is disabled in PDU settings
+	ERR_INVALID_PARAM          int32 = 1 // Invalid parameters
+	ERR_OPERATION_UNSUPPORTED  int32 = 1 // Operation is not supported
 )
 
 // Outlet interface
@@ -65,6 +67,7 @@ type Outlet interface {
 	//	@return 0 if OK
 	//	@return 1 if the outlet is not switchable
 	//	@return 3 if the outlet is disabled
+	//	@return 5 if relay control is disabled in the PDU settings
 	SetPowerState(ctx context.Context, pstate PowerState) (int32, error)
 
 	// Power-cycle the outlet.
@@ -72,6 +75,7 @@ type Outlet interface {
 	//	@return 0 if OK
 	//	@return 1 if the outlet is not switchable
 	//	@return 3 if the outlet is disabled
+	//	@return 5 if relay control is disabled in the PDU settings
 	CyclePowerState(ctx context.Context) (int32, error)
 
 	// Retrieve the outlet settings.
@@ -108,6 +112,17 @@ type Outlet interface {
 	//	@return Waveform samples
 	GetInrushWaveform(ctx context.Context) (waveform.Waveform, error)
 
+	// Enable or disable service mode on this outlet.
+	//
+	// If service mode is enabled, the outlet LED blinks in a specific pattern to indicate the
+	// enabled service mode when looking at the PDU (e.g. for technicians working on that outlet).
+	// In addition to that, sensors belonging to the outlet won't cause alarm events while the
+	// service mode is active.
+	//
+	//	@return 0 if OK
+	//	@return 1 if service mode is not supported on this outlet
+	SetServiceModeEnabled(ctx context.Context, enabled bool) (int32, error)
+
 	// Trigger an attempt to un-stick sticking relay contacts
 	//
 	// Warning: Please contact Tech Support before using this.
@@ -126,14 +141,15 @@ type Outlet interface {
 
 // Outlet metadata
 type MetaData struct {
-	Label              string              // Outlet label
-	ReceptacleType     string              // Receptacle type
-	NamePlate          nameplate.Nameplate // Nameplate information
-	Rating             nameplate.Rating    // Numerical usage ratings
-	IsSwitchable       bool                // true if the outlet is switchable
-	IsLatching         bool                // true if the outlet is able to keep its state after power loss
-	MaxRelayCycleCnt   int32               // Maximum relay cycle count
-	HasWaveformSupport bool                // Whether waveform reading is supported on this outlet
+	Label                 string              // Outlet label
+	ReceptacleType        string              // Receptacle type
+	NamePlate             nameplate.Nameplate // Nameplate information
+	Rating                nameplate.Rating    // Numerical usage ratings
+	IsSwitchable          bool                // true if the outlet is switchable
+	IsLatching            bool                // true if the outlet is able to keep its state after power loss
+	MaxRelayCycleCnt      int32               // Maximum relay cycle count
+	HasWaveformSupport    bool                // Whether waveform reading is supported on this outlet
+	HasServiceModeSupport bool                // Whether service mode is supported on this outlet
 }
 
 // Outlet power state. Used both for switching and representing the current state
@@ -174,6 +190,7 @@ type State struct {
 	// Whether a valid waveform of last switch-on operation
 	// can be read using {@link getInrushWaveform()}.
 	HasInrushWaveform    bool
+	InServiceMode        bool      // Whether the outlet is currently placed into service mode
 	LedState             LedState  // LED state (deprecated and always sent as 'off')
 	LastPowerStateChange time.Time // Time of last power state change (UNIX timestamp, UTC)
 }
@@ -243,4 +260,11 @@ type SettingsChangedEvent interface {
 	OldSettings() Settings // Settings before change
 	NewSettings() Settings // Settings after change
 	isSettingsChangedEvent()
+}
+
+// Event: Service mode has been changed
+type ServiceModeChangedEvent interface {
+	userevent.UserEvent
+	Enabled() bool // Whether service mode is enabled after the change
+	isServiceModeChangedEvent()
 }

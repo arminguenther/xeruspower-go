@@ -4,14 +4,14 @@
 package outlet
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 func (o *Statistic) Encode() map[string]any {
@@ -46,7 +46,7 @@ func (o *Statistic) Decode(v any, caller idl.Caller) error {
 }
 
 func (m *MetaData) Encode() map[string]any {
-	j0 := make(map[string]any, 8)
+	j0 := make(map[string]any, 9)
 	j0["label"] = m.Label
 	j0["receptacleType"] = m.ReceptacleType
 	j0["namePlate"] = m.NamePlate.Encode()
@@ -55,6 +55,7 @@ func (m *MetaData) Encode() map[string]any {
 	j0["isLatching"] = m.IsLatching
 	j0["maxRelayCycleCnt"] = m.MaxRelayCycleCnt
 	j0["hasWaveformSupport"] = m.HasWaveformSupport
+	j0["hasServiceModeSupport"] = m.HasServiceModeSupport
 	return j0
 }
 
@@ -127,6 +128,14 @@ func (m *MetaData) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
+	err = encoding.In("hasServiceModeSupport", j0)
+	if err != nil {
+		return err
+	}
+	m.HasServiceModeSupport, err = encoding.Is[bool](j0["hasServiceModeSupport"])
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -171,7 +180,7 @@ func (l *LedState) Decode(v any, caller idl.Caller) error {
 }
 
 func (s *State) Encode() map[string]any {
-	j0 := make(map[string]any, 9)
+	j0 := make(map[string]any, 10)
 	j0["available"] = s.Available
 	j0["powerState"] = s.PowerState
 	j0["switchOnInProgress"] = s.SwitchOnInProgress
@@ -179,6 +188,7 @@ func (s *State) Encode() map[string]any {
 	j0["isLoadShed"] = s.IsLoadShed
 	j0["isSuspended"] = s.IsSuspended
 	j0["hasInrushWaveform"] = s.HasInrushWaveform
+	j0["inServiceMode"] = s.InServiceMode
 	j0["ledState"] = s.LedState.Encode()
 	j0["lastPowerStateChange"] = s.LastPowerStateChange.Unix()
 	return j0
@@ -242,6 +252,14 @@ func (s *State) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	s.HasInrushWaveform, err = encoding.Is[bool](j0["hasInrushWaveform"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("inServiceMode", j0)
+	if err != nil {
+		return err
+	}
+	s.InServiceMode, err = encoding.Is[bool](j0["inServiceMode"])
 	if err != nil {
 		return err
 	}
@@ -584,6 +602,23 @@ func (s *_SettingsChangedEvent) Decode(value map[string]any, caller idl.Caller) 
 		return err
 	}
 	err = s.newSettings.Decode(value["newSettings"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *_ServiceModeChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	s.UserEvent = valobj.For[userevent.UserEvent]()
+	err := s.UserEvent.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("enabled", value)
+	if err != nil {
+		return err
+	}
+	s.enabled, err = encoding.Is[bool](value["enabled"])
 	if err != nil {
 		return err
 	}

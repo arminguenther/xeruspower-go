@@ -4,10 +4,10 @@
 package overcurrentprotectortripsensor
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40100/idl"
-	"github.com/arminguenther/xeruspower-go/v40100/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 func init() {
@@ -22,7 +22,7 @@ type _TripStateChangedEvent struct {
 
 func (t *_TripStateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OverCurrentProtectorTripSensor_1_1_12.TripStateChangedEvent",
+		Name:  "pdumodel.OverCurrentProtectorTripSensor_1_1_13.TripStateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

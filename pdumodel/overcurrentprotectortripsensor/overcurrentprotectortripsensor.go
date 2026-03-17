@@ -12,9 +12,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/outlet"
-	"github.com/arminguenther/xeruspower-go/v40100/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40100/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
 )
 
 // Overcurrent protector trip sensor interface
@@ -28,7 +28,7 @@ type OverCurrentProtectorTripSensor interface {
 	//	        the OCP is not currently tripped or no outlet can be determined
 	//	        to have caused the trip, null is returned.
 	//
-	// This method is deprecated, use {@link getLastTripEventInformation} instead.
+	// This method is deprecated, use {@link getTripEventInformation} instead.
 	GetTripCause(ctx context.Context) (outlet.Outlet, error)
 
 	// Get information about the last trip event.
