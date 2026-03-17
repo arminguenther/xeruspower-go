@@ -108,21 +108,5 @@ func (a *_AccountChanged) Decode(value map[string]any, caller idl.Caller) error 
 	if err != nil {
 		return err
 	}
-	err = encoding.In("oldSettings", value)
-	if err != nil {
-		return err
-	}
-	err = a.oldSettings.Decode(value["oldSettings"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("newSettings", value)
-	if err != nil {
-		return err
-	}
-	err = a.newSettings.Decode(value["newSettings"], caller)
-	if err != nil {
-		return err
-	}
 	return nil
 }

@@ -22,7 +22,7 @@ type _MonitoredSensorsChangedEvent struct {
 
 func (m *_MonitoredSensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.AlertedSensorManager_1_0_3.MonitoredSensorsChangedEvent",
+		Name:  "sensors.AlertedSensorManager_1_0_4.MonitoredSensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -42,7 +42,7 @@ type _AlertedSensorsChangedEvent struct {
 
 func (a *_AlertedSensorsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.AlertedSensorManager_1_0_3.AlertedSensorsChangedEvent",
+		Name:  "sensors.AlertedSensorManager_1_0_4.AlertedSensorsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

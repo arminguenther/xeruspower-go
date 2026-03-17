@@ -50,7 +50,7 @@ type AssetStrip interface {
 
 	// Get info with all settings of a rack unit at once
 	//
-	//	@param  rackUnitNumber       rack unit to get the info for, range 0..rackUnitCount-1
+	//	@param  rackUnitNumber       rack unit index to get the info for, range 0..rackUnitCount-1
 	//	@param  info                 Result: info for this rack unit
 	//	@return NO_ERROR             on success
 	//	@return ERR_INVALID_PARAM    rack unit count exceeded
@@ -63,7 +63,7 @@ type AssetStrip interface {
 
 	// Get the asset tag for a rack unit
 	//
-	//	@param  rackUnitNumber       rack unit to read the asset tag for, range 0..rackUnitCount-1
+	//	@param  rackUnitNumber       rack unit index to read the asset tag for, range 0..rackUnitCount-1
 	//	@param  slotNumber           slot to read the asset tag for, 0 for the main strip, >0 for blades
 	//	@param  tagInfo              Result: asset tag information
 	//	@return NO_ERROR             on success
@@ -96,7 +96,7 @@ type AssetStrip interface {
 	// Gets all tags on a single extension for a certain rack unit.
 	// List will be empty if there are no tags connected
 	//
-	//	@param  rackUnitNumber       rack unit to get the extension tags for, range 0..rackUnitCount-1
+	//	@param  rackUnitNumber       rack unit index to get the extension tags for, range 0..rackUnitCount-1
 	//	@param  tags                 Result: list asset tag infos
 	//	@return NO_ERROR             on success
 	//	@return ERR_INVALID_PARAM    rack unit count exceeded or rack unit
@@ -112,7 +112,7 @@ type AssetStrip interface {
 	// Program custom tag IDs
 	//
 	// Asset tags of type AMT-P may be programmed by user (custom ID). This method
-	// takes a list of (rack unit, slot number, id) tuples that determine
+	// takes a list of (rack unit index, slot number, id) tuples that determine
 	// which connected tag should be programmed with which ID.
 	// TagInfo::rawId specifies the ID. An empty string erases the current
 	// custom ID which brings back the original 1-wire ID.
@@ -141,14 +141,6 @@ const (
 	FIRMWARE_UPDATE              // Firmware update in progress on main strip
 	UNSUPPORTED                  // Connected asset strip is unsupported
 	AVAILABLE                    // Asset strip is up and running normally
-)
-
-// Type of the connected asset strip
-type StripType int
-
-const (
-	SIMPLE    StripType = iota // single, monolitic strip
-	COMPOSITE                  // strip consisting of multiple cascaded strips
 )
 
 // Type of an asset tag connected to a rack unit
@@ -195,7 +187,7 @@ type StripInfo struct {
 
 // Information for a single tag
 type TagInfo struct {
-	RackUnitNumber int32  // The rack unit this tag is connected to, range 0..rackUnitCount-1
+	RackUnitNumber int32  // The rack unit index this tag is connected to, range 0..rackUnitCount-1
 	SlotNumber     int32  // Blade slot this tag is connected to, 0 is the main strip, >0 for blades
 	FamilyDesc     string // Tag family description, indicating different tag hardware
 	RawId          string // The asset tag ID (6 byte hexadecimal string 'AABBCCDDEEFF')
@@ -206,7 +198,7 @@ type TagInfo struct {
 //
 // In case no asset strip is connected, type defaults to single and size defaults to 1
 type RackUnitInfo struct {
-	RackUnitNumber              int32                             // rack unit for the settings, range 0..rackUnitCount-1
+	RackUnitNumber              int32                             // The rack unit index for the settings, range 0..rackUnitCount-1
 	RackUnitPosition            int32                             // resulting rack unit position (display number)
 	Type                        TagType                           // type of the asset tag (single, extension, none or unknown)
 	Size                        int32                             // blade extension size (4,8,16), 1 for single tags or 0 if nothing connected
@@ -238,7 +230,7 @@ type StateChangedEvent interface {
 // Event: A rack unit has changed
 type RackUnitChangedEvent interface {
 	userevent.UserEvent
-	RackUnitNumber() int32  // Affected rack unit position
+	RackUnitNumber() int32  // Affected rack unit index
 	RackUnit() RackUnitInfo // New rack unit information
 	isRackUnitChangedEvent()
 }

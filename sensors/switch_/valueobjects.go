@@ -20,7 +20,7 @@ type _Event struct {
 
 func (s *_Event) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Switch_2_0_7.SwitchEvent",
+		Name:  "sensors.Switch_2_0_8.SwitchEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -151,10 +151,11 @@ func (s *Status) Decode(v any, caller idl.Caller) error {
 }
 
 func (l *LinkPortStatus) Encode() map[string]any {
-	j0 := make(map[string]any, 3)
+	j0 := make(map[string]any, 4)
 	j0["isSupported"] = l.IsSupported
 	j0["isLinkDetected"] = l.IsLinkDetected
 	j0["isLinkingConfirmationNeeded"] = l.IsLinkingConfirmationNeeded
+	j0["connectedNeighborAddr"] = l.ConnectedNeighborAddr
 	return j0
 }
 
@@ -184,6 +185,14 @@ func (l *LinkPortStatus) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	l.IsLinkingConfirmationNeeded, err = encoding.Is[bool](j0["isLinkingConfirmationNeeded"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("connectedNeighborAddr", j0)
+	if err != nil {
+		return err
+	}
+	l.ConnectedNeighborAddr, err = encoding.Is[string](j0["connectedNeighborAddr"])
 	if err != nil {
 		return err
 	}

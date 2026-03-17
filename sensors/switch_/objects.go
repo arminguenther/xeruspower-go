@@ -28,7 +28,7 @@ func NewSwitch(rid string, caller idl.Caller) Switch {
 func (s *_Switch) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.Switch",
-		Major: 2, Submajor: 0, Minor: 7,
+		Major: 2, Submajor: 0, Minor: 8,
 	}
 }
 

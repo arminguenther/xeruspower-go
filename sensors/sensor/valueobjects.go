@@ -21,7 +21,7 @@ type _TypeSpecChangedEvent struct {
 
 func (t *_TypeSpecChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.Sensor_4_0_5.TypeSpecChangedEvent",
+		Name:  "sensors.Sensor_4_0_6.TypeSpecChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

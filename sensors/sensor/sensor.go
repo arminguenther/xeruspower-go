@@ -76,6 +76,8 @@ const (
 	LENGTH                    int32 = 47
 	UNBALANCE_VOLTAGE         int32 = 48
 	PARTICLE_DENSITY          int32 = 49
+	DEW_POINT                 int32 = 50
+	ELECTRICAL_IMPEDANCE      int32 = 51
 )
 
 // Sensor unit

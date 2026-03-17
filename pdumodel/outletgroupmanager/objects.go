@@ -29,7 +29,7 @@ func NewOutletGroupManager(rid string, caller idl.Caller) OutletGroupManager {
 func (o *_OutletGroupManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OutletGroupManager",
-		Major: 1, Submajor: 1, Minor: 7,
+		Major: 1, Submajor: 1, Minor: 8,
 	}
 }
 

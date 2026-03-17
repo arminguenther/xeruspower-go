@@ -27,7 +27,7 @@ func NewHardwareHealth(rid string, caller idl.Caller) HardwareHealth {
 func (h *_HardwareHealth) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "fitness.HardwareHealth",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 

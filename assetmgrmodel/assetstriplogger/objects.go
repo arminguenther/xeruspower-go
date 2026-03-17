@@ -27,7 +27,7 @@ func NewAssetStripLogger(rid string, caller idl.Caller) AssetStripLogger {
 func (a *_AssetStripLogger) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "assetmgrmodel.AssetStripLogger",
-		Major: 1, Submajor: 0, Minor: 6,
+		Major: 1, Submajor: 0, Minor: 7,
 	}
 }
 

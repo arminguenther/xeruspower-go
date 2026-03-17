@@ -22,7 +22,7 @@ type _ResetEvent struct {
 
 func (r *_ResetEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.AccumulatingNumericSensor_2_0_6.ResetEvent",
+		Name:  "sensors.AccumulatingNumericSensor_2_0_7.ResetEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

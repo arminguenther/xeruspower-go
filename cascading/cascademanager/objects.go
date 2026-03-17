@@ -27,7 +27,7 @@ func NewCascadeManager(rid string, caller idl.Caller) CascadeManager {
 func (c *_CascadeManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "cascading.CascadeManager",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 
@@ -125,6 +125,34 @@ func (c *_CascadeManager) AddLinkUnit(ctx context.Context, in0 int32, in1 string
 		"login":       in2,
 		"password":    in3,
 		"newPassword": in4,
+	})
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (c *_CascadeManager) AddLinkUnit2(ctx context.Context, in0 int32, in1 string, in2 string, in3 string, in4 string, in5 bool) (int32, error) {
+	var ret int32
+	val, err := c.Caller().Call(ctx, c.RID(), "addLinkUnit2", map[string]any{
+		"linkId":                   in0,
+		"host":                     in1,
+		"login":                    in2,
+		"password":                 in3,
+		"newPassword":              in4,
+		"disableStrongPasswordReq": in5,
 	})
 	if err != nil {
 		return ret, err

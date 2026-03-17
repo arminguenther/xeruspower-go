@@ -25,6 +25,6 @@ func NewPowerQualitySensor(rid string, caller idl.Caller) PowerQualitySensor {
 func (p *_PowerQualitySensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.PowerQualitySensor",
-		Major: 2, Submajor: 0, Minor: 5,
+		Major: 2, Submajor: 0, Minor: 6,
 	}
 }

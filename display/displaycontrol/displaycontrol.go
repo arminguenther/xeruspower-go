@@ -32,21 +32,18 @@ type DisplayControl interface {
 	//	        can not be configured for the device's display
 	GetAvailableDefaultViews(ctx context.Context) ([]DefaultViewItem, error)
 
-	// Get the currently active default view.
+	// Get the current settings
 	//
-	//	@return View ID of current default view.
-	//	        If the device doesn't allow configuration of
-	//	        the default view, an empty string is returned.
-	GetDefaultView(ctx context.Context) (string, error)
+	//	@return settings
+	GetSettings(ctx context.Context) (Settings, error)
 
-	// Set the active default view.
+	// Update the settings
 	//
-	//	@param id  View ID of new default view
+	//	@param settings Settings to be applied
 	//
 	//	@return 0 on success
-	//	@return 1 if id is not part of the key set returned by
-	//	          getAvailableDefaultViews
-	SetDefaultView(ctx context.Context, id string) (int32, error)
+	//	@return 1 on invalid value
+	SetSettings(ctx context.Context, settings Settings) (int32, error)
 
 	// Retrieve display's meta information.
 	//
@@ -77,9 +74,16 @@ type DefaultViewItem struct {
 	Description string // Textual description
 }
 
-// Event: The default view was changed
-type DefaultViewChangedEvent interface {
+type Settings struct {
+	// Default view ID (might be an empty string
+	// if the device doesn't allow default view configuration)
+	DefaultView      string
+	BacklightTimeout int32 // Backlight timeout in seconds, or 0 for no timeout
+}
+
+// Event: Settings were changed
+type SettingsChangedEvent interface {
 	userevent.UserEvent
-	NewView() DefaultViewItem // New default view
-	isDefaultViewChangedEvent()
+	NewSettings() Settings // New settings
+	isSettingsChangedEvent()
 }

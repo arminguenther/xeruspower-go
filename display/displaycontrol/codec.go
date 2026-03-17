@@ -108,17 +108,48 @@ func (d *DefaultViewItem) Decode(v any, caller idl.Caller) error {
 	return nil
 }
 
-func (d *_DefaultViewChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
-	d.UserEvent = valobj.For[userevent.UserEvent]()
-	err := d.UserEvent.Decode(value, caller)
+func (s *Settings) Encode() map[string]any {
+	j0 := make(map[string]any, 2)
+	j0["defaultView"] = s.DefaultView
+	j0["backlightTimeout"] = s.BacklightTimeout
+	return j0
+}
+
+func (s *Settings) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
 	if err != nil {
 		return err
 	}
-	err = encoding.In("newView", value)
+	err = encoding.In("defaultView", j0)
 	if err != nil {
 		return err
 	}
-	err = d.newView.Decode(value["newView"], caller)
+	s.DefaultView, err = encoding.Is[string](j0["defaultView"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("backlightTimeout", j0)
+	if err != nil {
+		return err
+	}
+	s.BacklightTimeout, err = encoding.AsInt32(j0["backlightTimeout"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *_SettingsChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	s.UserEvent = valobj.For[userevent.UserEvent]()
+	err := s.UserEvent.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newSettings", value)
+	if err != nil {
+		return err
+	}
+	err = s.newSettings.Decode(value["newSettings"], caller)
 	if err != nil {
 		return err
 	}

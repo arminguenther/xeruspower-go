@@ -21,7 +21,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.StateSensor_4_0_5.StateChangedEvent",
+		Name:  "sensors.StateSensor_4_0_6.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -59,12 +59,8 @@ type PasswordChanged interface {
 
 // This event is emitted if the settings of an account
 // as defined in usermgmt.UserInfo have changed
-// (Note: we may add an indication what in the structure
-// has changed or even split the event, if handling is difficult)
 type AccountChanged interface {
 	AccountEvent
-	OldSettings() user.Info
-	NewSettings() user.Info
 	isAccountChanged()
 }
 

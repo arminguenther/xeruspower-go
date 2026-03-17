@@ -21,7 +21,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.TransferSwitch_5_0_2.SettingsChangedEvent",
+		Name:  "pdumodel.TransferSwitch_5_0_3.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -10,23 +10,23 @@ import (
 )
 
 func init() {
-	valobj.Register(func() DefaultViewChangedEvent { return &_DefaultViewChangedEvent{} })
+	valobj.Register(func() SettingsChangedEvent { return &_SettingsChangedEvent{} })
 }
 
-type _DefaultViewChangedEvent struct {
+type _SettingsChangedEvent struct {
 	userevent.UserEvent
-	newView DefaultViewItem
+	newSettings Settings
 }
 
-func (d *_DefaultViewChangedEvent) TypeCode() idl.TypeCode {
+func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "display.DisplayControl_1_0_1.DefaultViewChangedEvent",
+		Name:  "display.DisplayControl_2_0_0.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
 
-func (d *_DefaultViewChangedEvent) NewView() DefaultViewItem {
-	return d.newView
+func (s *_SettingsChangedEvent) NewSettings() Settings {
+	return s.newSettings
 }
 
-func (d *_DefaultViewChangedEvent) isDefaultViewChangedEvent() {}
+func (s *_SettingsChangedEvent) isSettingsChangedEvent() {}

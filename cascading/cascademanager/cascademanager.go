@@ -76,10 +76,10 @@ type CascadeManager interface {
 	//	@param host         The link unit's host name or IP address
 	//	@param login        The administrator login for the link unit
 	//	@param password     The administrator password for the link unit
-	//	@param newPassword  The new administrator password for the unit.
+	//	@param newPassword  The new default administrator password for the unit.
 	//	                    This is needed for adding a link unit that still has default
 	//	                    settings and requires a password change. Otherwise it can be
-	//	                    left empty.
+	//	                    left empty. login must be the default admin.
 	//
 	//	@return NO_ERROR                       The operation was successful
 	//	@return ERR_INVALID_PARAM              One of the parameters had an invalid value
@@ -97,6 +97,30 @@ type CascadeManager interface {
 	//	@return ERR_LINK_UNIT_NOT_SUPPORTED    Link unit does not support cascading
 	//	@return ERR_FIRMWARE_VERSION_MISMATCH  The firmware version of the link unit does not match that of the primary unit
 	AddLinkUnit(ctx context.Context, linkId int32, host string, login string, password string, newPassword string) (int32, error)
+
+	// Put a new link unit under this primary unit's control.
+	//
+	// The login credentials must have administrator privileges on the link
+	// unit. They are only used to establish a trust relationship between
+	// primary and link unit and not stored.
+	//
+	// This method can also be used to re-authenticate a link unit that
+	// denies access. In that case the linkId and host parameter must
+	// exactly match the existing values.
+	//
+	//	@param linkId       The ID for the new link unit
+	//	@param host         The link unit's host name or IP address
+	//	@param login        The administrator login for the link unit
+	//	@param password     The administrator password for the link unit
+	//	@param newPassword  The new default administrator password for the unit.
+	//	                    This is needed for adding a link unit that still has default
+	//	                    settings and requires a password change. Otherwise it can be
+	//	                    left empty. login must be the default admin.
+	//	@param disableStrongPasswordReq  if true, this disables the strong password
+	//	                                 requirements on the link unit if newPassword is set
+	//
+	//	@return see addLinkUnit
+	AddLinkUnit2(ctx context.Context, linkId int32, host string, login string, password string, newPassword string, disableStrongPasswordReq bool) (int32, error)
 
 	// Release a link unit from this primary unit's control.
 	//
@@ -250,9 +274,10 @@ type Status struct {
 
 // Status of the Link Port
 type LinkPortStatus struct {
-	IsSupported                 bool // true, if Link Port is supported on this device
-	IsLinkDetected              bool // true, if a link on the Link Port was detected
-	IsLinkingConfirmationNeeded bool // true, if confirmation for linking via Link Port is needed
+	IsSupported                 bool   // true, if Link Port is supported on this device
+	IsLinkDetected              bool   // true, if a link on the Link Port was detected
+	IsLinkingConfirmationNeeded bool   // true, if confirmation for linking via Link Port is needed
+	ConnectedNeighborAddr       string // link-local IPv6 address of the currently connected neighbor, or empty
 }
 
 // Event: This unit's role in the cascade has changed

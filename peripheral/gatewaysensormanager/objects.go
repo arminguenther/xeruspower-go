@@ -28,7 +28,7 @@ func NewGatewaySensorManager(rid string, caller idl.Caller) GatewaySensorManager
 func (g *_GatewaySensorManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.GatewaySensorManager",
-		Major: 1, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 0,
 	}
 }
 

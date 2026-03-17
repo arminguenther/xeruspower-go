@@ -27,7 +27,7 @@ type _ReadingChangedEvent struct {
 
 func (r *_ReadingChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.ReadingChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.ReadingChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -46,7 +46,7 @@ type _StateChangedEvent struct {
 
 func (s *_StateChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.StateChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.StateChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -69,7 +69,7 @@ type _MetaDataChangedEvent struct {
 
 func (m *_MetaDataChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.MetaDataChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.MetaDataChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -92,7 +92,7 @@ type _DefaultThresholdsChangedEvent struct {
 
 func (d *_DefaultThresholdsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.DefaultThresholdsChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.DefaultThresholdsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -115,7 +115,7 @@ type _ThresholdsChangedEvent struct {
 
 func (t *_ThresholdsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.ThresholdsChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.ThresholdsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -137,7 +137,7 @@ type _MinMaxChangedEvent struct {
 
 func (m *_MinMaxChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.MinMaxChangedEvent",
+		Name:  "sensors.NumericSensor_4_0_7.MinMaxChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -156,7 +156,7 @@ type _MinMaxResetEvent struct {
 
 func (m *_MinMaxResetEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "sensors.NumericSensor_4_0_6.MinMaxResetEvent",
+		Name:  "sensors.NumericSensor_4_0_7.MinMaxResetEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

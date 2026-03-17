@@ -7,7 +7,6 @@ import (
 	"github.com/arminguenther/xeruspower-go/event/userevent"
 	"github.com/arminguenther/xeruspower-go/idl"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/usermgmt/user"
 )
 
 func init() {
@@ -96,23 +95,13 @@ func (p *_PasswordChanged) isPasswordChanged() {}
 
 type _AccountChanged struct {
 	AccountEvent
-	oldSettings user.Info
-	newSettings user.Info
 }
 
 func (a *_AccountChanged) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "usermgmt.AccountChanged",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 3, Submajor: 0, Minor: 0,
 	}
-}
-
-func (a *_AccountChanged) OldSettings() user.Info {
-	return a.oldSettings
-}
-
-func (a *_AccountChanged) NewSettings() user.Info {
-	return a.newSettings
 }
 
 func (a *_AccountChanged) isAccountChanged() {}

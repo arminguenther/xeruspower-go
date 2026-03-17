@@ -28,7 +28,7 @@ func NewNumericSensor(rid string, caller idl.Caller) NumericSensor {
 func (n *_NumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "sensors.NumericSensor",
-		Major: 4, Submajor: 0, Minor: 6,
+		Major: 4, Submajor: 0, Minor: 7,
 	}
 }
 

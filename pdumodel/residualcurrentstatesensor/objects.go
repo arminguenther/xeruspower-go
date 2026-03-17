@@ -28,7 +28,7 @@ func NewResidualCurrentStateSensor(rid string, caller idl.Caller) ResidualCurren
 func (r *_ResidualCurrentStateSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.ResidualCurrentStateSensor",
-		Major: 2, Submajor: 0, Minor: 5,
+		Major: 2, Submajor: 0, Minor: 6,
 	}
 }
 

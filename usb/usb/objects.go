@@ -27,7 +27,7 @@ func NewUsb(rid string, caller idl.Caller) Usb {
 func (u *_Usb) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "usb.Usb",
-		Major: 1, Submajor: 0, Minor: 2,
+		Major: 1, Submajor: 0, Minor: 3,
 	}
 }
 

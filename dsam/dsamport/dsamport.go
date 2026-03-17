@@ -58,7 +58,7 @@ type DsamPort interface {
 	SetState(ctx context.Context, state State) error
 }
 
-// Derial device interface type
+// Serial device interface type
 type DeviceInterfaceType int
 
 const (

@@ -28,7 +28,7 @@ func NewSensorHub(rid string, caller idl.Caller) SensorHub {
 func (s *_SensorHub) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.SensorHub",
-		Major: 2, Submajor: 0, Minor: 2,
+		Major: 2, Submajor: 0, Minor: 3,
 	}
 }
 

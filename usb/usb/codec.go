@@ -11,11 +11,13 @@ import (
 )
 
 func (u *Device) Encode() map[string]any {
-	j0 := make(map[string]any, 4)
+	j0 := make(map[string]any, 6)
 	j0["bus"] = u.Bus
 	j0["device"] = u.Device
 	j0["vendorId"] = u.VendorId
 	j0["productId"] = u.ProductId
+	j0["manufacturer"] = u.Manufacturer
+	j0["product"] = u.Product
 	return j0
 }
 
@@ -53,6 +55,22 @@ func (u *Device) Decode(v any, caller idl.Caller) error {
 		return err
 	}
 	u.ProductId, err = encoding.AsInt32(j0["productId"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("manufacturer", j0)
+	if err != nil {
+		return err
+	}
+	u.Manufacturer, err = encoding.Is[string](j0["manufacturer"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("product", j0)
+	if err != nil {
+		return err
+	}
+	u.Product, err = encoding.Is[string](j0["product"])
 	if err != nil {
 		return err
 	}

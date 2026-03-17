@@ -40,9 +40,9 @@ type EventLog interface {
 	// of the logging module in Log.idl.
 	//
 	//	@param idRef      First log id to fetch
-	//	@param count      Number of entries to fetch
+	//	@param count      Number of entries to fetch (applies after filtering)
 	//	@param direction  Range direction
-	//	@param categories Event categories to filter for. When empty then filtering is disabled.
+	//	@param categories Event categories to filter for. If empty, filtering is disabled.
 	//
 	//	@return log chunk
 	GetChunk(ctx context.Context, refId int32, count int32, direction log.RangeDirection, categories []string) (log.Chunk, error)

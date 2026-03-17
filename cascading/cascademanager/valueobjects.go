@@ -27,7 +27,7 @@ type _RoleChangedEvent struct {
 
 func (r *_RoleChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_1.RoleChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_2.RoleChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -55,7 +55,7 @@ type _LinkUnitAddedEvent struct {
 
 func (l *_LinkUnitAddedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_1.LinkUnitAddedEvent",
+		Name:  "cascading.CascadeManager_2_0_2.LinkUnitAddedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -83,7 +83,7 @@ type _LinkUnitReleasedEvent struct {
 
 func (l *_LinkUnitReleasedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_1.LinkUnitReleasedEvent",
+		Name:  "cascading.CascadeManager_2_0_2.LinkUnitReleasedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -113,7 +113,7 @@ type _LinkUnitStatusChangedEvent struct {
 
 func (l *_LinkUnitStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_1.LinkUnitStatusChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_2.LinkUnitStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -148,7 +148,7 @@ type _LinkPortStatusChangedEvent struct {
 
 func (l *_LinkPortStatusChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "cascading.CascadeManager_2_0_1.LinkPortStatusChangedEvent",
+		Name:  "cascading.CascadeManager_2_0_2.LinkPortStatusChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

@@ -27,7 +27,7 @@ func NewAssetStrip(rid string, caller idl.Caller) AssetStrip {
 func (a *_AssetStrip) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "assetmgrmodel.AssetStrip",
-		Major: 2, Submajor: 0, Minor: 5,
+		Major: 2, Submajor: 0, Minor: 6,
 	}
 }
 

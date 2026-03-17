@@ -17,10 +17,12 @@ import (
 
 // USB device information
 type Device struct {
-	Bus       int32 // Bus number
-	Device    int32 // Device address
-	VendorId  int32 // Vendor ID
-	ProductId int32 // Product ID
+	Bus          int32  // Bus number
+	Device       int32  // Device address
+	VendorId     int32  // Vendor ID
+	ProductId    int32  // Product ID
+	Manufacturer string // Manufacturer
+	Product      string // Product
 }
 
 // USB interface

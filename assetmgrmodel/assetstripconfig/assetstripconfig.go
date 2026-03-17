@@ -78,7 +78,7 @@ const (
 
 // AssetStripConfig rack unit numbering mode
 //
-// Indicates the way the rack unit numbers are defined.
+// Indicates the way the rack unit positions are defined.
 // Basically this determines what number are 'written/printed' at a specific rack unit
 // on the rack.
 //
