@@ -10,6 +10,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/internal/encoding"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/peripheral/gatewaysensormanager"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicepackage"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldeviceslot"
 	"github.com/arminguenther/xeruspower-go/peripheral/sensorhub"
@@ -32,7 +33,7 @@ func NewDeviceManager(rid string, caller idl.Caller) DeviceManager {
 func (d *_DeviceManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DeviceManager",
-		Major: 5, Submajor: 0, Minor: 2,
+		Major: 5, Submajor: 0, Minor: 3,
 	}
 }
 
@@ -367,6 +368,27 @@ func (d *_DeviceManager) GetPortFuse(ctx context.Context) (portfuse.PortFuse, er
 		return ret, err
 	}
 	ret, err = object.As[portfuse.PortFuse](res["_ret_"], d.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (d *_DeviceManager) GetGatewaySensorManager(ctx context.Context) (gatewaysensormanager.GatewaySensorManager, error) {
+	var ret gatewaysensormanager.GatewaySensorManager
+	val, err := d.Caller().Call(ctx, d.RID(), "getGatewaySensorManager", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = object.As[gatewaysensormanager.GatewaySensorManager](res["_ret_"], d.Caller())
 	if err != nil {
 		return ret, err
 	}

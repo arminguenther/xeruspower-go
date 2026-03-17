@@ -508,6 +508,31 @@ func (m *_MetaDataChangedEvent) Decode(value map[string]any, caller idl.Caller) 
 	return nil
 }
 
+func (d *_DefaultThresholdsChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	d.UserEvent = valobj.For[userevent.UserEvent]()
+	err := d.UserEvent.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldDefaultThresholds", value)
+	if err != nil {
+		return err
+	}
+	err = d.oldDefaultThresholds.Decode(value["oldDefaultThresholds"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newDefaultThresholds", value)
+	if err != nil {
+		return err
+	}
+	err = d.newDefaultThresholds.Decode(value["newDefaultThresholds"], caller)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (t *_ThresholdsChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
 	t.UserEvent = valobj.For[userevent.UserEvent]()
 	err := t.UserEvent.Decode(value, caller)

@@ -28,7 +28,7 @@ func NewOutletGroup(rid string, caller idl.Caller) OutletGroup {
 func (o *_OutletGroup) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OutletGroup",
-		Major: 1, Submajor: 1, Minor: 6,
+		Major: 1, Submajor: 1, Minor: 7,
 	}
 }
 

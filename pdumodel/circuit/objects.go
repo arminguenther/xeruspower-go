@@ -28,7 +28,7 @@ func NewCircuit(rid string, caller idl.Caller) Circuit {
 func (c *_Circuit) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Circuit",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 1,
 	}
 }
 

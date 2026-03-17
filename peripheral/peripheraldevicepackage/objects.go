@@ -28,7 +28,7 @@ func NewPackage(rid string, caller idl.Caller) Package {
 func (p *_Package) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.Package",
-		Major: 3, Submajor: 0, Minor: 0,
+		Major: 3, Submajor: 0, Minor: 1,
 	}
 }
 
@@ -65,7 +65,7 @@ func NewDoorHandleControllerPackage(rid string, caller idl.Caller) DoorHandleCon
 func (d *_DoorHandleControllerPackage) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DoorHandleControllerPackage",
-		Major: 3, Submajor: 0, Minor: 0,
+		Major: 3, Submajor: 0, Minor: 1,
 	}
 }
 

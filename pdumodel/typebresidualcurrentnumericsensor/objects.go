@@ -27,7 +27,7 @@ func NewTypeBResidualCurrentNumericSensor(rid string, caller idl.Caller) TypeBRe
 func (t *_TypeBResidualCurrentNumericSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.TypeBResidualCurrentNumericSensor",
-		Major: 1, Submajor: 0, Minor: 4,
+		Major: 1, Submajor: 0, Minor: 5,
 	}
 }
 

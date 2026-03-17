@@ -14,6 +14,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/event/userevent"
 	"github.com/arminguenther/xeruspower-go/idl"
 	"github.com/arminguenther/xeruspower-go/idl/event"
+	"github.com/arminguenther/xeruspower-go/peripheral/gatewaysensormanager"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicepackage"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldeviceslot"
 	"github.com/arminguenther/xeruspower-go/peripheral/sensorhub"
@@ -101,6 +102,11 @@ type DeviceManager interface {
 	//
 	//	@return A fuse instance, if available
 	GetPortFuse(ctx context.Context) (portfuse.PortFuse, error)
+
+	// Get gateway sensors configuration
+	//
+	//	@return A GatewaySensorManager instance
+	GetGatewaySensorManager(ctx context.Context) (gatewaysensormanager.GatewaySensorManager, error)
 }
 
 // Z Coordinate Mode identifier

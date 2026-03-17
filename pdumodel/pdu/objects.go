@@ -38,7 +38,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 1, Minor: 1,
+		Major: 6, Submajor: 1, Minor: 2,
 	}
 }
 

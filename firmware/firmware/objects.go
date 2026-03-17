@@ -27,7 +27,7 @@ func NewFirmware(rid string, caller idl.Caller) Firmware {
 func (f *_Firmware) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "firmware.Firmware",
-		Major: 2, Submajor: 0, Minor: 1,
+		Major: 2, Submajor: 0, Minor: 2,
 	}
 }
 
@@ -44,6 +44,27 @@ func (f *_Firmware) FactoryReset(ctx context.Context) error {
 func (f *_Firmware) HardFactoryReset(ctx context.Context) (int32, error) {
 	var ret int32
 	val, err := f.Caller().Call(ctx, f.RID(), "hardFactoryReset", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (f *_Firmware) ManufacturingReset(ctx context.Context) (int32, error) {
+	var ret int32
+	val, err := f.Caller().Call(ctx, f.RID(), "manufacturingReset", nil)
 	if err != nil {
 		return ret, err
 	}

@@ -21,7 +21,7 @@ type _SettingsChangedEvent struct {
 
 func (s *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.OverCurrentProtector_4_0_0.SettingsChangedEvent",
+		Name:  "pdumodel.OverCurrentProtector_4_0_1.SettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

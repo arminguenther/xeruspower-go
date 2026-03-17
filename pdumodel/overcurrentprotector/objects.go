@@ -30,7 +30,7 @@ func NewOverCurrentProtector(rid string, caller idl.Caller) OverCurrentProtector
 func (o *_OverCurrentProtector) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OverCurrentProtector",
-		Major: 4, Submajor: 0, Minor: 0,
+		Major: 4, Submajor: 0, Minor: 1,
 	}
 }
 

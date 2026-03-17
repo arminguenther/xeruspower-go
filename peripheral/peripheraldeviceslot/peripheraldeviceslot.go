@@ -29,6 +29,7 @@ const (
 	WIRELESS_BRIDGE                   // a wireless bridge, e.g. usb dongle
 	WIRELESS_DEVICE                   // a wireless device
 	UNSPECIFIED                       // device type is unknown
+	GATEWAY_SENSOR                    // a gateway sensor
 )
 
 // peripheral device position element, list forms position

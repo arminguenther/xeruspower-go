@@ -19,11 +19,12 @@ func _() {
 	_ = x[WIRELESS_BRIDGE-5]
 	_ = x[WIRELESS_DEVICE-6]
 	_ = x[UNSPECIFIED-7]
+	_ = x[GATEWAY_SENSOR-8]
 }
 
-const _PortType_name = "ONBOARDDEV_PORTONEWIRE_HUB_PORTONEWIRE_CHAIN_POSREMOTE_HUB_PORTWIRELESS_BRIDGEWIRELESS_DEVICEUNSPECIFIED"
+const _PortType_name = "ONBOARDDEV_PORTONEWIRE_HUB_PORTONEWIRE_CHAIN_POSREMOTE_HUB_PORTWIRELESS_BRIDGEWIRELESS_DEVICEUNSPECIFIEDGATEWAY_SENSOR"
 
-var _PortType_index = [...]uint8{0, 7, 15, 31, 48, 63, 78, 93, 104}
+var _PortType_index = [...]uint8{0, 7, 15, 31, 48, 63, 78, 93, 104, 118}
 
 func (i PortType) String() string {
 	if i < 0 || i >= PortType(len(_PortType_index)-1) {

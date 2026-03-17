@@ -199,6 +199,14 @@ type MetaDataChangedEvent interface {
 	isMetaDataChangedEvent()
 }
 
+// Event: Sensor default thresholds have changed
+type DefaultThresholdsChangedEvent interface {
+	userevent.UserEvent
+	OldDefaultThresholds() Thresholds // Default thresholds set before change
+	NewDefaultThresholds() Thresholds // Default thresholds set after change
+	isDefaultThresholdsChangedEvent()
+}
+
 // Event: Sensor thresholds have changed
 type ThresholdsChangedEvent interface {
 	userevent.UserEvent

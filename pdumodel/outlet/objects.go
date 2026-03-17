@@ -33,7 +33,7 @@ func NewOutlet(rid string, caller idl.Caller) Outlet {
 func (o *_Outlet) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Outlet",
-		Major: 3, Submajor: 0, Minor: 0,
+		Major: 3, Submajor: 0, Minor: 1,
 	}
 }
 

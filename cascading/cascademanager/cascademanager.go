@@ -181,6 +181,9 @@ type CascadeManager interface {
 
 	// Add a serial link unit (ScalePoint Base).
 	//
+	// As a special case, link ID 1 is used to pair the primary unit on the
+	// "internal" RS485 bus. It will not be added to the list of link units.
+	//
 	//	@param linkId       The ID for the new link unit
 	//	@param installKey   The install key from the Base unit's label
 	//

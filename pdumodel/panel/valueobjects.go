@@ -24,7 +24,7 @@ type _SettingsChangedEvent struct {
 
 func (p *_SettingsChangedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_0.PanelSettingsChangedEvent",
+		Name:  "pdumodel.Panel_2_0_1.PanelSettingsChangedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -48,7 +48,7 @@ type _CircuitCreatedEvent struct {
 
 func (c *_CircuitCreatedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_0.CircuitCreatedEvent",
+		Name:  "pdumodel.Panel_2_0_1.CircuitCreatedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }
@@ -75,7 +75,7 @@ type _CircuitDeletedEvent struct {
 
 func (c *_CircuitDeletedEvent) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
-		Name:  "pdumodel.Panel_2_0_0.CircuitDeletedEvent",
+		Name:  "pdumodel.Panel_2_0_1.CircuitDeletedEvent",
 		Major: 1, Submajor: 0, Minor: 0,
 	}
 }

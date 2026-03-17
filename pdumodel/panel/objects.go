@@ -29,7 +29,7 @@ func NewPanel(rid string, caller idl.Caller) Panel {
 func (p *_Panel) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Panel",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 1,
 	}
 }
 

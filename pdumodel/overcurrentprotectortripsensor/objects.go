@@ -30,7 +30,7 @@ func NewOverCurrentProtectorTripSensor(rid string, caller idl.Caller) OverCurren
 func (o *_OverCurrentProtectorTripSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.OverCurrentProtectorTripSensor",
-		Major: 1, Submajor: 1, Minor: 10,
+		Major: 1, Submajor: 1, Minor: 11,
 	}
 }
 

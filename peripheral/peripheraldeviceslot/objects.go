@@ -28,7 +28,7 @@ func NewDeviceSlot(rid string, caller idl.Caller) DeviceSlot {
 func (d *_DeviceSlot) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DeviceSlot",
-		Major: 4, Submajor: 0, Minor: 1,
+		Major: 4, Submajor: 0, Minor: 2,
 	}
 }
 

@@ -28,7 +28,7 @@ func NewVoltageMonitoringSensor(rid string, caller idl.Caller) VoltageMonitoring
 func (v *_VoltageMonitoringSensor) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.VoltageMonitoringSensor",
-		Major: 1, Submajor: 0, Minor: 0,
+		Major: 1, Submajor: 0, Minor: 1,
 	}
 }
 
