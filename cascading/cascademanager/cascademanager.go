@@ -144,6 +144,11 @@ type CascadeManager interface {
 	//	@return vector with Roles that are supported by this unit
 	GetSupportedRoles(ctx context.Context) ([]Role, error)
 
+	// Check which type of link units this unit supports.
+	//
+	//	@return vector with supported link unit types
+	GetSupportedLinkUnitTypes(ctx context.Context) ([]LinkUnitType, error)
+
 	// Can be called on a network cascade primary unit to add expansion
 	// units of the network cascade as link units.
 	//
@@ -166,13 +171,28 @@ type CascadeManager interface {
 	//	@return ERR_HOST_IN_USE                The link port neighbor was already added
 	//	@return ERR_LINK_UNIT_UNREACHABLE      Connection to the link unit failed
 	//	@return ERR_LINK_UNIT_ACCESS_DENIED    The credentials for the link unit were invalid
-	//	@return ERR_LINK_UNIT_REFUSED          The remote unit refused to become our link unit because it's a master itself
+	//	@return ERR_LINK_UNIT_REFUSED          The remote unit refused to become our link unit because it's a primary unit itself
 	//	@return ERR_UNIT_BUSY                  This unit is currently busy with handling another request
 	//	@return ERR_NOT_SUPPORTED              This device does not support PDU linking via link port
 	//	@return ERR_LINK_UNIT_COMM_FAILED      Communication with the link unit failed
 	//	@return ERR_LINK_UNIT_NOT_SUPPORTED    Link unit does not support cascading
-	//	@return ERR_FIRMWARE_VERSION_MISMATCH  The firmware version of the link unit does not match the master's
+	//	@return ERR_FIRMWARE_VERSION_MISMATCH  The firmware version of the link unit does not match that of the primary unit
 	AddLinkPortLinkUnit(ctx context.Context) (int32, error)
+
+	// Add a serial link unit (ScalePoint Base).
+	//
+	//	@param linkId       The ID for the new link unit
+	//	@param installKey   The install key from the Base unit's label
+	//
+	//	@return NO_ERROR                       The operation was successful
+	//	@return ERR_INVALID_PARAM              One of the parameters had an invalid value
+	//	@return ERR_UNSUPPORTED_ON_LINK_UNIT   This unit is currently a link unit and can't have link units of its own
+	//	@return ERR_LINK_ID_IN_USE             The specified link ID is already in use
+	//	@return ERR_LINK_UNIT_UNREACHABLE      Connection to the link unit failed
+	//	@return ERR_UNIT_BUSY                  This unit is currently busy with handling another request
+	//	@return ERR_NOT_SUPPORTED              This device does not support PDU linking
+	//	@return ERR_LINK_UNIT_COMM_FAILED      Communication with the link unit failed
+	AddSecureSerialLinkUnit(ctx context.Context, linkId int32, installKey string) (int32, error)
 }
 
 // Settings for primary unit
@@ -190,6 +210,13 @@ const (
 	LINK_UNIT                // Link unit under primary unit control
 )
 
+type LinkUnitType int
+
+const (
+	NETWORK       LinkUnitType = iota // High-level linking via JSON-RPC API
+	SECURE_SERIAL                     // Linking via encrypted serial bus (ScalePoint)
+)
+
 // Link Unit Communication Status
 type LinkUnitStatus int
 
@@ -200,11 +227,13 @@ const (
 	ACCESS_DENIED                           // The link unit denies access
 	FIRMWARE_UPDATE                         // This link unit is performing a firmware update
 	FIRMWARE_MISMATCH                       // This link unit's firmware version does not match that of the primary unit
+	PENDING                                 // The link unit becomes active after the next reboot
 )
 
 // Link Unit Status
 type LinkUnit struct {
-	Host      string         // Link unit host name or IP address
+	Type      LinkUnitType   // Link unit type
+	Host      string         // Link unit host name, IP address or bus address
 	Status    LinkUnitStatus // Communication status
 	FwVersion string         // Firmware version of the link unit
 }
@@ -235,16 +264,18 @@ type RoleChangedEvent interface {
 // Event: A new link unit has been added
 type LinkUnitAddedEvent interface {
 	userevent.UserEvent
-	LinkId() int32 // Link ID
-	Host() string  // Host name or IP address
+	LinkId() int32      // Link ID
+	Type() LinkUnitType // Link unit type
+	Host() string       // Host name, IP address or bus address
 	isLinkUnitAddedEvent()
 }
 
 // Event: A link unit has been released
 type LinkUnitReleasedEvent interface {
 	userevent.UserEvent
-	LinkId() int32 // Link ID
-	Host() string  // Host name or IP address
+	LinkId() int32      // Link ID
+	Type() LinkUnitType // Link unit type
+	Host() string       // Host name, IP address or bus address
 	isLinkUnitReleasedEvent()
 }
 
@@ -252,7 +283,8 @@ type LinkUnitReleasedEvent interface {
 type LinkUnitStatusChangedEvent interface {
 	event.Event
 	LinkId() int32             // Link ID
-	Host() string              // Host name or IP address
+	Type() LinkUnitType        // Link unit type
+	Host() string              // Host name, IP address or bus address
 	OldStatus() LinkUnitStatus // Previous communication status
 	NewStatus() LinkUnitStatus // New communication status
 	isLinkUnitStatusChangedEvent()

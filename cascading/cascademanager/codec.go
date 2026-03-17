@@ -43,7 +43,8 @@ func (p *PrimaryUnitSettings) Decode(v any, caller idl.Caller) error {
 }
 
 func (l *LinkUnit) Encode() map[string]any {
-	j0 := make(map[string]any, 3)
+	j0 := make(map[string]any, 4)
+	j0["type"] = l.Type
 	j0["host"] = l.Host
 	j0["status"] = l.Status
 	j0["fwVersion"] = l.FwVersion
@@ -52,6 +53,14 @@ func (l *LinkUnit) Encode() map[string]any {
 
 func (l *LinkUnit) Decode(v any, caller idl.Caller) error {
 	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("type", j0)
+	if err != nil {
+		return err
+	}
+	l.Type, err = encoding.AsEnum[LinkUnitType](j0["type"])
 	if err != nil {
 		return err
 	}
@@ -228,6 +237,14 @@ func (l *_LinkUnitAddedEvent) Decode(value map[string]any, caller idl.Caller) er
 	if err != nil {
 		return err
 	}
+	err = encoding.In("type", value)
+	if err != nil {
+		return err
+	}
+	l.type_, err = encoding.AsEnum[LinkUnitType](value["type"])
+	if err != nil {
+		return err
+	}
 	err = encoding.In("host", value)
 	if err != nil {
 		return err
@@ -253,6 +270,14 @@ func (l *_LinkUnitReleasedEvent) Decode(value map[string]any, caller idl.Caller)
 	if err != nil {
 		return err
 	}
+	err = encoding.In("type", value)
+	if err != nil {
+		return err
+	}
+	l.type_, err = encoding.AsEnum[LinkUnitType](value["type"])
+	if err != nil {
+		return err
+	}
 	err = encoding.In("host", value)
 	if err != nil {
 		return err
@@ -275,6 +300,14 @@ func (l *_LinkUnitStatusChangedEvent) Decode(value map[string]any, caller idl.Ca
 		return err
 	}
 	l.linkId, err = encoding.AsInt32(value["linkId"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("type", value)
+	if err != nil {
+		return err
+	}
+	l.type_, err = encoding.AsEnum[LinkUnitType](value["type"])
 	if err != nil {
 		return err
 	}

@@ -12,7 +12,6 @@ import (
 	"context"
 
 	"github.com/arminguenther/xeruspower-go/idl"
-	"github.com/arminguenther/xeruspower-go/radius/radiusserversettings"
 )
 
 const (
@@ -31,15 +30,15 @@ type RadiusManager interface {
 
 	// Get a list of RADIUS server settings
 	//
-	//	@return list of radius.ServerSettings
-	GetRadiusServers(ctx context.Context) ([]radiusserversettings.ServerSettings, error)
+	//	@return list of ServerSettings
+	GetRadiusServers(ctx context.Context) ([]ServerSettings, error)
 
 	// Sets a list of RADIUS servers.
 	// Any existing RADIUS Server configuration will be cleared / overwritten.
 	//
 	//	@return 0                            on success
 	//	@return ERR_INVALID_CFG           in case of invalid configuration
-	SetRadiusServers(ctx context.Context, serverList []radiusserversettings.ServerSettings) (int32, error)
+	SetRadiusServers(ctx context.Context, serverList []ServerSettings) (int32, error)
 
 	// Tests an RADIUS server configuration.
 	//
@@ -51,5 +50,27 @@ type RadiusManager interface {
 	//	@return ERR_AUTHENTICATION_FAILED         user could not be authenticated
 	//	@return ERR_NO_ROLES                      no roles are defined for the user
 	//	@return ERR_NO_KNOWN_ROLES                no known roles are defined for the user
-	TestRadiusServer(ctx context.Context, username string, password string, settings radiusserversettings.ServerSettings) (int32, error)
+	TestRadiusServer(ctx context.Context, username string, password string, settings ServerSettings) (int32, error)
+}
+
+// RADIUS auth type
+type AuthType int
+
+const (
+	PAP      AuthType = iota // PAP authentication
+	CHAP                     // CHAP authentication
+	MSCHAPv2                 // MSCHAPv2 authentication
+)
+
+// Server settings
+type ServerSettings struct {
+	Id                string   // This field is unused; empty on read, ignored on write
+	Server            string   // IP or name of the radius servers
+	SharedSecret      string   // Shared secret between the Xerus device and the RADIUS server
+	UdpAuthPort       int32    // UDP port for RADIUS Authenticating service
+	UdpAccountPort    int32    // UDP port for RADIUS Accounting service
+	Timeout           int32    // Timeout in seconds
+	Retries           int32    // Number of retries
+	AuthType          AuthType // Authentication type
+	DisableAccounting bool     // true to disable accounting, false to enable accounting
 }

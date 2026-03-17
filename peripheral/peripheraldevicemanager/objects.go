@@ -32,7 +32,7 @@ func NewDeviceManager(rid string, caller idl.Caller) DeviceManager {
 func (d *_DeviceManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "peripheral.DeviceManager",
-		Major: 5, Submajor: 0, Minor: 1,
+		Major: 5, Submajor: 0, Minor: 2,
 	}
 }
 

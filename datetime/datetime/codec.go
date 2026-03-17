@@ -178,3 +178,28 @@ func (c *_ConfigurationChangedEvent) Decode(value map[string]any, caller idl.Cal
 	}
 	return nil
 }
+
+func (c *_ClockChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	c.Event = valobj.For[event.Event]()
+	err := c.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldTime", value)
+	if err != nil {
+		return err
+	}
+	c.oldTime, err = encoding.AsTime(value["oldTime"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newTime", value)
+	if err != nil {
+		return err
+	}
+	c.newTime, err = encoding.AsTime(value["newTime"])
+	if err != nil {
+		return err
+	}
+	return nil
+}

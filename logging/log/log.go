@@ -7,33 +7,75 @@
 //
 // # Device Logging
 //
-// Log messages have an associated id. The ids start with 0 and increase by 1 with each log message[1].
-// The ids are generated at runtime and are not persistent over a restart of the log service, e.g. caused by
-// rebooting the device. Also clearing the log will result in starting again from 0. The correct way to
-// detect whether the ids have been reset is to first retrieve the LogInfo via getInfo() and remember the
-// creationTime[2]. When later retrieving log messages with getChunk() you must compare the logCreationTime
-// of the returned chunk with the creationTime of the log remembered earlier. If this differs then the id
-// numbering has been reset.
+// Log:
+//   - organized as a ring buffer
+//   - divided into multiple log chunks
+//   - size is limited (based on amount of storage and not the message count)
+//   - if size limit is reached then the oldest log messages will be removed (in log chunk granularity)
+//   - real size may vary over time because of optional compression and chunk-wise removal of old messages
 //
-// The log has an internal size limit. If this limit is reached then the oldest log messages will be removed.
+// Log chunk:
+//   - contains log messages
+//   - usually represented by a dedicated file in the backend
+//   - size is limited (based on amount of storage and not the message count)
+//   - real size may vary slightly
 //
-// When retrieving log messages with getChunk() it can happen that a smaller number of messages is returned
-// than requested. In this case just call getChunk() again with the next expected id. When going forward this
-// is idFirst + allEntryCnt with the values from the current chunk. In case you get a chunk where allEntryCnt
-// is 0 then there are no messages at this id, i.e. the end of the log has been reached. When requesting an
-// id that is lower than the first id (when going forward) or greater than the last id (when going backward)
-// then the requested id is set to the first respective the last id in the log.
+// Log messages:
+//   - have an associated log message id
+//   - the id is not persistent, i.e. id assignment starts from beginning when
+//   - restarting the log service (e.g. by rebooting the device)
+//   - clearing the log
 //
-// [1] Internally the id is a 32bit unsigned integer. So the max id is 2^32-1. This id is mapped to a 32bit
+// Log message id:
+//   - unsigned 32bit integer in the backend
+//   - mapped to a signed 32bit integer in IDL
+//   - when the id reaches 2^31 then the IDL representation of the id will become negative
+//   - at 2^32 the id will wrap to 0
+//   - the id start with 0 and is incremented by 1 with each log message
 //
-//	signed integer in the IDL. So after reaching 2^31 the ids become negative. There is also no overflow
-//	protection so the id will wrap to 0 in the end. These issues are more academic since it is not
-//	expected that a device runs long enough to exhaust the id space.
+// Id reset detection:
+//  1. Retrieve LogInfo via getInfo() and remember the creationTime[2].
+//  2. When retrieving log messages via getChunk() compare the logCreationTime with the creationTime from
+//     getInfo().
+//  3. If they differ then the id numbering has been reset.
 //
-// [2] The creation time of the log and the chunks is a timestamp of the monotonic clock. This clock starts
+// Log message retrieval:
+//   - only chunk-wise (a chunk is usually represented by a file in the backend)
+//   - one chunk at a time
+//   - when requested start id is in the middle of the chunk then entries before this id are not returned
+//   - when more messages are requested as available in a chunk after the start id then only the available
+//     messages are returned
+//   - requesting 2^31-1 (INT32_MAX) or -1 (2^32-1 (UINT32_MAX) casted to a signed 32bit integer) entries
+//     will ensure you get everything in the requested chunk after the start id
+//   - when going forward: if start id is lower than the first id then the start id is set to the first id
+//   - when going backward: if start id is greater than the last id then the start id is set to the last id
 //
-//	counting from 0 after boot. The resolution is nanoseconds but the granularity of the clock depends on
-//	the hardware. The clock usually runs with a frequency larger than 1 MHz.
+// Examples:
+//
+//	Retrieving whole log forward from the beginning:
+//
+//	  1. Get current log info by calling getInfo() and remember it.
+//	  2. Set the start id to idFirst from the log info.
+//	  3. Get chunk by calling getChunk(FORWARD) starting at the start id and requesting -1 entries
+//	     (see Log message retrieval above for why using -1 here).
+//	  4. Compare chunk's logCreationTime with the creationTime from log info. If different then restart whole
+//	     retrieval (log service was restarted or log was cleared).
+//	  5. Process retrieved log messages if any.
+//	  6. If allEntryCnt of the chunk is 0 then stop (the end of the log has been reached).
+//	  7. Calculate next start id by adding idFirst and allEntryCnt of the current chunk and go to step 3.
+//
+//	Retrieving whole log backward from the end:
+//
+//	  1. Get current log info by calling getInfo() and remember it.
+//	  2. If idNext in the logInfo is 0 then stop (log is empty).
+//	  3. Set the start id to idNext-1 (i.e. one less then idNext) from the log info.
+//	  4. Get chunk by calling getChunk(BACKWARD) starting at the start id and requesting -1 entries
+//	     (see Log message retrieval above for why using -1 here).
+//	  5. Compare chunk's logCreationTime with the creationTime from log info. If different then restart whole
+//	     retrieval (log service was restarted or log was cleared).
+//	  6. Process retrieved log messages if any.
+//	  7. If idFirst or allEntryCnt of the chunk is 0 then stop (the start of the log has been reached).
+//	  8. Calculate next start id by subtracting 1 from idFirst of the current chunk and go to step 4.
 package log
 
 import "time"

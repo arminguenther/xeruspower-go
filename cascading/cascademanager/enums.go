@@ -8,9 +8,14 @@ func (r Role) IsKnown() bool {
 	return r >= STANDALONE && r <= LINK_UNIT
 }
 
+// IsKnown reports whether the LinkUnitType is a known value.
+func (l LinkUnitType) IsKnown() bool {
+	return l >= NETWORK && l <= SECURE_SERIAL
+}
+
 // IsKnown reports whether the LinkUnitStatus is a known value.
 func (l LinkUnitStatus) IsKnown() bool {
-	return l >= UNKNOWN && l <= FIRMWARE_MISMATCH
+	return l >= UNKNOWN && l <= PENDING
 }
 
 // Fallback returns a known LinkUnitStatus used as a fallback if an
@@ -20,4 +25,4 @@ func (l LinkUnitStatus) Fallback() LinkUnitStatus {
 	return UNKNOWN
 }
 
-//go:generate stringer -output=enum_strings.go -type=Role,LinkUnitStatus
+//go:generate stringer -output=enum_strings.go -type=Role,LinkUnitType,LinkUnitStatus

@@ -18,6 +18,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/pdumodel/transferswitch"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicemanager"
 	"github.com/arminguenther/xeruspower-go/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/sensors/alertedsensormanager"
 	"github.com/arminguenther/xeruspower-go/sensors/sensorlogger"
 )
 
@@ -37,7 +38,7 @@ func NewPdu(rid string, caller idl.Caller) Pdu {
 func (p *_Pdu) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "pdumodel.Pdu",
-		Major: 6, Submajor: 0, Minor: 0,
+		Major: 6, Submajor: 1, Minor: 1,
 	}
 }
 
@@ -119,6 +120,27 @@ func (p *_Pdu) GetSensorLogger(ctx context.Context) (sensorlogger.Logger, error)
 		return ret, err
 	}
 	ret, err = object.As[sensorlogger.Logger](res["_ret_"], p.Caller())
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (p *_Pdu) GetAlertedSensorManager(ctx context.Context) (alertedsensormanager.AlertedSensorManager, error) {
+	var ret alertedsensormanager.AlertedSensorManager
+	val, err := p.Caller().Call(ctx, p.RID(), "getAlertedSensorManager", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = object.As[alertedsensormanager.AlertedSensorManager](res["_ret_"], p.Caller())
 	if err != nil {
 		return ret, err
 	}

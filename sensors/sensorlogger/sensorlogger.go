@@ -14,6 +14,7 @@ import (
 
 	"github.com/arminguenther/xeruspower-go/event/userevent"
 	"github.com/arminguenther/xeruspower-go/idl"
+	"github.com/arminguenther/xeruspower-go/idl/event"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldeviceslot"
 	"github.com/arminguenther/xeruspower-go/sensors/sensor"
 )
@@ -71,6 +72,11 @@ const (
 type Logger interface {
 	idl.Object
 
+	// Retrieve the sensor logger info.
+	//
+	//	@return Sensor logger info
+	GetInfo(ctx context.Context) (LoggerInfo, error)
+
 	// Retrieve the sensor logger settings.
 	//
 	//	@return Sensor logger settings
@@ -78,12 +84,11 @@ type Logger interface {
 
 	// Change the sensor logger settings.
 	//
-	//	@param isEnabled         true to enable sensor logging
-	//	@param samplesPerRecord  Number of samples per log record
+	//	@param settings  New settings
 	//
 	//	@return 0 if OK
 	//	@return 1 if any parameters are invalid
-	SetSettings(ctx context.Context, isEnabled bool, samplesPerRecord int32) (int32, error)
+	SetSettings(ctx context.Context, settings LoggerSettings) (int32, error)
 
 	// Retrieve a set of log record timestamps.
 	//
@@ -212,20 +217,39 @@ type Logger interface {
 	GetLogRow(ctx context.Context, recid int32) (ret int32, row LoggerLogRow, err error)
 }
 
+// Sensor logger info
+type LoggerInfo struct {
+	SamplePeriod int32 // Sample interval in milliseconds
+	// Maximum supported number of log records (number of
+	// logged sensors multiplied by log capacity)
+	MaxTotalRecords int32
+	// Effective log capacity; may be lower than the
+	// setting to meet the maxTotalRecords limit.
+	EffectiveCapacity int32
+	OldestRecId       int32 // ID of oldest record in buffer (0 if empty)
+	NewestRecId       int32 // ID of newest record in buffer (0 if empty)
+}
+
 // Sensor logger settings
 type LoggerSettings struct {
 	IsEnabled        bool  // true if sensor logging is enabled
-	SamplePeriod     int32 // Sensor scan interval in milliseconds
 	SamplesPerRecord int32 // Number of samples per log record
-	OldestRecId      int32 // ID of oldest record in buffer (0 if empty)
-	NewestRecId      int32 // ID of newest record in buffer (0 if empty)
 	LogCapacity      int32 // Maximum number of log records in buffer
+	BackupEnabled    bool  // true if backup to external storage is enabled
 }
 
 // Set of logged sensors
 type LoggerSensorSet struct {
 	Sensors []sensor.Sensor                   // List of numeric or state sensors
 	Slots   []peripheraldeviceslot.DeviceSlot // List of peripheral device slots
+}
+
+// Event: Sensor logger info has changed
+type LoggerInfoChangedEvent interface {
+	event.Event
+	OldInfo() LoggerInfo // Info before change
+	NewInfo() LoggerInfo // Info after change
+	isLoggerInfoChangedEvent()
 }
 
 // Event: Sensor logger settings have been changed

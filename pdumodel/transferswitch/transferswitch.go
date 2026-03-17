@@ -156,6 +156,7 @@ type Sensors struct {
 	OverloadAlarm               statesensor.StateSensor     // Overload alarm
 	PhaseSyncAlarm              statesensor.StateSensor     // Source phases out of sync
 	SwitchFault                 statesensor.StateSensor     // Switch fault (ok, open, short)
+	SelectedBypassSource        statesensor.StateSensor     // Selected source in bypass module
 }
 
 // Transfer switch settings

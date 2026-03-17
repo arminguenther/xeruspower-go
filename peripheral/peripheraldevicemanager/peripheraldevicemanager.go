@@ -22,7 +22,10 @@ import (
 	"github.com/arminguenther/xeruspower-go/sensors/sensor"
 )
 
-const ERR_INVALID_PARAMS int32 = 1 // Invalid parameters
+const (
+	ERR_INVALID_PARAMS   int32 = 1 // Invalid parameters
+	ERR_NOT_ON_SECONDARY int32 = 2 // Unsupported on secondary instance
+)
 
 // Peripheral Device Manager
 type DeviceManager interface {
@@ -63,8 +66,9 @@ type DeviceManager interface {
 	//
 	//	@param settings            New peripheral DeviceManager's settings
 	//
-	//	@return 0                  if OK
-	//	@return ERR_INVALID_PARAMS if any parameters are invalid
+	//	@return 0 if OK
+	//	@return 1 if any parameters are invalid
+	//	@return 2 if this is a secondary instance; use primary to set settings
 	SetSettings(ctx context.Context, settings DeviceManagerSettings) (int32, error)
 
 	// Retreive the Peripheral DeviceManager's metadata.

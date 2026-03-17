@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // Copyright 2026 Raritan Inc. All rights reserved.
 
-package tacplusserversettings
+package radiusmanager
 
 import (
 	"github.com/arminguenther/xeruspower-go/idl"
@@ -9,19 +9,29 @@ import (
 )
 
 func (s *ServerSettings) Encode() map[string]any {
-	j0 := make(map[string]any, 7)
+	j0 := make(map[string]any, 9)
+	j0["id"] = s.Id
 	j0["server"] = s.Server
-	j0["port"] = s.Port
-	j0["timeoutSeconds"] = s.TimeoutSeconds
-	j0["retries"] = s.Retries
 	j0["sharedSecret"] = s.SharedSecret
-	j0["authenType"] = s.AuthenType
+	j0["udpAuthPort"] = s.UdpAuthPort
+	j0["udpAccountPort"] = s.UdpAccountPort
+	j0["timeout"] = s.Timeout
+	j0["retries"] = s.Retries
+	j0["authType"] = s.AuthType
 	j0["disableAccounting"] = s.DisableAccounting
 	return j0
 }
 
 func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("id", j0)
+	if err != nil {
+		return err
+	}
+	s.Id, err = encoding.Is[string](j0["id"])
 	if err != nil {
 		return err
 	}
@@ -33,19 +43,35 @@ func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("port", j0)
+	err = encoding.In("sharedSecret", j0)
 	if err != nil {
 		return err
 	}
-	s.Port, err = encoding.AsInt32(j0["port"])
+	s.SharedSecret, err = encoding.Is[string](j0["sharedSecret"])
 	if err != nil {
 		return err
 	}
-	err = encoding.In("timeoutSeconds", j0)
+	err = encoding.In("udpAuthPort", j0)
 	if err != nil {
 		return err
 	}
-	s.TimeoutSeconds, err = encoding.AsInt32(j0["timeoutSeconds"])
+	s.UdpAuthPort, err = encoding.AsInt32(j0["udpAuthPort"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("udpAccountPort", j0)
+	if err != nil {
+		return err
+	}
+	s.UdpAccountPort, err = encoding.AsInt32(j0["udpAccountPort"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("timeout", j0)
+	if err != nil {
+		return err
+	}
+	s.Timeout, err = encoding.AsInt32(j0["timeout"])
 	if err != nil {
 		return err
 	}
@@ -57,19 +83,11 @@ func (s *ServerSettings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("sharedSecret", j0)
+	err = encoding.In("authType", j0)
 	if err != nil {
 		return err
 	}
-	s.SharedSecret, err = encoding.Is[string](j0["sharedSecret"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("authenType", j0)
-	if err != nil {
-		return err
-	}
-	s.AuthenType, err = encoding.AsEnum[AuthenType](j0["authenType"])
+	s.AuthType, err = encoding.AsEnum[AuthType](j0["authType"])
 	if err != nil {
 		return err
 	}

@@ -230,6 +230,46 @@ func (r *RoleAccessControl) Decode(v any, caller idl.Caller) error {
 	return nil
 }
 
+func (b *BlockSettings) Encode() map[string]any {
+	j0 := make(map[string]any, 3)
+	j0["maxFailedLogins"] = b.MaxFailedLogins
+	j0["blockTimeout"] = b.BlockTimeout
+	j0["failedLoginTimeout"] = b.FailedLoginTimeout
+	return j0
+}
+
+func (b *BlockSettings) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("maxFailedLogins", j0)
+	if err != nil {
+		return err
+	}
+	b.MaxFailedLogins, err = encoding.AsInt32(j0["maxFailedLogins"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("blockTimeout", j0)
+	if err != nil {
+		return err
+	}
+	b.BlockTimeout, err = encoding.AsInt32(j0["blockTimeout"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("failedLoginTimeout", j0)
+	if err != nil {
+		return err
+	}
+	b.FailedLoginTimeout, err = encoding.AsInt32(j0["failedLoginTimeout"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *PasswordSettings) Encode() map[string]any {
 	j0 := make(map[string]any, 10)
 	j0["enableAging"] = p.EnableAging
@@ -568,118 +608,6 @@ func (f *_FrontPanelPrivilegesChanged) Decode(value map[string]any, caller idl.C
 			return err
 		}
 		f.newPrivileges = append(f.newPrivileges, e1)
-	}
-	return nil
-}
-
-func (s *Settings) Encode() map[string]any {
-	j0 := make(map[string]any, 11)
-	j0["http2httpsRedir"] = s.Http2httpsRedir
-	j0["userBlockTimeout"] = s.UserBlockTimeout
-	j0["userMaxFailedLogins"] = s.UserMaxFailedLogins
-	j0["ipFw"] = s.IpFw.Encode()
-	j0["ipV6Fw"] = s.IpV6Fw.Encode()
-	j0["roleAccessControl"] = s.RoleAccessControl.Encode()
-	j0["roleAccessControlV6"] = s.RoleAccessControlV6.Encode()
-	j0["pwSettings"] = s.PwSettings.Encode()
-	j0["idleTimeout"] = s.IdleTimeout
-	j0["singleLogin"] = s.SingleLogin
-	j0["sshSettings"] = s.SshSettings.Encode()
-	return j0
-}
-
-func (s *Settings) Decode(v any, caller idl.Caller) error {
-	j0, err := encoding.Is[map[string]any](v)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("http2httpsRedir", j0)
-	if err != nil {
-		return err
-	}
-	s.Http2httpsRedir, err = encoding.Is[bool](j0["http2httpsRedir"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("userBlockTimeout", j0)
-	if err != nil {
-		return err
-	}
-	s.UserBlockTimeout, err = encoding.AsInt32(j0["userBlockTimeout"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("userMaxFailedLogins", j0)
-	if err != nil {
-		return err
-	}
-	s.UserMaxFailedLogins, err = encoding.AsInt32(j0["userMaxFailedLogins"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("ipFw", j0)
-	if err != nil {
-		return err
-	}
-	err = s.IpFw.Decode(j0["ipFw"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("ipV6Fw", j0)
-	if err != nil {
-		return err
-	}
-	err = s.IpV6Fw.Decode(j0["ipV6Fw"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("roleAccessControl", j0)
-	if err != nil {
-		return err
-	}
-	err = s.RoleAccessControl.Decode(j0["roleAccessControl"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("roleAccessControlV6", j0)
-	if err != nil {
-		return err
-	}
-	err = s.RoleAccessControlV6.Decode(j0["roleAccessControlV6"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("pwSettings", j0)
-	if err != nil {
-		return err
-	}
-	err = s.PwSettings.Decode(j0["pwSettings"], caller)
-	if err != nil {
-		return err
-	}
-	err = encoding.In("idleTimeout", j0)
-	if err != nil {
-		return err
-	}
-	s.IdleTimeout, err = encoding.AsInt32(j0["idleTimeout"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("singleLogin", j0)
-	if err != nil {
-		return err
-	}
-	s.SingleLogin, err = encoding.Is[bool](j0["singleLogin"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("sshSettings", j0)
-	if err != nil {
-		return err
-	}
-	err = s.SshSettings.Decode(j0["sshSettings"], caller)
-	if err != nil {
-		return err
 	}
 	return nil
 }

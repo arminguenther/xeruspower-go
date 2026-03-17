@@ -28,7 +28,7 @@ func NewDateTime(rid string, caller idl.Caller) DateTime {
 func (d *_DateTime) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "datetime.DateTime",
-		Major: 3, Submajor: 0, Minor: 2,
+		Major: 3, Submajor: 0, Minor: 3,
 	}
 }
 

@@ -23,6 +23,7 @@ import (
 	"github.com/arminguenther/xeruspower-go/pdumodel/transferswitch"
 	"github.com/arminguenther/xeruspower-go/peripheral/peripheraldevicemanager"
 	"github.com/arminguenther/xeruspower-go/portsmodel/port"
+	"github.com/arminguenther/xeruspower-go/sensors/alertedsensormanager"
 	"github.com/arminguenther/xeruspower-go/sensors/numericsensor"
 	"github.com/arminguenther/xeruspower-go/sensors/sensorlogger"
 	"github.com/arminguenther/xeruspower-go/sensors/statesensor"
@@ -53,6 +54,11 @@ type Pdu interface {
 	//
 	//	@return Sensor logger reference
 	GetSensorLogger(ctx context.Context) (sensorlogger.Logger, error)
+
+	// Get the alerted sensor manager.
+	//
+	//	@return Alerted sensor manager
+	GetAlertedSensorManager(ctx context.Context) (alertedsensormanager.AlertedSensorManager, error)
 
 	// Get the list of sub controllers.
 	//
@@ -268,7 +274,7 @@ const (
 // PDU settings
 type Settings struct {
 	Name             string       // User-defined name
-	StartupState     StartupState // Default outlet state on device startup; can be overriden per outlet
+	StartupState     StartupState // Default outlet state after applying power to outlets; can be overriden per outlet
 	CycleDelay       int32        // Default power-cycle interval in seconds; can be overriden per outlet
 	InRushGuardDelay int32        // Minimum delay in milliseconds between switching two outlets on
 	// The order in which multiple outlets should be switched.
@@ -279,7 +285,7 @@ type Settings struct {
 	//   - setMultipleOutletPowerStates
 	//   - cycleMultipleOutletPowerStates
 	OutletPowerStateSequence []int32
-	PowerOnDelay             int32 // Delay in seconds before restoring outlet states after device startup
+	PowerOnDelay             int32 // Delay in seconds before restoring outlet states after power is applied to outlets
 	LatchingRelays           bool  // If true, relays keep their state during power-cycling
 	EnergyPulseEnabled       bool  // Enables energy consumption counting using the PDU's LED(s)
 	EnergyPulsesPerKWh       int32 // Ratio between LED pulses and energy consumption

@@ -27,7 +27,7 @@ func NewCascadeManager(rid string, caller idl.Caller) CascadeManager {
 func (c *_CascadeManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "cascading.CascadeManager",
-		Major: 2, Submajor: 0, Minor: 0,
+		Major: 2, Submajor: 0, Minor: 1,
 	}
 }
 
@@ -233,6 +233,37 @@ func (c *_CascadeManager) GetSupportedRoles(ctx context.Context) ([]Role, error)
 	return ret, nil
 }
 
+func (c *_CascadeManager) GetSupportedLinkUnitTypes(ctx context.Context) ([]LinkUnitType, error) {
+	var ret []LinkUnitType
+	val, err := c.Caller().Call(ctx, c.RID(), "getSupportedLinkUnitTypes", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	var s0 []any
+	s0, err = encoding.Is[[]any](res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	ret = make([]LinkUnitType, 0, len(s0))
+	for _, a0 := range s0 {
+		var e0 LinkUnitType
+		e0, err = encoding.AsEnum[LinkUnitType](a0)
+		if err != nil {
+			return ret, err
+		}
+		ret = append(ret, e0)
+	}
+	return ret, nil
+}
+
 func (c *_CascadeManager) AddCascadeLinkUnit(ctx context.Context, in0 int32, in1 int32, in2 string, in3 string, in4 bool) (int32, error) {
 	var ret int32
 	val, err := c.Caller().Call(ctx, c.RID(), "addCascadeLinkUnit", map[string]any{
@@ -263,6 +294,30 @@ func (c *_CascadeManager) AddCascadeLinkUnit(ctx context.Context, in0 int32, in1
 func (c *_CascadeManager) AddLinkPortLinkUnit(ctx context.Context) (int32, error) {
 	var ret int32
 	val, err := c.Caller().Call(ctx, c.RID(), "addLinkPortLinkUnit", nil)
+	if err != nil {
+		return ret, err
+	}
+	res, err := encoding.Is[map[string]any](val)
+	if err != nil {
+		return ret, err
+	}
+	err = encoding.In("_ret_", res)
+	if err != nil {
+		return ret, err
+	}
+	ret, err = encoding.AsInt32(res["_ret_"])
+	if err != nil {
+		return ret, err
+	}
+	return ret, nil
+}
+
+func (c *_CascadeManager) AddSecureSerialLinkUnit(ctx context.Context, in0 int32, in1 string) (int32, error) {
+	var ret int32
+	val, err := c.Caller().Call(ctx, c.RID(), "addSecureSerialLinkUnit", map[string]any{
+		"linkId":     in0,
+		"installKey": in1,
+	})
 	if err != nil {
 		return ret, err
 	}

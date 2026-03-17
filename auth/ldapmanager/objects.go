@@ -6,7 +6,6 @@ package ldapmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/auth/ldapsrv/ldapserversettings"
 	"github.com/arminguenther/xeruspower-go/idl"
 	"github.com/arminguenther/xeruspower-go/internal/encoding"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
@@ -28,12 +27,12 @@ func NewLdapManager(rid string, caller idl.Caller) LdapManager {
 func (l *_LdapManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.LdapManager",
-		Major: 3, Submajor: 0, Minor: 0,
+		Major: 3, Submajor: 0, Minor: 1,
 	}
 }
 
-func (l *_LdapManager) GetLdapServers(ctx context.Context) ([]ldapserversettings.ServerSettings, error) {
-	var ret []ldapserversettings.ServerSettings
+func (l *_LdapManager) GetLdapServers(ctx context.Context) ([]ServerSettings, error) {
+	var ret []ServerSettings
 	val, err := l.Caller().Call(ctx, l.RID(), "getLdapServers", nil)
 	if err != nil {
 		return ret, err
@@ -51,9 +50,9 @@ func (l *_LdapManager) GetLdapServers(ctx context.Context) ([]ldapserversettings
 	if err != nil {
 		return ret, err
 	}
-	ret = make([]ldapserversettings.ServerSettings, 0, len(s0))
+	ret = make([]ServerSettings, 0, len(s0))
 	for _, a0 := range s0 {
-		var e0 ldapserversettings.ServerSettings
+		var e0 ServerSettings
 		err = e0.Decode(a0, l.Caller())
 		if err != nil {
 			return ret, err
@@ -63,7 +62,7 @@ func (l *_LdapManager) GetLdapServers(ctx context.Context) ([]ldapserversettings
 	return ret, nil
 }
 
-func (l *_LdapManager) SetLdapServers(ctx context.Context, in0 []ldapserversettings.ServerSettings) (int32, error) {
+func (l *_LdapManager) SetLdapServers(ctx context.Context, in0 []ServerSettings) (int32, error) {
 	var ret int32
 	s0 := make([]any, 0, len(in0))
 	for _, e0 := range in0 {
@@ -90,7 +89,7 @@ func (l *_LdapManager) SetLdapServers(ctx context.Context, in0 []ldapserversetti
 	return ret, nil
 }
 
-func (l *_LdapManager) TestLdapServer(ctx context.Context, in0 string, in1 string, in2 ldapserversettings.ServerSettings) (int32, string, error) {
+func (l *_LdapManager) TestLdapServer(ctx context.Context, in0 string, in1 string, in2 ServerSettings) (int32, string, error) {
 	var ret int32
 	var out0 string
 	val, err := l.Caller().Call(ctx, l.RID(), "testLdapServer", map[string]any{

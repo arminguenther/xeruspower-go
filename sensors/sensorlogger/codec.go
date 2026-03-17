@@ -6,6 +6,7 @@ package sensorlogger
 import (
 	"github.com/arminguenther/xeruspower-go/event/userevent"
 	"github.com/arminguenther/xeruspower-go/idl"
+	"github.com/arminguenther/xeruspower-go/idl/event"
 	"github.com/arminguenther/xeruspower-go/internal/encoding"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/object"
 	"github.com/arminguenther/xeruspower-go/internal/encoding/valobj"
@@ -13,14 +14,70 @@ import (
 	"github.com/arminguenther/xeruspower-go/sensors/sensor"
 )
 
+func (i *LoggerInfo) Encode() map[string]any {
+	j0 := make(map[string]any, 5)
+	j0["samplePeriod"] = i.SamplePeriod
+	j0["maxTotalRecords"] = i.MaxTotalRecords
+	j0["effectiveCapacity"] = i.EffectiveCapacity
+	j0["oldestRecId"] = i.OldestRecId
+	j0["newestRecId"] = i.NewestRecId
+	return j0
+}
+
+func (i *LoggerInfo) Decode(v any, caller idl.Caller) error {
+	j0, err := encoding.Is[map[string]any](v)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("samplePeriod", j0)
+	if err != nil {
+		return err
+	}
+	i.SamplePeriod, err = encoding.AsInt32(j0["samplePeriod"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("maxTotalRecords", j0)
+	if err != nil {
+		return err
+	}
+	i.MaxTotalRecords, err = encoding.AsInt32(j0["maxTotalRecords"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("effectiveCapacity", j0)
+	if err != nil {
+		return err
+	}
+	i.EffectiveCapacity, err = encoding.AsInt32(j0["effectiveCapacity"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldestRecId", j0)
+	if err != nil {
+		return err
+	}
+	i.OldestRecId, err = encoding.AsInt32(j0["oldestRecId"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newestRecId", j0)
+	if err != nil {
+		return err
+	}
+	i.NewestRecId, err = encoding.AsInt32(j0["newestRecId"])
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *LoggerSettings) Encode() map[string]any {
-	j0 := make(map[string]any, 6)
+	j0 := make(map[string]any, 4)
 	j0["isEnabled"] = s.IsEnabled
-	j0["samplePeriod"] = s.SamplePeriod
 	j0["samplesPerRecord"] = s.SamplesPerRecord
-	j0["oldestRecId"] = s.OldestRecId
-	j0["newestRecId"] = s.NewestRecId
 	j0["logCapacity"] = s.LogCapacity
+	j0["backupEnabled"] = s.BackupEnabled
 	return j0
 }
 
@@ -37,14 +94,6 @@ func (s *LoggerSettings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("samplePeriod", j0)
-	if err != nil {
-		return err
-	}
-	s.SamplePeriod, err = encoding.AsInt32(j0["samplePeriod"])
-	if err != nil {
-		return err
-	}
 	err = encoding.In("samplesPerRecord", j0)
 	if err != nil {
 		return err
@@ -53,27 +102,19 @@ func (s *LoggerSettings) Decode(v any, caller idl.Caller) error {
 	if err != nil {
 		return err
 	}
-	err = encoding.In("oldestRecId", j0)
-	if err != nil {
-		return err
-	}
-	s.OldestRecId, err = encoding.AsInt32(j0["oldestRecId"])
-	if err != nil {
-		return err
-	}
-	err = encoding.In("newestRecId", j0)
-	if err != nil {
-		return err
-	}
-	s.NewestRecId, err = encoding.AsInt32(j0["newestRecId"])
-	if err != nil {
-		return err
-	}
 	err = encoding.In("logCapacity", j0)
 	if err != nil {
 		return err
 	}
 	s.LogCapacity, err = encoding.AsInt32(j0["logCapacity"])
+	if err != nil {
+		return err
+	}
+	err = encoding.In("backupEnabled", j0)
+	if err != nil {
+		return err
+	}
+	s.BackupEnabled, err = encoding.Is[bool](j0["backupEnabled"])
 	if err != nil {
 		return err
 	}
@@ -135,6 +176,31 @@ func (s *LoggerSensorSet) Decode(v any, caller idl.Caller) error {
 			return err
 		}
 		s.Slots = append(s.Slots, e2)
+	}
+	return nil
+}
+
+func (i *_LoggerInfoChangedEvent) Decode(value map[string]any, caller idl.Caller) error {
+	i.Event = valobj.For[event.Event]()
+	err := i.Event.Decode(value, caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("oldInfo", value)
+	if err != nil {
+		return err
+	}
+	err = i.oldInfo.Decode(value["oldInfo"], caller)
+	if err != nil {
+		return err
+	}
+	err = encoding.In("newInfo", value)
+	if err != nil {
+		return err
+	}
+	err = i.newInfo.Decode(value["newInfo"], caller)
+	if err != nil {
+		return err
 	}
 	return nil
 }

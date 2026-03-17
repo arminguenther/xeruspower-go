@@ -191,7 +191,7 @@ const (
 // Outlet settings
 type Settings struct {
 	Name             string       // User-defined name
-	StartupState     StartupState // Power state on device startup
+	StartupState     StartupState // Power state after power is applied to the outlet
 	UsePduCycleDelay bool         // true to use power-cycle delay as defined in PDU settings
 	CycleDelay       int32        // Outlet-specific power-cycle delay
 	NonCritical      bool         // true if outlet is non-critical (for load shedding)
