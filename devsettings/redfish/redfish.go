@@ -11,7 +11,7 @@ package redfish
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
 )
 
 // Redfish API service settings interface

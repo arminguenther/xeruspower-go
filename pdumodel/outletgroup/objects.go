@@ -6,10 +6,10 @@ package outletgroup
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/outlet"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/outlet"
 )
 
 func init() {

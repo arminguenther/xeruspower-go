@@ -4,11 +4,11 @@
 package assetstrip
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40200/assetmgrmodel/assetstripconfig"
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40211/assetmgrmodel/assetstripconfig"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding/valobj"
 )
 
 func init() {

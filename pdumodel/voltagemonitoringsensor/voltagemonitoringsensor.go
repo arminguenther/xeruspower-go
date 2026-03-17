@@ -12,10 +12,10 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/waveform"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/waveform"
+	"github.com/arminguenther/xeruspower-go/v40211/sensors/numericsensor"
 )
 
 // Interface of a voltage sensor with extended monitoring capabilities

@@ -11,10 +11,10 @@ package keypadmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/smartlock/keypad"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40211/smartlock/keypad"
 )
 
 // Keypad Manager Interface

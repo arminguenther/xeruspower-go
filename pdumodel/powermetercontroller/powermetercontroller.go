@@ -11,10 +11,10 @@ package powermetercontroller
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/panel"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/panel"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/powermeter"
 )
 
 const (

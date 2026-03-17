@@ -4,8 +4,8 @@
 package nameplate
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding"
 )
 
 func (r *Rating) Encode() map[string]any {

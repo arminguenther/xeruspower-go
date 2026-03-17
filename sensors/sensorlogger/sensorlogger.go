@@ -12,11 +12,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldeviceslot"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40211/peripheral/peripheraldeviceslot"
+	"github.com/arminguenther/xeruspower-go/v40211/sensors/sensor"
 )
 
 // Sensor state in log record

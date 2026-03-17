@@ -6,11 +6,11 @@ package panel
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/circuit"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/powermeter"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/circuit"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/powermeter"
 )
 
 func init() {

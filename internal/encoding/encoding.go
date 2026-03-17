@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
 )
 
 // JSON types are those which [json.Decoder.Decode]

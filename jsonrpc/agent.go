@@ -18,11 +18,11 @@ import (
 	"sync"
 	"sync/atomic"
 
-	bulk "github.com/arminguenther/xeruspower-go/v40200/bulkrpc/bulkrequest"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
+	bulk "github.com/arminguenther/xeruspower-go/v40211/bulkrpc/bulkrequest"
+	"github.com/arminguenther/xeruspower-go/v40211/idl"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40211/internal/encoding/valobj"
 )
 
 // A TypeCoder can state its type as an [idl.TypeCode].

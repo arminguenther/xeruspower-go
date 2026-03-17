@@ -11,14 +11,14 @@ package overcurrentprotector
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/edevice"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/inlet"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/nameplate"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/pole"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/residualcurrentstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40211/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/edevice"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/inlet"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/nameplate"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/pole"
+	"github.com/arminguenther/xeruspower-go/v40211/pdumodel/residualcurrentstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40211/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40211/sensors/statesensor"
 )
 
 // Overcurrent protector statistics
