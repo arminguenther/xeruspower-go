@@ -6,9 +6,9 @@ package radiusmanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
 )
 
 func init() {
@@ -27,7 +27,7 @@ func NewRadiusManager(rid string, caller idl.Caller) RadiusManager {
 func (r *_RadiusManager) TypeCode() idl.TypeCode {
 	return idl.TypeCode{
 		Name:  "auth.RadiusManager",
-		Major: 3, Submajor: 0, Minor: 1,
+		Major: 4, Submajor: 0, Minor: 0,
 	}
 }
 

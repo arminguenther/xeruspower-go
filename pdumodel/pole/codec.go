@@ -4,11 +4,11 @@
 package pole
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/pdumodel/residualcurrentstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40220/pdumodel/residualcurrentstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40220/sensors/numericsensor"
 )
 
 func (p *Pole) Encode() map[string]any {

@@ -6,10 +6,10 @@ package sensorhub
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/peripheral/peripheraldevicepackage"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40220/peripheral/peripheraldevicepackage"
 )
 
 func init() {

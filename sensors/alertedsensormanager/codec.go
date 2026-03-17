@@ -4,12 +4,12 @@
 package alertedsensormanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40200/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40220/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensor"
 )
 
 func (s *SensorCounts) Encode() map[string]any {

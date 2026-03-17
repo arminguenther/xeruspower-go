@@ -12,8 +12,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40200/sensors/sensor"
+	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40220/sensors/sensor"
 )
 
 // Sensor with discrete readings

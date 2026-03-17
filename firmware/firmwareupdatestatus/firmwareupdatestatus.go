@@ -11,7 +11,7 @@ package firmwareupdatestatus
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
 )
 
 // Firmware update status

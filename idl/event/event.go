@@ -8,7 +8,7 @@
 // Basic IDL definitions
 package event
 
-import "github.com/arminguenther/xeruspower-go/v40200/idl"
+import "github.com/arminguenther/xeruspower-go/v40220/idl"
 
 // Common base for all events
 type Event interface {

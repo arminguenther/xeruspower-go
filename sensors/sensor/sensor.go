@@ -11,8 +11,8 @@ package sensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
-	"github.com/arminguenther/xeruspower-go/v40200/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/idl/event"
 )
 
 const ERR_NOT_SUPPORTED int32 = 1 // The operation is not supported

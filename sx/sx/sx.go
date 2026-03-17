@@ -7,8 +7,8 @@
 package sx
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40200/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40200/idl"
+	"github.com/arminguenther/xeruspower-go/v40220/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40220/idl"
 )
 
 // Serial access port interface
