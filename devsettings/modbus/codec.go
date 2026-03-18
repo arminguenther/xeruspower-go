@@ -4,8 +4,8 @@
 package modbus
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding"
 )
 
 func (c *Capabilities) Encode() map[string]any {

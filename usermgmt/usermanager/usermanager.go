@@ -11,9 +11,9 @@ package usermanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/usermgmt/user"
+	"github.com/arminguenther/xeruspower-go/v40033/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/usermgmt/user"
 )
 
 // Account information

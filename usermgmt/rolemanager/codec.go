@@ -4,10 +4,10 @@
 package rolemanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40033/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/valobj"
 )
 
 func (r *_RoleEvent) Decode(value map[string]any, caller idl.Caller) error {

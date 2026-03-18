@@ -11,8 +11,8 @@ package user
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/usermgmt/role"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/usermgmt/role"
 )
 
 // SNMPv3 security level

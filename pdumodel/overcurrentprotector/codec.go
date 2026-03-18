@@ -4,14 +4,14 @@
 package overcurrentprotector
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40032/pdumodel/residualcurrentstatesensor"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/numericsensor"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/statesensor"
+	"github.com/arminguenther/xeruspower-go/v40033/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40033/pdumodel/residualcurrentstatesensor"
+	"github.com/arminguenther/xeruspower-go/v40033/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40033/sensors/statesensor"
 )
 
 func (c *CircuitBreakerStatistic) Encode() map[string]any {

@@ -11,10 +11,10 @@ package webcammanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40032/webcam/webcam"
-	"github.com/arminguenther/xeruspower-go/v40032/webcam/webcamchannel"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40033/webcam/webcam"
+	"github.com/arminguenther/xeruspower-go/v40033/webcam/webcamchannel"
 )
 
 // Priority

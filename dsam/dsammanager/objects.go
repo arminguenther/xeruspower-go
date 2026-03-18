@@ -6,10 +6,10 @@ package dsammanager
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/dsam/dsamdevice"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40033/dsam/dsamdevice"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/object"
 )
 
 func init() {

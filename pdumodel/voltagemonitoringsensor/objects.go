@@ -6,10 +6,10 @@ package voltagemonitoringsensor
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/object"
-	"github.com/arminguenther/xeruspower-go/v40032/sensors/numericsensor"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/object"
+	"github.com/arminguenther/xeruspower-go/v40033/sensors/numericsensor"
 )
 
 func init() {

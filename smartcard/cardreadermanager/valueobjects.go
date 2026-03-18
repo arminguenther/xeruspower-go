@@ -4,11 +4,11 @@
 package cardreadermanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
-	"github.com/arminguenther/xeruspower-go/v40032/smartcard/cardreader"
+	"github.com/arminguenther/xeruspower-go/v40033/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/valobj"
+	"github.com/arminguenther/xeruspower-go/v40033/smartcard/cardreader"
 )
 
 func init() {

@@ -11,7 +11,7 @@ package diaglogsettings
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
 )
 
 const (

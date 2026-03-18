@@ -4,11 +4,11 @@
 package keypadmanager
 
 import (
-	"github.com/arminguenther/xeruspower-go/v40032/event/userevent"
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/idl/event"
-	"github.com/arminguenther/xeruspower-go/v40032/internal/encoding/valobj"
-	keypad_ "github.com/arminguenther/xeruspower-go/v40032/smartlock/keypad"
+	"github.com/arminguenther/xeruspower-go/v40033/event/userevent"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/idl/event"
+	"github.com/arminguenther/xeruspower-go/v40033/internal/encoding/valobj"
+	keypad_ "github.com/arminguenther/xeruspower-go/v40033/smartlock/keypad"
 )
 
 func init() {

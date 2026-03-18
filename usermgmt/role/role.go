@@ -11,7 +11,7 @@ package role
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
 )
 
 const ERR_INVALID_VALUE int32 = 1 // Invalid arguments

@@ -11,8 +11,8 @@ package portdispatcher
 import (
 	"context"
 
-	"github.com/arminguenther/xeruspower-go/v40032/idl"
-	"github.com/arminguenther/xeruspower-go/v40032/serial/serialport"
+	"github.com/arminguenther/xeruspower-go/v40033/idl"
+	"github.com/arminguenther/xeruspower-go/v40033/serial/serialport"
 )
 
 // Top-level interface of the serial port manager
